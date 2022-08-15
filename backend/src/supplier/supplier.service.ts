@@ -1,7 +1,8 @@
 import { Supplier, SupplierDocument } from './supplier.schema';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { PostSupplierDto } from './dto';
 
 @Injectable()
 export class SupplierService {
@@ -9,8 +10,34 @@ export class SupplierService {
     @InjectModel(Supplier.name) private supplierModel: Model<SupplierDocument>,
   ) {}
 
-  async add(): Promise<Supplier> {
-    const supplier = new this.supplierModel({ name: 'Test' });
+  async getAll(): Promise<Supplier[]> {
+    return await this.supplierModel.find();
+  }
+
+  async add(data: PostSupplierDto): Promise<Supplier> {
+    const supplier = new this.supplierModel(data);
     return supplier.save();
+  }
+
+  async update(id: string, data: PostSupplierDto): Promise<Supplier> {
+    const updatedSupplier = await this.supplierModel.findByIdAndUpdate(
+      id,
+      data,
+      {
+        new: true,
+      },
+    );
+
+    if (!updatedSupplier) {
+      throw new NotFoundException();
+    }
+
+    return updatedSupplier;
+  }
+
+  async delete(id: string): Promise<string> {
+    await this.supplierModel.findByIdAndDelete({ _id: id });
+
+    return id;
   }
 }

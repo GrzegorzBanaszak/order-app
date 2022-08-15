@@ -3,16 +3,19 @@ import { Document } from 'mongoose';
 
 export type SupplierDocument = Supplier & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Supplier {
   @Prop()
   id: string;
 
-  @Prop()
+  @Prop({ required: true })
   name: string;
 
   @Prop()
-  nip: string;
+  price: string;
+
+  @Prop()
+  createdAt?: Date;
 }
 
 export const SupplierSchema = SchemaFactory.createForClass(Supplier);
