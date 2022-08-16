@@ -6,7 +6,7 @@ export type SupplierDocument = Supplier & Document;
 @Schema({ timestamps: true })
 export class Supplier {
   @Prop()
-  id: string;
+  _id: string;
 
   @Prop({ required: true })
   name: string;

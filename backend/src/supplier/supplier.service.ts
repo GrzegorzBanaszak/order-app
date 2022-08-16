@@ -16,7 +16,7 @@ export class SupplierService {
 
   async add(data: PostSupplierDto): Promise<Supplier> {
     const supplier = new this.supplierModel(data);
-    return supplier.save();
+    return await supplier.save();
   }
 
   async update(id: string, data: PostSupplierDto): Promise<Supplier> {
