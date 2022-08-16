@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CommodityService } from './commodity.service';
 import { CommodityController } from './commodity.controller';
 import { Module } from '@nestjs/common';
+import { CommadityProfile } from './commodity.profile';
 
 @Module({
   imports: [
@@ -11,6 +12,6 @@ import { Module } from '@nestjs/common';
     ]),
   ],
   controllers: [CommodityController],
-  providers: [CommodityService],
+  providers: [CommodityService, CommadityProfile],
 })
 export class CommodityModule {}

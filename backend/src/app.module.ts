@@ -6,6 +6,8 @@ import { CompanyModule } from './company/company.module';
 import { CustomerModule } from './customer/customer.module';
 import { OrderModule } from './order/order.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AutomapperModule } from '@automapper/nestjs';
+import { classes } from '@automapper/classes';
 
 @Module({
   imports: [
@@ -16,6 +18,9 @@ import { MongooseModule } from '@nestjs/mongoose';
     CustomerModule,
     OrderModule,
     MongooseModule.forRoot('mongodb://localhost:27017/orders'),
+    AutomapperModule.forRoot({
+      strategyInitializer: classes(),
+    }),
   ],
 })
 export class AppModule {}

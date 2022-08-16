@@ -7,14 +7,20 @@ import {
   Param,
   Post,
   Put,
+  UseInterceptors,
 } from '@nestjs/common';
-import { PostCommodityDto } from './dto';
+import { GetCommodityDto, PostCommodityDto } from './dto';
+import { MapInterceptor } from '@automapper/nestjs';
+import { Commodity } from './commodity.schema';
 
 @Controller('commodity')
 export class CommodityController {
   constructor(private commodityService: CommodityService) {}
 
   @Get()
+  @UseInterceptors(
+    MapInterceptor(Commodity, GetCommodityDto, { isArray: true }),
+  )
   async getAll() {
     return await this.commodityService.getAll();
   }
