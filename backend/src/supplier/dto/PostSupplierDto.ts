@@ -1,4 +1,4 @@
-export interface PostSupplierDto {
-  name: string;
-  price: number;
+export class PostSupplierDto {
+    name: string;
+    price: number;
 }

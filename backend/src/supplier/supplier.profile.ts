@@ -1,18 +1,18 @@
-import { GetCommodityDto } from './dto';
-import { createMap, Mapper, MappingProfile } from '@automapper/core';
+import { Supplier } from './supplier.schema';
+import { MappingProfile, createMap, Mapper } from '@automapper/core';
 import { AutomapperProfile, InjectMapper } from '@automapper/nestjs';
 import { Injectable } from '@nestjs/common';
-import { Commodity } from './commodity.schema';
+import { GetSupplierDto } from './dto';
 
 @Injectable()
-export class CommadityProfile extends AutomapperProfile {
+export class SupplierProfile extends AutomapperProfile {
     constructor(@InjectMapper() mapper: Mapper) {
         super(mapper);
     }
 
     override get profile(): MappingProfile {
         return (mapper) => {
-            createMap(mapper, Commodity, GetCommodityDto);
+            createMap(mapper, Supplier, GetSupplierDto);
         };
     }
 }

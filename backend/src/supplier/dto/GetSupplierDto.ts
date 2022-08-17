@@ -1,5 +1,10 @@
-export interface GetSupplierDto {
-  id: string;
-  name: string;
-  price: number;
+import { AutoMap } from '@automapper/classes';
+
+export class GetSupplierDto {
+    @AutoMap()
+    _id: string;
+    @AutoMap()
+    name: string;
+    @AutoMap()
+    price: number;
 }
