@@ -10,17 +10,17 @@ import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
 
 @Module({
-  imports: [
-    AuthModule,
-    CommodityModule,
-    SupplierModule,
-    CompanyModule,
-    CustomerModule,
-    OrderModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/orders'),
-    AutomapperModule.forRoot({
-      strategyInitializer: classes(),
-    }),
-  ],
+    imports: [
+        AuthModule,
+        CommodityModule,
+        SupplierModule,
+        CompanyModule,
+        CustomerModule,
+        OrderModule,
+        MongooseModule.forRoot('mongodb://localhost:27017/orders'),
+        AutomapperModule.forRoot({
+            strategyInitializer: classes(),
+        }),
+    ],
 })
 export class AppModule {}
