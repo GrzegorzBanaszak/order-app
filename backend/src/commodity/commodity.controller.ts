@@ -26,11 +26,13 @@ export class CommodityController {
   }
 
   @Post('add')
+  @UseInterceptors(MapInterceptor(Commodity, GetCommodityDto))
   async add(@Body() data: PostCommodityDto) {
     return await this.commodityService.add(data);
   }
 
   @Put('update/:id')
+  @UseInterceptors(MapInterceptor(Commodity, GetCommodityDto))
   async update(@Param() params: any, @Body() data: PostCommodityDto) {
     return await this.commodityService.update(params.id, data);
   }
