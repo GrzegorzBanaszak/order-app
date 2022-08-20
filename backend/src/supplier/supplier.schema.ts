@@ -1,6 +1,7 @@
 import { AutoMap } from '@automapper/classes';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Schema as SchemaType } from 'mongoose';
 
 export type SupplierDocument = Supplier & Document;
 
@@ -8,7 +9,7 @@ export type SupplierDocument = Supplier & Document;
 export class Supplier {
     @AutoMap()
     @Prop({ auto: true })
-    _id: string;
+    _id: SchemaType.Types.ObjectId;
 
     @AutoMap()
     @Prop({ required: true })
