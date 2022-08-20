@@ -6,25 +6,17 @@ export type CommodityDocument = Commodity & Document;
 
 @Schema({ timestamps: true })
 export class Commodity {
-  @AutoMap()
-  @Prop({ auto: true })
-  _id: SchemaType.Types.ObjectId;
+    @AutoMap()
+    @Prop({ auto: true })
+    _id: SchemaType.Types.ObjectId;
 
-  @AutoMap()
-  @Prop({ required: true })
-  name: string;
+    @AutoMap()
+    @Prop({ required: true })
+    name: string;
 
-  @AutoMap()
-  @Prop({ required: true })
-  quantity: number;
-
-  @AutoMap()
-  @Prop({ required: true })
-  price: number;
-
-  @AutoMap()
-  @Prop()
-  description: string;
+    @AutoMap()
+    @Prop()
+    description: string;
 }
 
 export const CommoditySchema = SchemaFactory.createForClass(Commodity);
