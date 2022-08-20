@@ -9,7 +9,7 @@ export type CustomerDocument = Customer & Document;
 export class Customer {
     @AutoMap()
     @Prop({ auto: true })
-    _id: string;
+    _id: SchemaType.Types.ObjectId;
 
     @AutoMap()
     @Prop({ required: true })

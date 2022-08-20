@@ -1,5 +1,5 @@
 import { PostCustomerDto } from './dto/PostCustomerDto';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Customer, CustomerDocument } from './customer.schema';
@@ -16,7 +16,29 @@ export class CustomerService {
     }
 
     async add(data: PostCustomerDto): Promise<Customer> {
-        const supplier = new this.customerModel(data);
-        return await supplier.save();
+        const customer = new this.customerModel(data);
+        return await customer.save();
+    }
+
+    async update(id: string, data: PostCustomerDto): Promise<Customer> {
+        const updatedCustomer = await this.customerModel.findByIdAndUpdate(
+            id,
+            data,
+            {
+                new: true,
+            },
+        );
+
+        if (!updatedCustomer) {
+            throw new NotFoundException();
+        }
+
+        return updatedCustomer;
+    }
+
+    async delete(id: string): Promise<string> {
+        await this.customerModel.findByIdAndDelete(id);
+
+        return id;
     }
 }

@@ -1,13 +1,6 @@
 import { GetCustomerDto } from './dto/GetCustomerDto';
 import { Customer } from './customer.schema';
-
-import {
-    createMap,
-    forMember,
-    mapFrom,
-    Mapper,
-    MappingProfile,
-} from '@automapper/core';
+import { createMap, Mapper, MappingProfile } from '@automapper/core';
 import { AutomapperProfile, InjectMapper } from '@automapper/nestjs';
 import { Injectable } from '@nestjs/common';
 
