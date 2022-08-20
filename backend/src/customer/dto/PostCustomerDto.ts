@@ -5,7 +5,7 @@ export class PostCustomerDto {
     @AutoMap()
     name: string;
     @AutoMap()
-    number: number;
+    phoneNumber: number;
     @AutoMap()
-    company: Schema.Types.ObjectId;
+    company?: Schema.Types.ObjectId;
 }

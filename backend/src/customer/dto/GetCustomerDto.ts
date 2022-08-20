@@ -10,8 +10,8 @@ export class GetCustomerDto {
     name: string;
 
     @AutoMap()
-    number: number;
+    phoneNumber: number;
 
     @AutoMap()
-    company: GetCompanyDto;
+    company?: GetCompanyDto;
 }

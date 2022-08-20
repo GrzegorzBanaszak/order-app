@@ -5,5 +5,5 @@ export class PostCompanyDto {
     name: string;
 
     @AutoMap()
-    nip: number;
+    nip: string;
 }

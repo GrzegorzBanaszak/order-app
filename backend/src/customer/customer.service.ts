@@ -17,6 +17,7 @@ export class CustomerService {
 
     async add(data: PostCustomerDto): Promise<Customer> {
         const customer = new this.customerModel(data);
+        customer.populate('company');
         return await customer.save();
     }
 
