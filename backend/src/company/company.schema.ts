@@ -16,7 +16,7 @@ export class Company {
 
     @AutoMap()
     @Prop()
-    nip: number;
+    nip: string;
 }
 
 export const CompanySchema = SchemaFactory.createForClass(Company);

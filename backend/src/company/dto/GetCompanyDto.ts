@@ -8,5 +8,5 @@ export class GetCompanyDto {
     name: string;
 
     @AutoMap()
-    nip: number;
+    nip: string;
 }
