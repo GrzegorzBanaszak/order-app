@@ -1,18 +1,15 @@
+import { MongoExeptionFilter } from './mongo-exeption.filter';
 import { AuthService } from './auth.service';
-import { Body, Controller, Post } from '@nestjs/common';
-import { UserLoginDto } from './dto';
+import { Body, Controller, Post, UseFilters } from '@nestjs/common';
+import { PostUserDto } from './dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService) {}
 
-  @Post('signup')
-  signup(@Body() data: UserLoginDto) {
-    return data;
-  }
-
-  @Post('signin')
-  signin() {
-    return this.authService.signin();
-  }
+    @Post('register')
+    @UseFilters(MongoExeptionFilter)
+    async register(@Body() data: PostUserDto) {
+        return await this.authService.register(data);
+    }
 }
