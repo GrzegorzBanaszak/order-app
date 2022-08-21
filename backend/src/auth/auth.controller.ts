@@ -12,4 +12,9 @@ export class AuthController {
     async register(@Body() data: PostUserDto) {
         return await this.authService.register(data);
     }
+
+    // @Post('login')
+    // async login(@Body() data: PostUserDto) {
+    //     return await this.authService.login(data);
+    // }
 }

@@ -8,6 +8,7 @@ import { OrderModule } from './order/order.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
     imports: [
@@ -21,6 +22,7 @@ import { classes } from '@automapper/classes';
         AutomapperModule.forRoot({
             strategyInitializer: classes(),
         }),
+        ConfigModule.forRoot({ isGlobal: true }),
     ],
 })
 export class AppModule {}
