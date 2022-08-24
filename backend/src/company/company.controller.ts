@@ -1,3 +1,4 @@
+import { AuthGuard } from '@nestjs/passport';
 import { PostCompanyDto } from './dto/PostComapnyDto';
 import { GetCompanyDto } from './dto/GetCompanyDto';
 import { Company } from './company.schema';
@@ -11,9 +12,11 @@ import {
     Param,
     Post,
     Put,
+    UseGuards,
     UseInterceptors,
 } from '@nestjs/common';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('company')
 export class CompanyController {
     constructor(private companyService: CompanyService) {}

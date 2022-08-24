@@ -2,9 +2,18 @@ import { GetOrderDto } from './dto/GetOrderGto';
 import { Order } from './order.schema';
 import { PostOrderDto } from './dto/PostOrderDto';
 import { OrderService } from './order.service';
-import { Body, Controller, Get, Post, UseInterceptors } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Get,
+    Post,
+    UseGuards,
+    UseInterceptors,
+} from '@nestjs/common';
 import { MapInterceptor } from '@automapper/nestjs';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('order')
 export class OrderController {
     constructor(private orderService: OrderService) {}

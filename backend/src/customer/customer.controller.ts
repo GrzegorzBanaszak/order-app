@@ -10,10 +10,13 @@ import {
     Param,
     Post,
     Put,
+    UseGuards,
     UseInterceptors,
 } from '@nestjs/common';
 import { CustomerService } from './customer.service';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('customer')
 export class CustomerController {
     constructor(private customerService: CustomerService) {}

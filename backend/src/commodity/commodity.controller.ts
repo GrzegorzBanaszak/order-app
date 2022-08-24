@@ -1,44 +1,47 @@
 import { CommodityService } from './commodity.service';
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-  UseInterceptors,
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Post,
+    Put,
+    UseGuards,
+    UseInterceptors,
 } from '@nestjs/common';
 import { GetCommodityDto, PostCommodityDto } from './dto';
 import { MapInterceptor } from '@automapper/nestjs';
 import { Commodity } from './commodity.schema';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('commodity')
 export class CommodityController {
-  constructor(private commodityService: CommodityService) {}
+    constructor(private commodityService: CommodityService) {}
 
-  @Get()
-  @UseInterceptors(
-    MapInterceptor(Commodity, GetCommodityDto, { isArray: true }),
-  )
-  async getAll() {
-    return await this.commodityService.getAll();
-  }
+    @Get()
+    @UseInterceptors(
+        MapInterceptor(Commodity, GetCommodityDto, { isArray: true }),
+    )
+    async getAll() {
+        return await this.commodityService.getAll();
+    }
 
-  @Post('add')
-  @UseInterceptors(MapInterceptor(Commodity, GetCommodityDto))
-  async add(@Body() data: PostCommodityDto) {
-    return await this.commodityService.add(data);
-  }
+    @Post('add')
+    @UseInterceptors(MapInterceptor(Commodity, GetCommodityDto))
+    async add(@Body() data: PostCommodityDto) {
+        return await this.commodityService.add(data);
+    }
 
-  @Put('update/:id')
-  @UseInterceptors(MapInterceptor(Commodity, GetCommodityDto))
-  async update(@Param() params: any, @Body() data: PostCommodityDto) {
-    return await this.commodityService.update(params.id, data);
-  }
+    @Put('update/:id')
+    @UseInterceptors(MapInterceptor(Commodity, GetCommodityDto))
+    async update(@Param() params: any, @Body() data: PostCommodityDto) {
+        return await this.commodityService.update(params.id, data);
+    }
 
-  @Delete('delete/:id')
-  async delete(@Param() params: any) {
-    return await this.commodityService.delete(params.id);
-  }
+    @Delete('delete/:id')
+    async delete(@Param() params: any) {
+        return await this.commodityService.delete(params.id);
+    }
 }

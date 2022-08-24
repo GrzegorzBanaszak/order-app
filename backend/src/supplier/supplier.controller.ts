@@ -10,10 +10,13 @@ import {
     Param,
     Post,
     Put,
+    UseGuards,
     UseInterceptors,
 } from '@nestjs/common';
 import { GetSupplierDto } from './dto';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('supplier')
 export class SupplierController {
     constructor(private supplierService: SupplierService) {}
