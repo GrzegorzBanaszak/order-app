@@ -1,6 +1,12 @@
 module.exports = {
-  extends: ["plugin:vue/vue3-recommended"],
-  rules: { "vue/multi-word-component-names": "off" },
+  env: {
+    node: true,
+  },
+  extends: ["eslint:recommended", "plugin:vue/vue3-recommended", "prettier"],
+  rules: {
+    "vue/multi-word-component-names": "off",
+    "vue/html-self-closing": 0,
+  },
   parserOptions: {
     parser: "@babel/eslint-parser",
     requireConfigFile: false, // <== ADD THIS
