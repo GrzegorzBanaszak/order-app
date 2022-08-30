@@ -1,20 +1,62 @@
 <template>
   <div class="form-container">
-    <form class="form" autocomplete="off">
+    <form class="form" autocomplete="off" @submit.prevent="formSubmit">
       <h1 class="form__title">Zaloguj</h1>
       <div class="form__group">
         <label for="email">Email</label>
-        <input type="text" name="email" />
+        <input
+          type="text"
+          name="email"
+          @input="(event) => (email = event.target.value)"
+        />
       </div>
       <div class="form__group">
         <label for="password">Hasło</label>
-        <input type="password" name="password" />
+        <input
+          type="password"
+          name="password"
+          @input="(event) => (password = event.target.value)"
+        />
       </div>
+      <span v-if="error" class="form__error">{{ error }}</span>
       <router-link class="form__link" to="/register">Zarejestruj</router-link>
       <button class="form__button" type="submit">Zaloguj</button>
     </form>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+import { store } from "../store";
+
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+      store,
+      error: "",
+    };
+  },
+  methods: {
+    async formSubmit() {
+      try {
+        const res = await axios.post("http://localhost:5000/auth/login", {
+          email: this.email,
+          password: this.password,
+        });
+
+        if (res.data.user && res.data.accese_token) {
+          this.store.token = res.data.accese_token;
+          this.store.user = res.data.user;
+        }
+      } catch (err) {
+        this.error = err.response.data.message[0];
+      }
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 .form-container {
@@ -75,6 +117,14 @@
     background-color: #3f51b5;
     border-radius: 10px;
     cursor: pointer;
+  }
+  &__error {
+    margin: 1rem auto;
+    width: 50%;
+    display: block;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: red;
   }
 }
 </style>
