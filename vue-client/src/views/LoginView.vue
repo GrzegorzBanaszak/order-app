@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="form-container">
     <form class="form" autocomplete="off">
       <h1 class="form__title">Zaloguj</h1>
       <div class="form__group">
@@ -16,8 +16,8 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-.login {
+<style lang="scss">
+.form-container {
   width: 100%;
   height: 100vh;
   background-image: url("../assets/homebg.jpg");
