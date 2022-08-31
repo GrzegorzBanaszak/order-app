@@ -49,6 +49,7 @@ export default {
         if (res.data.user && res.data.accese_token) {
           this.store.token = res.data.accese_token;
           this.store.user = res.data.user;
+          this.$router.push("/dashboard");
         }
       } catch (err) {
         this.error = err.response.data.message[0];

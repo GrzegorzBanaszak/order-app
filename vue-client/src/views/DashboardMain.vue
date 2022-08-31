@@ -1,0 +1,62 @@
+<template>
+  <div class="dashboard__grid">
+    <dashboard-header :class-type="'dashboard__header'"></dashboard-header>
+  </div>
+</template>
+
+<script>
+import { store } from "../store";
+import DashboardHeader from "../components/DashboardHeader.vue";
+
+export default {
+  components: { DashboardHeader },
+  data() {
+    return {
+      store,
+    };
+  },
+};
+</script>
+
+<style lang="scss">
+.dashboard {
+  &__grid {
+    width: 100%;
+    height: 100vh;
+    background-color: #eeeeee;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-areas:
+      "nav header header header header"
+      "nav main main main main"
+      "nav main main main main"
+      "nav main main main main"
+      "nav main main main main"
+      "nav main main main main"
+      "nav main main main main"
+      "nav main main main main";
+  }
+  &__header {
+    grid-area: header;
+    background-color: white;
+    box-shadow: 0px 7px 4px 0px rgba(204, 195, 195, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    h2 {
+      font-size: 1.625rem;
+      font-weight: 500;
+    }
+  }
+  &__nav {
+    grid-area: nav;
+  }
+  &__main {
+    grid-area: main;
+  }
+}
+</style>
