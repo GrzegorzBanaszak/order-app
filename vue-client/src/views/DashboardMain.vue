@@ -1,5 +1,6 @@
 <template>
   <div class="dashboard__grid">
+    <dashboard-nav :class-type="'dashboard__nav'"></dashboard-nav>
     <dashboard-header :class-type="'dashboard__header'"></dashboard-header>
   </div>
 </template>
@@ -7,9 +8,10 @@
 <script>
 import { store } from "../store";
 import DashboardHeader from "../components/DashboardHeader.vue";
+import DashboardNav from "@/components/DashboardNav.vue";
 
 export default {
-  components: { DashboardHeader },
+  components: { DashboardHeader, DashboardNav },
   data() {
     return {
       store,
@@ -54,6 +56,9 @@ export default {
   }
   &__nav {
     grid-area: nav;
+    background-color: #37474f;
+    color: #b0bec5;
+    padding: 2rem;
   }
   &__main {
     grid-area: main;

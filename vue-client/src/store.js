@@ -2,5 +2,7 @@ import { reactive } from "vue";
 
 export const store = reactive({
   token: "",
-  user: null,
+  user: {
+    email: "Mail",
+  },
 });
