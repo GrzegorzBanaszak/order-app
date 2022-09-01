@@ -2,6 +2,8 @@
   <div class="dashboard__grid">
     <dashboard-nav :class-type="'dashboard__nav'"></dashboard-nav>
     <dashboard-header :class-type="'dashboard__header'"></dashboard-header>
+    <div class="dashboard__location"><h2>Strona główna</h2></div>
+    <main class="dashboard__main"><router-view></router-view></main>
   </div>
 </template>
 
@@ -31,7 +33,7 @@ export default {
     grid-template-rows: repeat(8, 1fr);
     grid-template-areas:
       "nav header header header header"
-      "nav main main main main"
+      "nav location location location location"
       "nav main main main main"
       "nav main main main main"
       "nav main main main main"
@@ -62,6 +64,19 @@ export default {
   }
   &__main {
     grid-area: main;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 1rem;
+    gap: 0.7rem;
+  }
+  &__location {
+    grid-area: location;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.75rem;
+    font-weight: 500;
   }
 }
 </style>

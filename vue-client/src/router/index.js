@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import LoginView from "../views/LoginView.vue";
 import RegisterView from "../views/RegisterView.vue";
 import DashboardMain from "../views/DashboardMain.vue";
+import DashboardOpen from "../views/DashboardOpen.vue";
 
 const routes = [
   {
@@ -18,6 +19,12 @@ const routes = [
     path: "/dashboard",
     name: "dashboardMain",
     component: DashboardMain,
+    children: [
+      {
+        path: "",
+        component: DashboardOpen,
+      },
+    ],
   },
 ];
 
