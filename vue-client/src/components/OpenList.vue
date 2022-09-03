@@ -14,8 +14,9 @@
 <script>
 import PackageBlueIcon from "@/icons/PackageBlueIcon.vue";
 import OpenListElement from "./OpenListElement.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   components: { PackageBlueIcon, OpenListElement },
   props: {
     icon: {
@@ -27,7 +28,7 @@ export default {
       default: new Array(0),
     },
   },
-};
+});
 </script>
 
 <style lang="scss">
