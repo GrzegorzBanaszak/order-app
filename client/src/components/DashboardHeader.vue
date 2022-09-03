@@ -2,23 +2,23 @@
   <header :class="classType">
     <h2>Agrohandel</h2>
     <div class="avatar">
-      <p class="avatar__username">{{ store.user.email }}</p>
+      <p class="avatar__username">Email</p>
       <div class="avatar__image">GB</div>
     </div>
   </header>
 </template>
 
-<script>
-import { store } from "../store";
+<script lang="ts">
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   props: {
-    classType: String,
+    classType: {
+      type: String,
+      default: "",
+    },
   },
-  data() {
-    return { store };
-  },
-};
+});
 </script>
 
 <style lang="scss">

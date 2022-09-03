@@ -12,8 +12,7 @@
   </nav>
 </template>
 
-<script>
-import { store } from "@/store";
+<script lang="ts">
 import ShopIcon from "@/icons/ShopIcon.vue";
 import DashboardIcon from "@/icons/DashboardIcon.vue";
 import UsersIcon from "@/icons/UsersIcon.vue";
@@ -21,8 +20,9 @@ import SuitcaseIcon from "@/icons/SuitcaseIcon.vue";
 import TruckIcon from "@/icons/TruckIcon.vue";
 import StockIcon from "@/icons/StockIcon.vue";
 import RecordsIcon from "@/icons/RecordsIcon.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   components: {
     ShopIcon,
     DashboardIcon,
@@ -35,10 +35,7 @@ export default {
   props: {
     classType: String,
   },
-  data() {
-    return { store };
-  },
-};
+});
 </script>
 
 <style lang="scss">

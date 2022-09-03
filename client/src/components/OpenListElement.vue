@@ -8,8 +8,9 @@
 
 <script>
 import DottsIconVue from "@/icons/DottsIcon.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   components: { DottsIconVue },
   props: {
     name: {
@@ -21,7 +22,7 @@ export default {
       default: 0,
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

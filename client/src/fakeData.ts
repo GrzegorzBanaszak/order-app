@@ -1,4 +1,6 @@
-export const data = {
+import { IData } from "./types";
+
+export const data: IData = {
   bestSales: [
     {
       name: "Towar 2",

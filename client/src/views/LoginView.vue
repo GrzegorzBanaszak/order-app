@@ -7,7 +7,7 @@
         <input
           type="text"
           name="email"
-          @input="(event) => (email = event.target.value)"
+          @input="(event) => (email = (event.target as HTMLInputElement).value)"
         />
       </div>
       <div class="form__group">
@@ -15,7 +15,7 @@
         <input
           type="password"
           name="password"
-          @input="(event) => (password = event.target.value)"
+          @input="(event) => (password = (event.target as HTMLInputElement).value)"
         />
       </div>
       <span v-if="error" class="form__error">{{ error }}</span>
@@ -25,16 +25,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import axios from "axios";
-import { store } from "../store";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   data() {
     return {
       email: "",
       password: "",
-      store,
       error: "",
     };
   },
@@ -47,23 +46,21 @@ export default {
         });
 
         if (res.data.user && res.data.accese_token) {
-          this.store.token = res.data.accese_token;
-          this.store.user = res.data.user;
           this.$router.push("/dashboard");
         }
-      } catch (err) {
+      } catch (err: any) {
         this.error = err.response.data.message[0];
       }
     },
   },
-};
+});
 </script>
 
 <style lang="scss">
 .form-container {
   width: 100%;
   height: 100vh;
-  background-image: url("../assets/homebg.jpg");
+  background-image: url("@/assets/homebg.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

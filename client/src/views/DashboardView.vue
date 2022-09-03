@@ -7,19 +7,17 @@
   </div>
 </template>
 
-<script>
-import { store } from "../store";
+<script lang="ts">
 import DashboardHeader from "../components/DashboardHeader.vue";
 import DashboardNav from "@/components/DashboardNav.vue";
+import { defineComponent } from "vue";
 
-export default {
-  components: { DashboardHeader, DashboardNav },
-  data() {
-    return {
-      store,
-    };
+export default defineComponent({
+  components: {
+    DashboardNav,
+    DashboardHeader,
   },
-};
+});
 </script>
 
 <style lang="scss">

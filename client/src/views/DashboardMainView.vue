@@ -2,23 +2,23 @@
   <div class="main__chart">Wykres sprzedarzy</div>
   <div class="main__best--customers">Najlepsi klienci</div>
   <div class="main__best--commadity">
-    <open-list :icon="'PackageBlueIcon'" :list="data.bestSales"></open-list>
+    <open-list
+      :icon="'PackageBlueIcon'"
+      :list="$store.state.data.bestSales"
+    ></open-list>
   </div>
   <div class="main__orders">Ostatnio dodane zamówienia</div>
 </template>
 
-<script>
-import { data } from "@/fakeData";
+<script lang="ts">
 import OpenList from "@/components/OpenList.vue";
+import { defineComponent } from "vue";
 
-export default {
-  components: { OpenList },
-  data() {
-    return {
-      data,
-    };
+export default defineComponent({
+  components: {
+    OpenList,
   },
-};
+});
 </script>
 
 <style lang="scss">
