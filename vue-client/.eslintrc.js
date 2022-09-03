@@ -6,6 +6,7 @@ module.exports = {
   rules: {
     "vue/multi-word-component-names": "off",
     "vue/html-self-closing": 0,
+    "vue/no-unused-components": "off",
   },
   parserOptions: {
     parser: "@babel/eslint-parser",

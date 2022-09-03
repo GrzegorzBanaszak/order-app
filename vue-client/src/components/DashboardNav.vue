@@ -13,14 +13,14 @@
 </template>
 
 <script>
-import { store } from "../store";
+import { store } from "@/store";
 import ShopIcon from "@/icons/ShopIcon.vue";
 import DashboardIcon from "@/icons/DashboardIcon.vue";
 import UsersIcon from "@/icons/UsersIcon.vue";
-import SuitcaseIcon from "../icons/SuitcaseIcon.vue";
-import TruckIcon from "../icons/TruckIcon.vue";
-import StockIcon from "../icons/StockIcon.vue";
-import RecordsIcon from "../icons/RecordsIcon.vue";
+import SuitcaseIcon from "@/icons/SuitcaseIcon.vue";
+import TruckIcon from "@/icons/TruckIcon.vue";
+import StockIcon from "@/icons/StockIcon.vue";
+import RecordsIcon from "@/icons/RecordsIcon.vue";
 
 export default {
   components: {

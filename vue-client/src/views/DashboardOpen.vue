@@ -1,12 +1,24 @@
 <template>
   <div class="main__chart">Wykres sprzedarzy</div>
   <div class="main__best--customers">Najlepsi klienci</div>
-  <div class="main__best--commadity">Najczęsciej zamawiane</div>
+  <div class="main__best--commadity">
+    <open-list :icon="'PackageBlueIcon'" :list="data.bestSales"></open-list>
+  </div>
   <div class="main__orders">Ostatnio dodane zamówienia</div>
 </template>
 
 <script>
-export default {};
+import { data } from "@/fakeData";
+import OpenList from "@/components/OpenList.vue";
+
+export default {
+  components: { OpenList },
+  data() {
+    return {
+      data,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
@@ -30,11 +42,13 @@ export default {};
       grid-row-start: 1;
       grid-row-end: 3;
       background-color: white;
+      padding: 1rem;
     }
     &--commadity {
       grid-row-start: 1;
       grid-row-end: 3;
       background-color: white;
+      padding: 1rem;
     }
   }
 }
