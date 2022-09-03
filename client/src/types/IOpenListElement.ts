@@ -1,4 +1,4 @@
-export interface IBestSale {
+export interface IOpenListElement {
   name: string;
   quantity: number;
 }

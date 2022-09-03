@@ -1,8 +1,15 @@
 <template>
   <div class="main__chart">Wykres sprzedarzy</div>
-  <div class="main__best--customers">Najlepsi klienci</div>
+  <div class="main__best--customers">
+    <open-list
+      :title="'Najlepsi klienci'"
+      :icon="'CustomersBlueIcon'"
+      :list="$store.state.data.bestCustomer"
+    ></open-list>
+  </div>
   <div class="main__best--commadity">
     <open-list
+      :title="'Najczęściej zamawiane'"
       :icon="'PackageBlueIcon'"
       :list="$store.state.data.bestSales"
     ></open-list>

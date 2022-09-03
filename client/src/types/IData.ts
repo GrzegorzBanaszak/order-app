@@ -1,5 +1,6 @@
-import { IBestSale } from "./";
+import { IOpenListElement } from "./";
 
 export interface IData {
-  bestSales: IBestSale[];
+  bestSales: IOpenListElement[];
+  bestCustomer: IOpenListElement[];
 }
