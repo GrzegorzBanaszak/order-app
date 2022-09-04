@@ -6,12 +6,13 @@ import { Module } from '@nestjs/common';
 import { CommadityProfile } from './commodity.profile';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      { name: Commodity.name, schema: CommoditySchema },
-    ]),
-  ],
-  controllers: [CommodityController],
-  providers: [CommodityService, CommadityProfile],
+    imports: [
+        MongooseModule.forFeature([
+            { name: Commodity.name, schema: CommoditySchema },
+        ]),
+    ],
+    controllers: [CommodityController],
+    providers: [CommodityService, CommadityProfile],
+    exports: [MongooseModule],
 })
 export class CommodityModule {}

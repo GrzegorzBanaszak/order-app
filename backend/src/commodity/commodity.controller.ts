@@ -15,7 +15,7 @@ import { MapInterceptor } from '@automapper/nestjs';
 import { Commodity } from './commodity.schema';
 import { AuthGuard } from '@nestjs/passport';
 
-@UseGuards(AuthGuard('jwt'))
+// @UseGuards(AuthGuard('jwt'))
 @Controller('commodity')
 export class CommodityController {
     constructor(private commodityService: CommodityService) {}
@@ -26,6 +26,11 @@ export class CommodityController {
     )
     async getAll() {
         return await this.commodityService.getAll();
+    }
+
+    @Get(':id')
+    async getById(@Param('id') id: string) {
+        return await this.commodityService.getById(id);
     }
 
     @Post('add')
