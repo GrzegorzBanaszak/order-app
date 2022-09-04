@@ -32,6 +32,16 @@ export class OrderController {
         return await this.orderService.getAtRange(range);
     }
 
+    @Get('best/customers')
+    async getBestCustomers() {
+        return await this.orderService.getBestCustomers();
+    }
+
+    @Get('best/commodities')
+    async getBestCommodities() {
+        return await this.orderService.getBestCommodities();
+    }
+
     @Post('add')
     async add(@Body() data: PostOrderDto) {
         return await this.orderService.add(data);
