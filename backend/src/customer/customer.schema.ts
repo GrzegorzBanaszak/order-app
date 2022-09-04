@@ -17,10 +17,14 @@ export class Customer {
 
     @AutoMap()
     @Prop()
-    phoneNumber: number;
+    phoneNumber: string;
 
     @AutoMap()
-    @Prop({ type: SchemaType.Types.ObjectId, ref: 'Company' })
+    @Prop({
+        type: SchemaType.Types.ObjectId,
+        ref: 'Company',
+        autopopulate: true,
+    })
     company: Company;
 }
 

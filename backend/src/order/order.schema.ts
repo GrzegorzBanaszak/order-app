@@ -14,16 +14,24 @@ export class Order {
     _id: SchemaType.Types.ObjectId;
 
     @AutoMap()
-    @Prop({ type: SchemaType.Types.ObjectId, ref: 'Customer' })
+    @Prop({
+        type: SchemaType.Types.ObjectId,
+        ref: 'Customer',
+        autopopulate: true,
+    })
     customer: Customer;
 
     @AutoMap()
-    @Prop({ type: SchemaType.Types.ObjectId, ref: 'Supplier' })
+    @Prop({
+        type: SchemaType.Types.ObjectId,
+        ref: 'Supplier',
+        autopopulate: true,
+    })
     supplier: Supplier;
 
     @AutoMap()
     @Prop([Object])
-    commoditys: OrderCommodity[];
+    commodities: OrderCommodity[];
 
     @AutoMap()
     @Prop()
@@ -32,10 +40,17 @@ export class Order {
     @AutoMap()
     @Prop()
     advance?: number;
+
+    @AutoMap()
+    @Prop()
+    createdAt: Date;
 }
 
 export class OrderCommodity {
-    @Prop({ type: SchemaType.Types.ObjectId, ref: 'Commodity' })
+    @Prop({
+        type: SchemaType.Types.ObjectId,
+        ref: 'Commodity',
+    })
     commodity: Commodity;
 
     @Prop()

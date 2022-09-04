@@ -9,6 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
 import { ConfigModule } from '@nestjs/config';
+import * as autoPopulate from 'mongoose-autopopulate';
 
 @Module({
     imports: [
@@ -18,7 +19,12 @@ import { ConfigModule } from '@nestjs/config';
         CompanyModule,
         CustomerModule,
         OrderModule,
-        MongooseModule.forRoot('mongodb://localhost:27017/orders'),
+        MongooseModule.forRoot('mongodb://localhost:27017/orders', {
+            connectionFactory: (connection) => {
+                connection.plugin(autoPopulate);
+                return connection;
+            },
+        }),
         AutomapperModule.forRoot({
             strategyInitializer: classes(),
         }),

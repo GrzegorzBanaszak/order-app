@@ -1,5 +1,5 @@
 import { AutoMap } from '@automapper/classes';
-import { IsMongoId, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsMongoId, IsNotEmpty, IsString } from 'class-validator';
 import { Schema } from 'mongoose';
 
 export class PostCustomerDto {
@@ -9,9 +9,9 @@ export class PostCustomerDto {
     name: string;
 
     @AutoMap()
-    @IsNumber()
+    @IsString()
     @IsNotEmpty()
-    phoneNumber: number;
+    phoneNumber: string;
 
     @AutoMap()
     @IsMongoId()

@@ -12,12 +12,12 @@ export class CustomerService {
     ) {}
 
     async getAll(): Promise<Customer[]> {
-        return await this.customerModel.find().populate('company');
+        return await this.customerModel.find();
     }
 
     async add(data: PostCustomerDto): Promise<Customer> {
         const customer = new this.customerModel(data);
-        customer.populate('company');
+
         return await customer.save();
     }
 

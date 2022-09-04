@@ -19,7 +19,7 @@ export class PostOrderDto {
 
     @IsArray()
     @ArrayMinSize(1)
-    commoditys: PostOrderCommodityDto[];
+    commodities: PostOrderCommodityDto[];
 
     @IsNumber()
     advance?: number;

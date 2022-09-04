@@ -16,7 +16,7 @@ import {
 import { GetSupplierDto } from './dto';
 import { AuthGuard } from '@nestjs/passport';
 
-@UseGuards(AuthGuard('jwt'))
+// @UseGuards(AuthGuard('jwt'))
 @Controller('supplier')
 export class SupplierController {
     constructor(private supplierService: SupplierService) {}

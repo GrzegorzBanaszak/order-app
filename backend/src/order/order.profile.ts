@@ -24,9 +24,9 @@ export class OrderProfile extends AutomapperProfile {
                 Order,
                 GetOrderDto,
                 forMember(
-                    (d) => d.commoditys,
+                    (d) => d.commodities,
                     mapFrom((source) => {
-                        const newCommoditys = source.commoditys.map((c) => {
+                        const newCommoditys = source.commodities.map((c) => {
                             return new GetOrderCommodityDto(
                                 c.commodity._id,
                                 c.commodity.name,

@@ -16,7 +16,7 @@ import {
     UseInterceptors,
 } from '@nestjs/common';
 
-@UseGuards(AuthGuard('jwt'))
+// @UseGuards(AuthGuard('jwt'))
 @Controller('company')
 export class CompanyController {
     constructor(private companyService: CompanyService) {}

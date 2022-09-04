@@ -13,22 +13,7 @@ export class OrderService {
     async getAll(): Promise<Order[]> {
         return await this.orderModel.find().populate([
             {
-                path: 'customer',
-                model: 'Customer',
-            },
-            {
-                path: 'customer',
-                populate: {
-                    path: 'company',
-                    model: 'Company',
-                },
-            },
-            {
-                path: 'supplier',
-                model: 'Supplier',
-            },
-            {
-                path: 'commoditys',
+                path: 'commodities',
                 populate: {
                     path: 'commodity',
                     model: 'Commodity',
@@ -37,12 +22,15 @@ export class OrderService {
         ]);
     }
 
+    //Return limited list of orders
+    async getAtRange(range: number): Promise<Order[]> {
+        return await this.orderModel.find().sort('-createdAt').limit(range);
+    }
+
     async add(data: PostOrderDto) {
         const order = new this.orderModel(data);
-        await order.populate('customer');
-        await order.populate('supplier');
         await order.populate({
-            path: 'commoditys',
+            path: 'commodities',
             populate: {
                 path: 'commodity',
                 model: 'Commodity',

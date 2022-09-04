@@ -15,11 +15,14 @@ export class GetOrderDto {
     supplier: GetSupplierDto;
 
     @AutoMap()
-    commoditys: GetOrderCommodityDto[];
+    commodities: GetOrderCommodityDto[];
 
     @AutoMap()
     status: string;
 
     @AutoMap()
     advance?: number;
+
+    @AutoMap()
+    createdAt: Date;
 }

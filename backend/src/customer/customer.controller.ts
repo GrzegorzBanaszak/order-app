@@ -16,7 +16,7 @@ import {
 import { CustomerService } from './customer.service';
 import { AuthGuard } from '@nestjs/passport';
 
-@UseGuards(AuthGuard('jwt'))
+// @UseGuards(AuthGuard('jwt'))
 @Controller('customer')
 export class CustomerController {
     constructor(private customerService: CustomerService) {}
