@@ -37,7 +37,7 @@ export class OrderService {
         orders.forEach((order) => {
             if (!map.get(order.customer._id)) {
                 map.set(order.customer._id, {
-                    customer: order.customer,
+                    name: order.customer.name,
                     quantity: 1,
                 });
             } else {
@@ -48,7 +48,10 @@ export class OrderService {
             }
         });
 
-        const bestCustomers = Array.from(map, ([key, value]) => ({ ...value }));
+        const bestCustomers = Array.from(map, ([key, value]) => ({
+            ...value,
+            _id: key,
+        }));
 
         return orderBy(bestCustomers, 'quantity', 'desc');
     }
@@ -69,7 +72,7 @@ export class OrderService {
             order.commodities.forEach((commodity) => {
                 if (!map.get(commodity.commodity._id)) {
                     map.set(commodity.commodity._id, {
-                        customer: commodity.commodity,
+                        name: commodity.commodity.name,
                         quantity: commodity.quantity,
                     });
                 } else {
@@ -84,9 +87,8 @@ export class OrderService {
         });
 
         const bestCommodities = Array.from(map, ([key, value]) => ({
-            quantity: value.quantity,
-            _id: value.customer._id,
-            name: value.customer.name,
+            ...value,
+            _id: key,
         }));
         return orderBy(bestCommodities, 'quantity', 'desc');
     }
