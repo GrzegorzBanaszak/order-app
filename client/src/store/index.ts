@@ -1,21 +1,48 @@
 import { createStore, Store, useStore as baseUseStore } from "vuex";
-import { data } from "@/fakeData";
 import { InjectionKey } from "vue";
-import { IData } from "@/types";
+import { IOpenListElement, IOrder } from "@/types";
+import axios from "axios";
 
 export interface State {
-  data: IData;
+  bestCustomers: IOpenListElement[];
+  bestCommodities: IOpenListElement[];
+  filteredOrders: IOrder[];
 }
 
 export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store = createStore<State>({
   state: {
-    data,
+    bestCommodities: [],
+    bestCustomers: [],
+    filteredOrders: [],
   },
   getters: {},
-  mutations: {},
-  actions: {},
+  mutations: {
+    setFilteredOrders(state, payload: IOrder[]) {
+      state.filteredOrders = payload;
+    },
+    setBestCustomers(state, payload: IOpenListElement[]) {
+      state.bestCustomers = payload;
+    },
+    setBestCommodities(state, payload: IOpenListElement[]) {
+      state.bestCommodities = payload;
+    },
+  },
+  actions: {
+    async getOrders({ commit }) {
+      const res = await axios("http://localhost:5000/order");
+      commit("setFilteredOrders", res.data);
+    },
+    async getBestCustomers({ commit }) {
+      const res = await axios("http://localhost:5000/order/best/customers");
+      commit("setBestCustomers", res.data);
+    },
+    async getBestCommodities({ commit }) {
+      const res = await axios("http://localhost:5000/order/best/commodities");
+      commit("setBestCommodities", res.data);
+    },
+  },
   modules: {},
 });
 

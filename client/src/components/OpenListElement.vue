@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import DottsIconVue from "@/icons/DottsIcon.vue";
 import { defineComponent } from "vue";
 

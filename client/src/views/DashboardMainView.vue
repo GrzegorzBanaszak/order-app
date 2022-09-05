@@ -4,26 +4,35 @@
     <open-list
       :title="'Najlepsi klienci'"
       :icon="'CustomersBlueIcon'"
-      :list="$store.state.data.bestCustomer"
+      :list="$store.state.bestCustomers"
     ></open-list>
   </div>
   <div class="main__best--commadity">
     <open-list
       :title="'Najczęściej zamawiane'"
       :icon="'PackageBlueIcon'"
-      :list="$store.state.data.bestSales"
+      :list="$store.state.bestCommodities"
     ></open-list>
   </div>
-  <div class="main__orders">Ostatnio dodane zamówienia</div>
+  <div class="main__orders"><open-orders-list /></div>
 </template>
 
 <script lang="ts">
 import OpenList from "@/components/OpenList.vue";
+import OpenOrdersList from "@/components/OpenOrdersList.vue";
 import { defineComponent } from "vue";
+import { useStore } from "@/store";
 
 export default defineComponent({
   components: {
     OpenList,
+    OpenOrdersList,
+  },
+  setup() {
+    const store = useStore();
+    store.dispatch("getOrders");
+    store.dispatch("getBestCustomers");
+    store.dispatch("getBestCommodities");
   },
 });
 </script>
@@ -43,6 +52,7 @@ export default defineComponent({
     grid-row-start: 3;
     grid-row-end: 5;
     background-color: white;
+    padding: 1rem;
   }
   &__best {
     &--customers {

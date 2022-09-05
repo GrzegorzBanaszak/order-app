@@ -42,7 +42,7 @@ export default defineComponent({
   &__header {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 }
 </style>
