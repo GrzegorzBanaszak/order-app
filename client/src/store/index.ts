@@ -2,16 +2,19 @@ import { createStore, Store, useStore as baseUseStore } from "vuex";
 import { InjectionKey } from "vue";
 import { IOpenListElement, IOrder } from "@/types";
 import axios from "axios";
+import { customersState, ICustomersState } from "./customersState";
 
 export interface State {
   bestCustomers: IOpenListElement[];
   bestCommodities: IOpenListElement[];
   filteredOrders: IOrder[];
+  customersState?: ICustomersState;
 }
 
 export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store = createStore<State>({
+  modules: { customersState },
   state: {
     bestCommodities: [],
     bestCustomers: [],
@@ -43,7 +46,6 @@ export const store = createStore<State>({
       commit("setBestCommodities", res.data);
     },
   },
-  modules: {},
 });
 
 export function useStore() {
