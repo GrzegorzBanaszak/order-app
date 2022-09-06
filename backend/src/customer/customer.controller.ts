@@ -22,9 +22,9 @@ export class CustomerController {
     constructor(private customerService: CustomerService) {}
 
     @Get()
-    @UseInterceptors(
-        MapInterceptor(Customer, GetCustomerDto, { isArray: true }),
-    )
+    // @UseInterceptors(
+    //     MapInterceptor(Customer, GetCustomerDto, { isArray: true }),
+    // )
     async getAll() {
         return await this.customerService.getAll();
     }

@@ -15,18 +15,22 @@
     >
       <div>{{ item.name }}</div>
       <div>{{ item.company?.name }}</div>
-      <div>Ostatnie zamówienie</div>
+      <div>
+        {{ item.lastOrder }}
+      </div>
       <div>{{ item.phoneNumber }}</div>
-      <div>Detale</div>
+      <div><dotts-icon /></div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import DottsIcon from "@/icons/DottsIcon.vue";
 import { defineComponent } from "vue";
 import { useStore } from "@/store";
 
 export default defineComponent({
+  components: { DottsIcon },
   setup() {
     const store = useStore();
     store.dispatch("getCustomers");

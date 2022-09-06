@@ -5,4 +5,5 @@ export interface ICustomer {
   name: string;
   phoneNumber: number;
   company?: ICompany;
+  lastOrder: Date;
 }
