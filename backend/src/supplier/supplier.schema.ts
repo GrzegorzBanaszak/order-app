@@ -17,7 +17,7 @@ export class Supplier {
 
     @AutoMap()
     @Prop()
-    price: string;
+    price: number;
 
     @AutoMap()
     @Prop()

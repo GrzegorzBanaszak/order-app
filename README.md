@@ -8,6 +8,10 @@ This application is a web application that allows user to manage their orders fr
 
 ## Structure
 
+![](/images/order.jpg)
+
+
+
 ### Backend
 
 - Language: Typescript

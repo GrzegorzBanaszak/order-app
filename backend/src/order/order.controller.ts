@@ -26,7 +26,7 @@ export class OrderController {
         return await this.orderService.getAll();
     }
 
-    @Get(':range')
+    @Get('last/:range')
     @UseInterceptors(MapInterceptor(Order, GetOrderDto, { isArray: true }))
     async getAtRange(@Param('range', ParseIntPipe) range: number) {
         return await this.orderService.getAtRange(range);
