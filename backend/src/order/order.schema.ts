@@ -14,6 +14,10 @@ export class Order {
     _id: SchemaType.Types.ObjectId;
 
     @AutoMap()
+    @Prop()
+    orderNumber: string;
+
+    @AutoMap()
     @Prop({
         type: SchemaType.Types.ObjectId,
         ref: 'Customer',

@@ -1,5 +1,5 @@
 import { Order, OrderDocument } from './order.schema';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { PostOrderDto } from './dto';
@@ -104,5 +104,17 @@ export class OrderService {
         });
 
         return await order.save();
+    }
+
+    async getOrdersByCustomer(id: string): Promise<Order[]> {
+        const orders = await this.orderModel
+            .find({ customer: id })
+            .sort('createdAt');
+
+        if (!orders) {
+            return new Array(0);
+        }
+
+        return orders;
     }
 }

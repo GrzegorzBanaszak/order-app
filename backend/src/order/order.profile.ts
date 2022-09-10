@@ -1,5 +1,5 @@
 import { GetOrderCommodityDto } from './dto/GetOrderCommodityDto';
-import { GetOrderDto } from './dto';
+import { GetOrderDto, OrderInfoDto } from './dto';
 import {
     Mapper,
     MappingProfile,
@@ -19,6 +19,29 @@ export class OrderProfile extends AutomapperProfile {
 
     override get profile(): MappingProfile {
         return (mapper) => {
+            createMap(
+                mapper,
+                Order,
+                OrderInfoDto,
+                forMember(
+                    (d) => d.quantity,
+                    mapFrom((source) => {
+                        return source.commodities.reduce(
+                            (prev, curr) => prev + curr.quantity,
+                            0,
+                        );
+                    }),
+                ),
+                forMember(
+                    (d) => d.totalPrice,
+                    mapFrom((source) => {
+                        return source.commodities.reduce(
+                            (prev, curr) => prev + curr.price * curr.quantity,
+                            0,
+                        );
+                    }),
+                ),
+            );
             createMap(
                 mapper,
                 Order,
