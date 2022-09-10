@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+import { ParseObjectIdPipe } from '../pipes/parseObjectId.pipe';
 import { GetOrderDto } from './dto/GetOrderGto';
 import { Order } from './order.schema';
 import { PostOrderDto } from './dto/PostOrderDto';
@@ -43,10 +45,13 @@ export class OrderController {
         return await this.orderService.getBestCommodities();
     }
 
-    @Get('customer/:id')
+    @Get('history/:type/:id')
     @UseInterceptors(MapInterceptor(Order, OrderInfoDto, { isArray: true }))
-    async getOrdersByCustomer(@Param('id') id: string) {
-        return await this.orderService.getOrdersByCustomer(id);
+    async getOrdersByCustomer(
+        @Param('id', ParseObjectIdPipe) id: ObjectId,
+        @Param('type') type: string,
+    ) {
+        return await this.orderService.getOrdersByType(id, type);
     }
 
     @Post('add')

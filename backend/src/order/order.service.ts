@@ -1,9 +1,10 @@
 import { Order, OrderDocument } from './order.schema';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { PostOrderDto } from './dto';
 import { orderBy } from 'lodash';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class OrderService {
@@ -106,10 +107,46 @@ export class OrderService {
         return await order.save();
     }
 
-    async getOrdersByCustomer(id: string): Promise<Order[]> {
-        const orders = await this.orderModel
-            .find({ customer: id })
-            .sort('createdAt');
+    async getOrdersByType(id: ObjectId, type: string): Promise<Order[]> {
+        let orders: Order[] | null = [];
+
+        switch (type) {
+            case 'commodity':
+                orders = await this.orderModel
+                    .find({
+                        'commodities.commodity': id,
+                    })
+                    .sort('createdAt');
+                break;
+            case 'company':
+                const items = await this.orderModel.find().sort('createdAt');
+                items.forEach((item) => {
+                    if (
+                        item.customer.company &&
+                        id.equals(String(item.customer.company._id))
+                    ) {
+                        orders?.push(item);
+                    }
+                });
+
+                break;
+            case 'supplier':
+                orders = await this.orderModel
+                    .find({
+                        supplier: id,
+                    })
+                    .sort('createdAt');
+                break;
+            case 'customer':
+                orders = await this.orderModel
+                    .find({
+                        customer: id,
+                    })
+                    .sort('createdAt');
+                break;
+            default:
+                throw new BadRequestException('Bad type');
+        }
 
         if (!orders) {
             return new Array(0);
