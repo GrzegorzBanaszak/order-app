@@ -15,6 +15,7 @@ import {
 } from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { AuthGuard } from '@nestjs/passport';
+import { CustomerDto } from './dto';
 
 // @UseGuards(AuthGuard('jwt'))
 @Controller('customer')
@@ -27,6 +28,12 @@ export class CustomerController {
     // )
     async getAll() {
         return await this.customerService.getAll();
+    }
+
+    @Get(':id')
+    @UseInterceptors(MapInterceptor(Customer, CustomerDto))
+    async getOne(@Param('id') id: string) {
+        return await this.customerService.getById(id);
     }
 
     @Post('add')

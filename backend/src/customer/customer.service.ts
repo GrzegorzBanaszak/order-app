@@ -49,6 +49,10 @@ export class CustomerService {
         return customersDto;
     }
 
+    async getById(id: string) {
+        return await this.customerModel.findById(id);
+    }
+
     async add(data: PostCustomerDto): Promise<Customer> {
         const customer = new this.customerModel(data);
 
