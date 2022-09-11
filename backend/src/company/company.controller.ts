@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { AuthGuard } from '@nestjs/passport';
 import { PostCompanyDto } from './dto/PostComapnyDto';
 import { GetCompanyDto } from './dto/GetCompanyDto';
@@ -15,6 +16,7 @@ import {
     UseGuards,
     UseInterceptors,
 } from '@nestjs/common';
+import { ParseObjectIdPipe } from 'src/pipes/parseObjectId.pipe';
 
 // @UseGuards(AuthGuard('jwt'))
 @Controller('company')
@@ -25,6 +27,11 @@ export class CompanyController {
     // @UseInterceptors(MapInterceptor(Company, GetCompanyDto, { isArray: true }))
     async getAll() {
         return await this.companyService.getAll();
+    }
+
+    @Get(':id')
+    async getDetail(@Param('id', ParseObjectIdPipe) id: ObjectId) {
+        return await this.companyService.getDetail(id);
     }
 
     @Post('add')

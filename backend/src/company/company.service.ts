@@ -1,3 +1,4 @@
+import { CompanyDetailDto, EmployerDto } from './dto';
 import { Order, OrderDocument } from 'src/order/order.schema';
 import { CustomerDocument, Customer } from 'src/customer/customer.schema';
 import { PostCompanyDto } from './dto/PostComapnyDto';
@@ -6,6 +7,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CompanyInfoDto } from './dto';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class CompanyService {
@@ -70,6 +72,27 @@ export class CompanyService {
         }
 
         return companiesInfo;
+    }
+
+    async getDetail(id: ObjectId) {
+        const company = await this.companyModel.findById(id);
+
+        if (!company) {
+            throw new NotFoundException('Company dont exist');
+        }
+
+        const employiers = (await this.customerModel.find({ company: id })).map(
+            (item) => {
+                return new EmployerDto(item.name, item.phoneNumber);
+            },
+        );
+
+        return new CompanyDetailDto(
+            company._id,
+            company.name,
+            employiers,
+            company.nip,
+        );
     }
 
     async add(data: PostCompanyDto): Promise<Company> {
