@@ -1,3 +1,5 @@
+import { CustomerModule } from './../customer/customer.module';
+import { OrderModule } from 'src/order/order.module';
 import { CompanyProfile } from './company.profile';
 import { Module } from '@nestjs/common';
 import { CompanyService } from './company.service';
@@ -10,6 +12,8 @@ import { MongooseModule } from '@nestjs/mongoose';
         MongooseModule.forFeature([
             { name: Company.name, schema: CompanySchema },
         ]),
+        OrderModule,
+        CustomerModule,
     ],
     providers: [CompanyService, CompanyProfile],
     controllers: [CompanyController],

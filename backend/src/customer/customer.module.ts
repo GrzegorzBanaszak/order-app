@@ -15,5 +15,6 @@ import { OrderModule } from 'src/order/order.module';
     ],
     providers: [CustomerService, CustomerProfile],
     controllers: [CustomerController],
+    exports: [MongooseModule],
 })
 export class CustomerModule {}
