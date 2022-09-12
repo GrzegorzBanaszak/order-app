@@ -2,42 +2,78 @@ import { Supplier, SupplierDocument } from './supplier.schema';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { PostSupplierDto } from './dto';
+import { PostSupplierDto, SupplierInfoDto } from './dto';
+import { Order, OrderDocument } from 'src/order/order.schema';
 
 @Injectable()
 export class SupplierService {
-  constructor(
-    @InjectModel(Supplier.name) private supplierModel: Model<SupplierDocument>,
-  ) {}
+    constructor(
+        @InjectModel(Supplier.name)
+        private supplierModel: Model<SupplierDocument>,
+        @InjectModel(Order.name) private orderModel: Model<OrderDocument>,
+    ) {}
 
-  async getAll(): Promise<Supplier[]> {
-    return await this.supplierModel.find();
-  }
+    async getAll(): Promise<SupplierInfoDto[]> {
+        const suppliers = await this.supplierModel
+            .find()
+            .sort({ createdAt: 1 });
 
-  async add(data: PostSupplierDto): Promise<Supplier> {
-    const supplier = new this.supplierModel(data);
-    return await supplier.save();
-  }
+        const suppliersInfo: SupplierInfoDto[] = [];
 
-  async update(id: string, data: PostSupplierDto): Promise<Supplier> {
-    const updatedSupplier = await this.supplierModel.findByIdAndUpdate(
-      id,
-      data,
-      {
-        new: true,
-      },
-    );
+        for (const supplier of suppliers) {
+            const orders = await this.orderModel
+                .find({ supplier: supplier._id })
+                .sort({ createdAt: 1 });
 
-    if (!updatedSupplier) {
-      throw new NotFoundException();
+            if (orders.length > 0) {
+                suppliersInfo.push(
+                    new SupplierInfoDto(
+                        supplier._id,
+                        supplier.name,
+                        supplier.price,
+                        orders.length,
+                        orders[0].createdAt,
+                    ),
+                );
+            } else {
+                suppliersInfo.push(
+                    new SupplierInfoDto(
+                        supplier._id,
+                        supplier.name,
+                        supplier.price,
+                        0,
+                    ),
+                );
+            }
+        }
+
+        return suppliersInfo;
     }
 
-    return updatedSupplier;
-  }
+    async add(data: PostSupplierDto): Promise<Supplier> {
+        const supplier = new this.supplierModel(data);
+        return await supplier.save();
+    }
 
-  async delete(id: string): Promise<string> {
-    await this.supplierModel.findByIdAndDelete({ _id: id });
+    async update(id: string, data: PostSupplierDto): Promise<Supplier> {
+        const updatedSupplier = await this.supplierModel.findByIdAndUpdate(
+            id,
+            data,
+            {
+                new: true,
+            },
+        );
 
-    return id;
-  }
+        if (!updatedSupplier) {
+            throw new NotFoundException();
+        }
+
+        return updatedSupplier;
+    }
+
+    async delete(id: string): Promise<string> {
+        await this.supplierModel.findByIdAndDelete({ _id: id });
+
+        return id;
+    }
 }

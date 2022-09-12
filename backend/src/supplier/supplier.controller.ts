@@ -22,9 +22,6 @@ export class SupplierController {
     constructor(private supplierService: SupplierService) {}
 
     @Get()
-    @UseInterceptors(
-        MapInterceptor(Supplier, GetSupplierDto, { isArray: true }),
-    )
     async getAll() {
         return await this.supplierService.getAll();
     }

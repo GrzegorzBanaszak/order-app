@@ -24,7 +24,6 @@ export class CompanyController {
     constructor(private companyService: CompanyService) {}
 
     @Get()
-    // @UseInterceptors(MapInterceptor(Company, GetCompanyDto, { isArray: true }))
     async getAll() {
         return await this.companyService.getAll();
     }
