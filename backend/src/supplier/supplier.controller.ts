@@ -15,6 +15,8 @@ import {
 } from '@nestjs/common';
 import { GetSupplierDto } from './dto';
 import { AuthGuard } from '@nestjs/passport';
+import { ParseObjectIdPipe } from 'src/pipes/parseObjectId.pipe';
+import { ObjectId } from 'mongodb';
 
 // @UseGuards(AuthGuard('jwt'))
 @Controller('supplier')
@@ -24,6 +26,11 @@ export class SupplierController {
     @Get()
     async getAll() {
         return await this.supplierService.getAll();
+    }
+
+    @Get(':id')
+    async getDetail(@Param('id', ParseObjectIdPipe) id: ObjectId) {
+        return await this.supplierService.getDetail(id);
     }
 
     @Post('add')
