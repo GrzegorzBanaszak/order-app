@@ -1,3 +1,4 @@
+import { OrderModule } from 'src/order/order.module';
 import { Commodity, CommoditySchema } from './commodity.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CommodityService } from './commodity.service';
@@ -10,6 +11,7 @@ import { CommadityProfile } from './commodity.profile';
         MongooseModule.forFeature([
             { name: Commodity.name, schema: CommoditySchema },
         ]),
+        OrderModule,
     ],
     controllers: [CommodityController],
     providers: [CommodityService, CommadityProfile],

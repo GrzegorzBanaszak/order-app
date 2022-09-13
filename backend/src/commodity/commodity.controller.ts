@@ -21,9 +21,6 @@ export class CommodityController {
     constructor(private commodityService: CommodityService) {}
 
     @Get()
-    @UseInterceptors(
-        MapInterceptor(Commodity, GetCommodityDto, { isArray: true }),
-    )
     async getAll() {
         return await this.commodityService.getAll();
     }
