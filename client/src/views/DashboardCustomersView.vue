@@ -13,24 +13,18 @@
       v-for="item in $store.state.customersState.customers"
       class="customers-list__element"
     >
-      <div>{{ item.name }}</div>
-      <div>{{ item.company?.name }}</div>
-      <div>
-        {{ item.lastOrder }}
-      </div>
-      <div>{{ item.phoneNumber }}</div>
-      <div><dotts-icon /></div>
+      <customers-list-element :customer-info="item"></customers-list-element>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import DottsIcon from "@/icons/DottsIcon.vue";
 import { defineComponent } from "vue";
 import { useStore } from "@/store";
+import CustomersListElement from "@/components/CustomersListElement.vue";
 
 export default defineComponent({
-  components: { DottsIcon },
+  components: { CustomersListElement },
   setup() {
     const store = useStore();
     store.dispatch("getCustomers");

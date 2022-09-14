@@ -1,10 +1,10 @@
 import { State } from "./index";
-import { ICustomer } from "@/types";
+import { ICustomer, ICustomerInfo } from "@/types";
 import axios from "axios";
 import { ActionContext } from "vuex";
 
 export interface ICustomersState {
-  customers: ICustomer[];
+  customers: ICustomerInfo[];
 }
 
 type Context = ActionContext<ICustomersState, State>;
@@ -14,7 +14,7 @@ export const customersState = {
   state: { customers: [] } as ICustomersState,
   getters: {},
   mutations: {
-    setCustomers(state: ICustomersState, payload: ICustomer[]) {
+    setCustomers(state: ICustomersState, payload: ICustomerInfo[]) {
       state.customers = payload;
     },
   },

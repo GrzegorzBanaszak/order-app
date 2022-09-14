@@ -4,3 +4,4 @@ export * from "./IOrder";
 export * from "./ICompany";
 export * from "./ISupplier";
 export * from "./ICommodity";
+export * from "./ICustomerInfo";

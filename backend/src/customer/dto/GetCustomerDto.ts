@@ -17,7 +17,7 @@ export class GetCustomerDto {
     }
 
     @AutoMap()
-    _id: Schema.Types.ObjectId;
+    id: Schema.Types.ObjectId;
 
     @AutoMap()
     name: string;
