@@ -5,6 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Customer, CustomerDocument } from './customer.schema';
 import { Order, OrderDocument } from 'src/order/order.schema';
+import { StringDecoder } from 'string_decoder';
 
 @Injectable()
 export class CustomerService {
@@ -26,12 +27,17 @@ export class CustomerService {
                 .sort('-createdAt')
                 .limit(1);
 
+            const nameOfCompany: string = customer.company
+                ? customer.company.name
+                : '';
+
             if (lastOrder) {
                 customersDto.push(
                     new GetCustomerDto(
                         customer._id,
                         customer.name,
                         customer.phoneNumber,
+                        nameOfCompany,
                         lastOrder.createdAt,
                     ),
                 );
@@ -41,6 +47,7 @@ export class CustomerService {
                         customer._id,
                         customer.name,
                         customer.phoneNumber,
+                        nameOfCompany,
                     ),
                 );
             }

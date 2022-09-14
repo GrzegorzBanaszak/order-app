@@ -1,4 +1,3 @@
-import { GetCompanyDto } from './../../company/dto/GetCompanyDto';
 import { AutoMap } from '@automapper/classes';
 import { Schema } from 'mongoose';
 
@@ -7,14 +6,14 @@ export class GetCustomerDto {
         id: Schema.Types.ObjectId,
         name: string,
         phoneNumber: string,
+        companyName: string,
         lastOrder?: Date,
     ) {
         this._id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        if (lastOrder) {
-            this.lastOrder = lastOrder;
-        }
+        this.lastOrder = lastOrder;
+        this.companyName = companyName;
     }
 
     @AutoMap()
@@ -27,7 +26,7 @@ export class GetCustomerDto {
     phoneNumber: string;
 
     @AutoMap()
-    company?: GetCompanyDto;
+    companyName?: string;
 
     lastOrder?: Date;
 }
