@@ -2,12 +2,36 @@
   <nav :class="classType">
     <h1 class="sidebar__title"><shop-icon></shop-icon> Orders Manager</h1>
     <ul class="sidebar__menu">
-      <li><dashboard-icon></dashboard-icon> Strona główna</li>
-      <li><users-icon></users-icon> Klienci</li>
-      <li><suitcase-icon></suitcase-icon> Firmy</li>
-      <li><truck-icon></truck-icon> Dostawcy</li>
-      <li><stock-icon></stock-icon> Towary</li>
-      <li><records-icon></records-icon> Zamówienia</li>
+      <li>
+        <router-link to="/dashboard"
+          ><dashboard-icon></dashboard-icon> Strona główna</router-link
+        >
+      </li>
+      <li>
+        <router-link to="/dashboard/customers">
+          <users-icon />Klienci</router-link
+        >
+      </li>
+      <li>
+        <router-link to="/dashboard/companies"
+          ><suitcase-icon /> Firmy</router-link
+        >
+      </li>
+      <li>
+        <router-link to="/dashboard/suppliers"
+          ><truck-icon /> Dostawcy</router-link
+        >
+      </li>
+      <li>
+        <router-link to="/dashboard/commodities"
+          ><stock-icon /> Towary</router-link
+        >
+      </li>
+      <li>
+        <router-link to="/dashboard/orders"
+          ><records-icon />Zamówienia</router-link
+        >
+      </li>
     </ul>
   </nav>
 </template>
@@ -50,7 +74,7 @@ export default defineComponent({
   }
   &__menu {
     list-style-type: none;
-    li {
+    a {
       display: flex;
       align-items: center;
       gap: 0.7rem;
@@ -59,6 +83,8 @@ export default defineComponent({
       font-size: 1.2rem;
       font-weight: 500;
       cursor: pointer;
+      color: #b0bec5;
+      text-decoration: none;
       svg {
         fill: #b0bec5;
       }
