@@ -1,10 +1,15 @@
+import { ObjectId } from 'mongodb';
 import { Commodity, CommodityDocument } from './commodity.schema';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CommodityInfoDto, PostCommodityDto } from './dto';
+import {
+    CommodityDetailDto,
+    CommodityInfoDto,
+    CommoditySupplier,
+    PostCommodityDto,
+} from './dto';
 import { Order, OrderDocument } from 'src/order/order.schema';
-import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class CommodityService {
@@ -59,7 +64,7 @@ export class CommodityService {
         return commoditisInfo;
     }
 
-    async getById(id: string): Promise<Commodity> {
+    async getById(id: ObjectId): Promise<CommodityDetailDto> {
         try {
             const commodity = await this.commodityModel.findById(id);
 
@@ -67,7 +72,39 @@ export class CommodityService {
                 throw new NotFoundException();
             }
 
-            return commodity;
+            const orders = await this.orderModel.find({
+                'commodities.commodity': id,
+            });
+
+            const suppliers = new Map<any, CommoditySupplier>();
+
+            if (orders.length > 0) {
+                orders.forEach((order) => {
+                    if (!suppliers.get(order.supplier._id)) {
+                        suppliers.set(
+                            order.supplier._id,
+                            new CommoditySupplier(
+                                order.supplier._id,
+                                order.supplier.name,
+                            ),
+                        );
+                    }
+                });
+
+                return new CommodityDetailDto(
+                    commodity._id,
+                    commodity.name,
+                    commodity.description,
+                    Array.from(suppliers, ([key, value]) => value),
+                );
+            } else {
+                return new CommodityDetailDto(
+                    commodity._id,
+                    commodity.name,
+                    commodity.description,
+                    [],
+                );
+            }
         } catch (error) {
             throw new Error(error);
         }

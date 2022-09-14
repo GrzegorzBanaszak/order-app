@@ -14,6 +14,8 @@ import { GetCommodityDto, PostCommodityDto } from './dto';
 import { MapInterceptor } from '@automapper/nestjs';
 import { Commodity } from './commodity.schema';
 import { AuthGuard } from '@nestjs/passport';
+import { ParseObjectIdPipe } from 'src/pipes/parseObjectId.pipe';
+import { ObjectId } from 'mongodb';
 
 // @UseGuards(AuthGuard('jwt'))
 @Controller('commodity')
@@ -26,7 +28,7 @@ export class CommodityController {
     }
 
     @Get(':id')
-    async getById(@Param('id') id: string) {
+    async getById(@Param('id', ParseObjectIdPipe) id: ObjectId) {
         return await this.commodityService.getById(id);
     }
 
