@@ -2,7 +2,9 @@
   <div class="dashboard__grid">
     <dashboard-nav :class-type="'dashboard__nav'"></dashboard-nav>
     <dashboard-header :class-type="'dashboard__header'"></dashboard-header>
-    <div class="dashboard__location"><h2>Strona główna</h2></div>
+    <div class="dashboard__location">
+      <h2>{{ displayLocation() }}</h2>
+    </div>
     <main class="dashboard__main"><router-view></router-view></main>
   </div>
 </template>
@@ -16,6 +18,18 @@ export default defineComponent({
   components: {
     DashboardNav,
     DashboardHeader,
+  },
+  methods: {
+    displayLocation() {
+      switch (this.$route.path.split("/")[2]) {
+        case "customers":
+          return "Klienci";
+        case "companies":
+          return "Firmy";
+        default:
+          return "Strona główna";
+      }
+    },
   },
 });
 </script>
