@@ -37,13 +37,7 @@ export default defineComponent({
 
 <style lang="scss">
 .customers-list {
-  padding: 1rem;
-  background-color: white;
-  grid-column-start: 1;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 5;
-  overflow-y: scroll;
+  @include display-info-list;
   &__header {
     display: flex;
     justify-content: center;

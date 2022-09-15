@@ -2,3 +2,13 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 }
+
+@mixin display-info-list {
+  padding: 1rem;
+  background-color: white;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 5;
+  overflow-y: scroll;
+}

@@ -1,31 +1,31 @@
 <template>
-  <div>{{ customerInfo.name }}</div>
-  <div>{{ customerInfo.companyName }}</div>
+  <div>{{ companyInfo.name }}</div>
+  <div>{{ companyInfo.nip }}</div>
   <div>
     {{ getDate() }}
   </div>
-  <div>{{ customerInfo.phoneNumber }}</div>
+  <div>{{ companyInfo.employers }}</div>
   <div><dotts-icon /></div>
 </template>
 
 <script lang="ts">
-import { ICustomerInfo } from "@/types";
+import DottsIcon from "@/icons/DottsIcon.vue";
+import { ICompanyInfo } from "@/types";
 import moment from "moment";
 import { defineComponent, PropType } from "vue";
-import DottsIcon from "@/icons/DottsIcon.vue";
 
 export default defineComponent({
   components: { DottsIcon },
   props: {
-    customerInfo: {
-      type: Object as PropType<ICustomerInfo>,
+    companyInfo: {
+      type: Object as PropType<ICompanyInfo>,
       required: true,
     },
   },
   methods: {
     getDate(): string {
-      if (this.customerInfo.lastOrder) {
-        return moment(this.customerInfo.lastOrder).format("DD/MM/YYYY");
+      if (this.companyInfo.lastOrder) {
+        return moment(this.companyInfo.lastOrder).format("DD/MM/YYYY");
       } else {
         return "Brak";
       }

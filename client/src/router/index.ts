@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "dashboard",
     component: DashboardView,
     children: [
-      { path: "/", component: DashboardMainView, name: "DashboardMain" },
+      { path: "", component: DashboardMainView, name: "DashboardMain" },
       {
         path: "customers",
         component: DashboardCustomersView,
