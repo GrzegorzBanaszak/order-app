@@ -1,3 +1,4 @@
+import { companiesState, ICompaniesState } from "./companiesState";
 import { createStore, Store, useStore as baseUseStore } from "vuex";
 import { InjectionKey } from "vue";
 import { IOpenListElement, IOrder } from "@/types";
@@ -9,12 +10,13 @@ export interface State {
   bestCommodities: IOpenListElement[];
   filteredOrders: IOrder[];
   customersState?: ICustomersState;
+  companiesState?: ICompaniesState;
 }
 
 export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store = createStore<State>({
-  modules: { customersState },
+  modules: { customersState, companiesState },
   state: {
     bestCommodities: [],
     bestCustomers: [],

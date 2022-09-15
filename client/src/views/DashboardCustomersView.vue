@@ -13,7 +13,10 @@
       v-for="item in $store.state.customersState.customers"
       class="customers-list__element"
     >
-      <customers-list-element :customer-info="item"></customers-list-element>
+      <customers-list-element
+        :key="item.id"
+        :customer-info="item"
+      ></customers-list-element>
     </div>
   </div>
 </template>

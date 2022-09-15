@@ -9,7 +9,7 @@ export class GetCustomerDto {
         companyName: string,
         lastOrder?: Date,
     ) {
-        this._id = id;
+        this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.lastOrder = lastOrder;

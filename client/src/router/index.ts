@@ -3,6 +3,8 @@ import LoginView from "../views/LoginView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import DashboardMainView from "@/views/DashboardMainView.vue";
 import DashboardCustomersView from "@/views/DashboardCustomersView.vue";
+import DashboardCompaniesViewVue from "@/views/DashboardCompaniesView.vue";
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -14,11 +16,16 @@ const routes: Array<RouteRecordRaw> = [
     name: "dashboard",
     component: DashboardView,
     children: [
-      { path: "", component: DashboardMainView, name: "DashboardMain" },
+      { path: "/", component: DashboardMainView, name: "DashboardMain" },
       {
         path: "customers",
         component: DashboardCustomersView,
         name: "DashboardCustomers",
+      },
+      {
+        path: "companies",
+        component: DashboardCompaniesViewVue,
+        name: "DashboardCompanies",
       },
     ],
   },
