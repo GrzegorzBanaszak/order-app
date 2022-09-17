@@ -11,12 +11,10 @@
     <div
       v-if="$store.state.companiesState?.companies"
       v-for="item in $store.state.companiesState?.companies"
+      :key="item.id"
       class="companies-list__element"
     >
-      <companies-list-element
-        :key="item.id"
-        :company-info="item"
-      ></companies-list-element>
+      <companies-list-element :company-info="item"></companies-list-element>
     </div>
   </div>
 </template>
@@ -39,10 +37,7 @@ export default defineComponent({
 .companies-list {
   @include display-info-list;
   &__header {
-    display: flex;
-    justify-content: center;
-    font-size: 1.8rem;
-    font-weight: 700;
+    @include display-info-header;
   }
   &__info {
     margin: 1.4rem 0;

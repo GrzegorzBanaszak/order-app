@@ -1,20 +1,20 @@
 <template>
-  <div class="customers-list">
-    <header class="customers-list__header">Lista Klientów</header>
-    <div class="customers-list__info">
-      <div>Imie i nazwisko</div>
-      <div>Firma</div>
+  <div class="suppliers-list">
+    <header class="suppliers-list__header">Lista Dostawców</header>
+    <div class="suppliers-list__info">
+      <div>Nazwa dostawcy</div>
+      <div>Cena dostawy</div>
       <div>Ostatnie zamówienie</div>
-      <div>Numer telefonu</div>
+      <div>Ilość zamówień</div>
       <div>Detale</div>
     </div>
     <div
-      v-if="$store.state.customersState"
-      v-for="item in $store.state.customersState.customers"
-      :key="item.id"
-      class="customers-list__element"
+      v-if="$store.state.suppliersState.suppliers"
+      v-for="item in $store.state.suppliersState.suppliers"
+      :id="item.id"
+      class="suppliers-list__element"
     >
-      <customers-list-element :customer-info="item"></customers-list-element>
+      <suppliers-list-element :supplier-info="item"></suppliers-list-element>
     </div>
   </div>
 </template>
@@ -22,19 +22,18 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useStore } from "@/store";
-import CustomersListElement from "@/components/CustomersListElement.vue";
-
+import SuppliersListElement from "@/components/SuppliersListElement.vue";
 export default defineComponent({
-  components: { CustomersListElement },
   setup() {
     const store = useStore();
-    store.dispatch("getCustomers");
+    store.dispatch("getSuppliers");
   },
+  components: { SuppliersListElement },
 });
 </script>
 
 <style lang="scss">
-.customers-list {
+.suppliers-list {
   @include display-info-list;
   &__header {
     @include display-info-header;

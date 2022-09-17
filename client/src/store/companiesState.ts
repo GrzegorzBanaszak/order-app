@@ -1,7 +1,7 @@
 import axios from "axios";
 import { State } from "./index";
 import { ICompanyInfo } from "@/types";
-import { ActionContext, Module } from "vuex";
+import { Module } from "vuex";
 
 export interface ICompaniesState {
   companies: ICompanyInfo[];

@@ -26,6 +26,10 @@ export default defineComponent({
           return "Klienci";
         case "companies":
           return "Firmy";
+        case "commodities":
+          return "Towary";
+        case "suppliers":
+          return "Dostawcy";
         default:
           return "Strona główna";
       }

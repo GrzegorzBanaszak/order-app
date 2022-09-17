@@ -4,6 +4,8 @@ import DashboardView from "../views/DashboardView.vue";
 import DashboardMainView from "@/views/DashboardMainView.vue";
 import DashboardCustomersView from "@/views/DashboardCustomersView.vue";
 import DashboardCompaniesViewVue from "@/views/DashboardCompaniesView.vue";
+import DashboardCommoditisView from "@/views/DashboardCommoditiesView.vue";
+import DashboardSuppliersView from "@/views/DashboardSuppliersView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,7 +14,7 @@ const routes: Array<RouteRecordRaw> = [
     component: LoginView,
   },
   {
-    path: "/dashboard",
+    path: "/d",
     name: "dashboard",
     component: DashboardView,
     children: [
@@ -26,6 +28,16 @@ const routes: Array<RouteRecordRaw> = [
         path: "companies",
         component: DashboardCompaniesViewVue,
         name: "DashboardCompanies",
+      },
+      {
+        path: "commodities",
+        component: DashboardCommoditisView,
+        name: "DashboardCommoditis",
+      },
+      {
+        path: "suppliers",
+        component: DashboardSuppliersView,
+        name: "DashboardSuppliers",
       },
     ],
   },

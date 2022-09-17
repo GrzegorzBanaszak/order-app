@@ -8,8 +8,8 @@
     <h4>Detale</h4>
   </header>
   <open-orders-element
-    v-if="$store.state.filteredOrders.length > 0"
-    v-for="item in $store.state.filteredOrders"
+    v-if="$store.state.openState.filteredOrders.length > 0"
+    v-for="item in $store.state.openState.filteredOrders"
     :key="item._id"
     :order="item"
   ></open-orders-element>

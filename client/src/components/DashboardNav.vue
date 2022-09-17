@@ -3,34 +3,24 @@
     <h1 class="sidebar__title"><shop-icon></shop-icon> Orders Manager</h1>
     <ul class="sidebar__menu">
       <li>
-        <router-link to="/dashboard"
+        <router-link to="/d"
           ><dashboard-icon></dashboard-icon> Strona główna</router-link
         >
       </li>
       <li>
-        <router-link to="/dashboard/customers">
-          <users-icon />Klienci</router-link
-        >
+        <router-link to="/d/customers"> <users-icon />Klienci</router-link>
       </li>
       <li>
-        <router-link to="/dashboard/companies"
-          ><suitcase-icon /> Firmy</router-link
-        >
+        <router-link to="/d/companies"><suitcase-icon /> Firmy</router-link>
       </li>
       <li>
-        <router-link to="/dashboard/suppliers"
-          ><truck-icon /> Dostawcy</router-link
-        >
+        <router-link to="/d/suppliers"><truck-icon /> Dostawcy</router-link>
       </li>
       <li>
-        <router-link to="/dashboard/commodities"
-          ><stock-icon /> Towary</router-link
-        >
+        <router-link to="/d/commodities"><stock-icon /> Towary</router-link>
       </li>
       <li>
-        <router-link to="/dashboard/orders"
-          ><records-icon />Zamówienia</router-link
-        >
+        <router-link to="/d/orders"><records-icon />Zamówienia</router-link>
       </li>
     </ul>
   </nav>

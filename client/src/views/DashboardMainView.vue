@@ -4,14 +4,14 @@
     <open-list
       :title="'Najlepsi klienci'"
       :icon="'CustomersBlueIcon'"
-      :list="$store.state.bestCustomers"
+      :list="$store.state.openState.bestCustomers"
     ></open-list>
   </div>
   <div class="main__best--commadity">
     <open-list
       :title="'Najczęściej zamawiane'"
       :icon="'PackageBlueIcon'"
-      :list="$store.state.bestCommodities"
+      :list="$store.state.openState.bestCommodities"
     ></open-list>
   </div>
   <div class="main__orders"><open-orders-list /></div>
