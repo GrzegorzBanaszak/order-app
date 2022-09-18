@@ -8,3 +8,4 @@ export * from "./ICustomerInfo";
 export * from "./ICompanyInfo";
 export * from "./ISupplierInfo";
 export * from "./ICommodityInfo";
+export * from "./ICustomerDetail";
