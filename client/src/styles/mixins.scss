@@ -19,3 +19,19 @@
   font-size: 1.8rem;
   font-weight: 700;
 }
+
+@mixin item-detail-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+
+@mixin item-detail-element {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}

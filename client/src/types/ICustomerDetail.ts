@@ -1,11 +1,12 @@
 export interface ICustomerDetail {
   id: string;
   name: string;
-  description: string;
-  suppliers: Array<SupplierForCustomerDetail>;
+  phoneNumber: string;
+  company: CompanyForCustomerDetail | null;
 }
 
-interface SupplierForCustomerDetail {
+interface CompanyForCustomerDetail {
   id: string;
   name: string;
+  nip: string;
 }
