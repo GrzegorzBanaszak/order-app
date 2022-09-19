@@ -1,15 +1,21 @@
 <template>
   <customer-detail-info></customer-detail-info>
   <customer-detail-supplier></customer-detail-supplier>
+  <detail-orders-history-list></detail-orders-history-list>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import CustomerDetailInfo from "../components/CustomerDetailInfo.vue";
 import CustomerDetailSupplier from "@/components/CustomerDetailSupplier.vue";
+import DetailOrdersHistoryList from "@/components/DetailOrdersHistoryList.vue";
 
 export default defineComponent({
-  components: { CustomerDetailInfo, CustomerDetailSupplier },
+  components: {
+    CustomerDetailInfo,
+    CustomerDetailSupplier,
+    DetailOrdersHistoryList,
+  },
   mounted() {
     this.$store.dispatch("getCustomerDetail", this.$route.params.id);
   },

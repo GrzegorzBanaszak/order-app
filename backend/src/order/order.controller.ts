@@ -45,7 +45,7 @@ export class OrderController {
         return await this.orderService.getBestCommodities();
     }
 
-    @Get('history/:type/:id')
+    @Get(':type/:id')
     @UseInterceptors(MapInterceptor(Order, OrderInfoDto, { isArray: true }))
     async getOrdersByCustomer(
         @Param('id', ParseObjectIdPipe) id: ObjectId,
