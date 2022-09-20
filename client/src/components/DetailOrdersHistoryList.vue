@@ -11,15 +11,54 @@
       <div>Status</div>
       <div>Detale</div>
     </div>
+    <div
+      v-if="$store.state.ordersState.ordersHistory.length > 0"
+      v-for="item in $store.state.ordersState.ordersHistory"
+      class="orders-history__element"
+    >
+      <detail-orders-history-element
+        :order-info="item"
+      ></detail-orders-history-element>
+    </div>
+    <div v-else class="orders-history__message">Brak zamówień</div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import HistoryBlueIcon from "@/icons/HistoryBlueIcon.vue";
+import DetailOrdersHistoryElement from "./DetailOrdersHistoryElement.vue";
 
 export default defineComponent({
-  components: { HistoryBlueIcon },
+  components: { HistoryBlueIcon, DetailOrdersHistoryElement },
+  mounted() {
+    const location = this.$route.path.split("/")[2];
+    let type: string | null = null;
+
+    switch (location) {
+      case "customers":
+        type = "customer";
+        break;
+      case "companies":
+        type = "company";
+        break;
+      case "commodities":
+        type = "Commodity";
+        break;
+      case "suppliers":
+        type = "supplier";
+        break;
+      default:
+        break;
+    }
+
+    if (type !== null) {
+      this.$store.dispatch("getOrdersHistory", {
+        id: this.$route.params.id,
+        type: type,
+      });
+    }
+  },
 });
 </script>
 
@@ -42,6 +81,20 @@ export default defineComponent({
       text-align: center;
       font-weight: 500;
     }
+  }
+  &__element {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr;
+    margin-bottom: 1.5rem;
+    div {
+      text-align: center;
+    }
+  }
+  &__message {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    padding-top: 1rem;
   }
 }
 </style>
