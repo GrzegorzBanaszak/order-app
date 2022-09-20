@@ -53,6 +53,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.router-link-exact-active {
+  color: white !important;
+  svg {
+    fill: white !important;
+  }
+}
 .sidebar {
   &__title {
     display: flex;
