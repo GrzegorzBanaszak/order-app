@@ -33,6 +33,10 @@ export class OrderProfile extends AutomapperProfile {
                     }),
                 ),
                 forMember(
+                    (d) => d.id,
+                    mapFrom((source) => source._id),
+                ),
+                forMember(
                     (d) => d.totalPrice,
                     mapFrom((source) => {
                         return source.commodities.reduce(
