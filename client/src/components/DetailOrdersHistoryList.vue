@@ -91,10 +91,10 @@ export default defineComponent({
     }
   }
   &__message {
-    text-align: center;
     font-size: 2rem;
-    font-weight: 500;
-    padding-top: 1rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 2rem;
   }
 }
 </style>

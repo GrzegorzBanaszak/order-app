@@ -5,7 +5,11 @@
     {{ getDate() }}
   </div>
   <div>{{ companyInfo.employers }}</div>
-  <div><dotts-icon /></div>
+  <div>
+    <router-link :to="'/d/companies/' + companyInfo.id"
+      ><dotts-icon
+    /></router-link>
+  </div>
 </template>
 
 <script lang="ts">
