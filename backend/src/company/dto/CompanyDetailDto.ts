@@ -6,12 +6,12 @@ export class CompanyDetailDto {
     constructor(
         id: Schema.Types.ObjectId,
         name: string,
-        emplotiers: EmployerDto[],
+        workers: EmployerDto[],
         nip?: string,
     ) {
         this.id = id;
         this.name = name;
-        this.emplotiers = emplotiers;
+        this.workers = workers;
         this.nip = nip;
     }
 
@@ -24,5 +24,5 @@ export class CompanyDetailDto {
     @AutoMap()
     nip?: string;
 
-    emplotiers: EmployerDto[];
+    workers: EmployerDto[];
 }

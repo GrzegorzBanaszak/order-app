@@ -83,7 +83,7 @@ export class CompanyService {
 
         const employiers = (await this.customerModel.find({ company: id })).map(
             (item) => {
-                return new EmployerDto(item.name, item.phoneNumber);
+                return new EmployerDto(item._id, item.name, item.phoneNumber);
             },
         );
 
