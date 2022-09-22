@@ -11,3 +11,4 @@ export * from "./ICommodityInfo";
 export * from "./ICustomerDetail";
 export * from "./IOrderHistoryInfo";
 export * from "./ICompanyDetail";
+export * from "./ISupplierDetail";

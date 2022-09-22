@@ -39,7 +39,7 @@ export default defineComponent({
   overflow-y: auto;
   height: 100%;
   &__header {
-    margin: 1.4rem 0;
+    margin: 0.7rem 0;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     div {

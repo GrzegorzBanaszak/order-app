@@ -1,23 +1,24 @@
 <template>
-  <div>{{ workerData.name }}</div>
-  <div>{{ workerData.phoneNumber }}</div>
+  <div>{{ commodityData.name }}</div>
+  <div>{{ commodityData.quantity }}</div>
+  <div>{{ commodityData.price }} zł</div>
   <div>
-    <router-link :to="'/d/customers/' + workerData.id"
+    <router-link :to="'/d/commiditis/' + commodityData.id"
       ><dotts-icon
     /></router-link>
   </div>
 </template>
 
 <script lang="ts">
-import { Worker } from "@/types";
+import { BestOrderCommodity } from "@/types";
 import { defineComponent, PropType } from "vue";
 import DottsIcon from "@/icons/DottsIcon.vue";
 
 export default defineComponent({
   components: { DottsIcon },
   props: {
-    workerData: {
-      type: Object as PropType<Worker>,
+    commodityData: {
+      type: Object as PropType<BestOrderCommodity>,
       required: true,
     },
   },

@@ -27,10 +27,10 @@ export const companiesState: Module<ICompaniesState, State> = {
       const res = await axios("http://localhost:5000/company");
       context.commit("setCompanies", res.data);
     },
-    async getCompanyDetail(contact, payload: string) {
+    async getCompanyDetail(context, payload: string) {
       try {
         const res = await axios("http://localhost:5000/company/" + payload);
-        contact.commit("setCompanyDetail", res.data);
+        context.commit("setCompanyDetail", res.data);
       } catch (error: any) {
         console.log(error.request.status);
       }
