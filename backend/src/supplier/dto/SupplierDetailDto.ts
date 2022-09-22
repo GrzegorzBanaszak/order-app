@@ -5,17 +5,17 @@ export class SupplierDetailDto {
     constructor(
         id: Schema.Types.ObjectId,
         name: string,
-        lastPrice: number,
+        price: number,
         bestOrderCommodities: SupplierCommodityInfo[],
     ) {
         this.id = id;
         this.name = name;
-        this.lastPrice = lastPrice;
+        this.price = price;
         this.bestOrderCommodities = bestOrderCommodities;
     }
 
     id: Schema.Types.ObjectId;
     name: string;
-    lastPrice: number;
+    price: number;
     bestOrderCommodities?: SupplierCommodityInfo[];
 }

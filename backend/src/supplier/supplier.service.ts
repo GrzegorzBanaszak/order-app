@@ -54,7 +54,15 @@ export class SupplierService {
 
     async getDetail(id: ObjectId) {
         const supplier = await this.supplierModel.findById(id);
-        const orders = await this.orderModel.find({ supplier: id });
+        const orders = await this.orderModel.find({ supplier: id }).populate([
+            {
+                path: 'commodities',
+                populate: {
+                    path: 'commodity',
+                    model: 'Commodity',
+                },
+            },
+        ]);
 
         if (!supplier) {
             throw new NotFoundException();
@@ -82,6 +90,7 @@ export class SupplierService {
                     }
                 });
             });
+            console.log(map);
             return new SupplierDetailDto(
                 supplier._id,
                 supplier.name,
@@ -89,7 +98,7 @@ export class SupplierService {
                 orderBy(
                     Array.from(map, ([key, value]) => ({
                         ...value,
-                        _id: key,
+                        id: key,
                     })),
                     'quantity',
                     'desc',
