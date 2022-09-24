@@ -10,10 +10,11 @@ More about functionality in backend section.
 **[Figma preview link](https://www.figma.com/file/7ZKnX3NJ3gYRNp0QeSE1vd/Order-App?node-id=0%3A1)**
 
 
-### Backend
+# Backend
+---
 
 
-![TS](https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![nestjs](https://img.shields.io/badge/NestJs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white) ![mongodb](https://img.shields.io/badge/NestJs-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![TS](https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![nestjs](https://img.shields.io/badge/NestJs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white) ![mongodb](https://img.shields.io/badge/Mongodb-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 
 The backend is made in use NestJs framework.
 It has:
@@ -74,9 +75,59 @@ It has:
 - [ ] Update supplier by id  Put: **/order/update/:id**
 - [ ] Delete supplier by id  Delete: **/order/delete/:id**
 
----
 
 ## Correlations
 
 
 !["image"](./images/correlation.jpg)
+
+# Client
+---
+
+
+![TS](https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![nestjs](https://img.shields.io/badge/Vue-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white) ![mongodb](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=mongodb&logoColor=white)
+
+Client site app use a Vue framework with Typescript.
+To style i use preprocesor Sass and Vuex to manage a states 
+
+
+## View pages
+
+- [x] **Login pages**
+- [x] **Register pages**
+- [ ] **Dashboard open section**
+  - [ ] Chart
+  - [x] Best customers
+  - [x] Best ordered commodities
+  - [x] Last added orders
+- [x] **Customers list**
+- [x] **Customer detail**
+  - [x] Customer information
+  - [x] The company to which the customer belong
+  - [x] The customer last orders
+- [ ] **Add new customer form**
+- [x] **Companies list**
+- [x] **Company detail**
+  - [x] Comapny information
+  - [x] Employees belong to the company
+  - [x] The company last orders
+- [ ] **Add new company form**
+- [x] **Suppliers list**
+- [x] **Supplier detail**
+  - [x] Supplier information
+  - [x] The most ordered commodities
+  - [x] The supplier last orders
+- [ ] **Add new supplier form**
+- [x] **Commodities list**
+- [ ] **Commodity detail**
+  - [ ] Commodity information
+  - [ ] Suppliers list
+  - [ ] The Commodity last orders
+- [ ] **Add new commodity form**
+- [ ] **Orders list**
+- [ ] **Order detail**
+  - [ ] List of commodities
+  - [ ] Order info
+  - [ ] Customer info
+  - [ ] Supplier info
+- [ ] **Add new order form**
