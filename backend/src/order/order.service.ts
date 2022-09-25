@@ -13,15 +13,18 @@ export class OrderService {
     ) {}
 
     async getAll(): Promise<Order[]> {
-        return await this.orderModel.find().populate([
-            {
-                path: 'commodities',
-                populate: {
-                    path: 'commodity',
-                    model: 'Commodity',
+        return await this.orderModel
+            .find()
+            .populate([
+                {
+                    path: 'commodities',
+                    populate: {
+                        path: 'commodity',
+                        model: 'Commodity',
+                    },
                 },
-            },
-        ]);
+            ])
+            .sort('createdAt');
     }
 
     //Return limited list of orders

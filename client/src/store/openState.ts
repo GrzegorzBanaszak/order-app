@@ -29,7 +29,7 @@ export const openState: Module<IOpenState, State> = {
   },
   actions: {
     async getOrders({ commit }) {
-      const res = await axios("http://localhost:5000/order");
+      const res = await axios("http://localhost:5000/order/last/5");
       commit("setFilteredOrders", res.data);
     },
     async getBestCustomers({ commit }) {

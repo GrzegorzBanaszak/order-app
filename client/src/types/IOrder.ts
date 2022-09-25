@@ -1,10 +1,19 @@
 import { ICustomer, ISupplier, ICommodity } from "./";
 
 export interface IOrder {
-  _id: string;
-  customer: ICustomer;
-  supplier: ISupplier;
-  commodities: ICommodity[];
+  id: string;
+
+  orderNumber: string;
+
+  createdAt: Date;
+
   status: string;
-  createdAt?: Date;
+
+  quantity: number;
+
+  customer: string;
+
+  supplier: string;
+
+  totalPrice: number;
 }

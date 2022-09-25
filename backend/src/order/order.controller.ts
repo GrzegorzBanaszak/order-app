@@ -16,7 +16,7 @@ import {
 } from '@nestjs/common';
 import { MapInterceptor } from '@automapper/nestjs';
 import { AuthGuard } from '@nestjs/passport';
-import { OrderInfoDto } from './dto';
+import { OrderDto, OrderInfoDto } from './dto';
 
 // @UseGuards(AuthGuard('jwt'))
 @Controller('order')
@@ -24,13 +24,13 @@ export class OrderController {
     constructor(private orderService: OrderService) {}
 
     @Get()
-    @UseInterceptors(MapInterceptor(Order, GetOrderDto, { isArray: true }))
+    @UseInterceptors(MapInterceptor(Order, OrderDto, { isArray: true }))
     async getAll() {
         return await this.orderService.getAll();
     }
 
     @Get('last/:range')
-    @UseInterceptors(MapInterceptor(Order, GetOrderDto, { isArray: true }))
+    @UseInterceptors(MapInterceptor(Order, OrderDto, { isArray: true }))
     async getAtRange(@Param('range', ParseIntPipe) range: number) {
         return await this.orderService.getAtRange(range);
     }

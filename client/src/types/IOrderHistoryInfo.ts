@@ -4,4 +4,5 @@ export interface IOrderHistoryInfo {
   quantity: number;
   totalPrice: number;
   createdAt: Date;
+  status: string;
 }

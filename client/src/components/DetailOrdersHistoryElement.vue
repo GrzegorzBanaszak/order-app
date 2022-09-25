@@ -3,7 +3,7 @@
   <div>{{ getDate() }}</div>
   <div>{{ orderInfo.quantity }} szt</div>
   <div>{{ orderInfo.totalPrice }} zł</div>
-  <div>Brak</div>
+  <div>{{ orderInfo.status }}</div>
   <div>
     <router-link :to="'/d/orders/' + orderInfo.id"><dotts-icon /></router-link>
   </div>

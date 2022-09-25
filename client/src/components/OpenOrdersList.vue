@@ -10,7 +10,7 @@
   <open-orders-element
     v-if="$store.state.openState.filteredOrders.length > 0"
     v-for="item in $store.state.openState.filteredOrders"
-    :key="item._id"
+    :key="item.id"
     :order="item"
   ></open-orders-element>
 </template>
