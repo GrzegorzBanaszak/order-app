@@ -43,7 +43,7 @@ export default defineComponent({
         type = "company";
         break;
       case "commodities":
-        type = "Commodity";
+        type = "commodity";
         break;
       case "suppliers":
         type = "supplier";

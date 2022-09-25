@@ -4,7 +4,11 @@
   <div>
     {{ getDate() }}
   </div>
-  <div><dotts-icon /></div>
+  <div>
+    <router-link :to="'/d/commodities/' + commodityInfo.id"
+      ><dotts-icon
+    /></router-link>
+  </div>
 </template>
 
 <script lang="ts">

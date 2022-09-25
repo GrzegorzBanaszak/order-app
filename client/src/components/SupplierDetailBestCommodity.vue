@@ -3,7 +3,7 @@
   <div>{{ commodityData.quantity }}</div>
   <div>{{ commodityData.price }} zł</div>
   <div>
-    <router-link :to="'/d/commiditis/' + commodityData.id"
+    <router-link :to="'/d/commodities/' + commodityData.id"
       ><dotts-icon
     /></router-link>
   </div>
