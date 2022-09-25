@@ -30,7 +30,7 @@ export class CommodityService {
                 .findOne({
                     'commodities.commodity': commodity._id,
                 })
-                .sort('-createdAt')
+                .sort('createdAt')
                 .populate({
                     path: 'commodities',
                     populate: {
