@@ -1,6 +1,6 @@
 <template>
   <div>{{ commodityInfo.name }}</div>
-  <div>{{ commodityInfo.lastPrice }}</div>
+  <div>{{ commodityInfo.lastPrice }} zł</div>
   <div>
     {{ getDate() }}
   </div>
@@ -36,5 +36,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style></style>

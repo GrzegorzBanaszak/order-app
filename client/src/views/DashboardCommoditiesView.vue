@@ -40,21 +40,6 @@ export default defineComponent({
   &__header {
     @include display-info-header;
   }
-  &__info {
-    margin: 1.4rem 0;
-    display: grid;
-    grid-template-columns: 2fr 2fr 1fr 1fr;
-    div {
-      text-align: center;
-    }
-  }
-  &__element {
-    display: grid;
-    grid-template-columns: 2fr 2fr 1fr 1fr;
-    margin-bottom: 1.5rem;
-    div {
-      text-align: center;
-    }
-  }
+  @include dashboard-list(2fr 2fr 1fr 1fr);
 }
 </style>

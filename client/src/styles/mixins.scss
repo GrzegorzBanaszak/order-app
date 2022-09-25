@@ -35,3 +35,25 @@
   font-size: 1.5rem;
   font-weight: 500;
 }
+
+@mixin dashboard-list($grid) {
+  &__info {
+    margin: 1.4rem 0;
+    padding-bottom: 1rem;
+    display: grid;
+    grid-template-columns: $grid;
+    border-bottom: 1px solid #ccc;
+    div {
+      text-align: center;
+    }
+  }
+  &__element {
+    display: grid;
+    grid-template-columns: $grid;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ccc;
+    div {
+      text-align: center;
+    }
+  }
+}
