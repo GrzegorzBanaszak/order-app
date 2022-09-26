@@ -1,6 +1,6 @@
 <template>
   <div class="commodities-list">
-    <header class="commodities-list__header">Lista Firm</header>
+    <header class="commodities-list__header">Lista Towarów</header>
     <div class="commodities-list__info">
       <div>Nazwa towaru</div>
       <div>Ostatnia cena</div>

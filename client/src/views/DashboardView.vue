@@ -30,6 +30,8 @@ export default defineComponent({
           return "Towary";
         case "suppliers":
           return "Dostawcy";
+        case "orders":
+          return "Zamówienia";
         default:
           return "Strona główna";
       }
