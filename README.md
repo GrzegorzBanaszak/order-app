@@ -67,6 +67,7 @@ It has:
 #### Order :shield:
 
 - [x] Gets all orders Get: **/order**
+- [x] Get order by id Get: **/order/:id**
 - [x] Gets last x order Get: **/order/last/:range**
 - [x] Gets customers list with the most orders   Get: **/order/best/customers**
 - [x] Gets the most ordered commodities  Get: **/order/best/commodities**
@@ -119,15 +120,15 @@ To style i use preprocesor Sass and Vuex to manage a states
   - [x] The supplier last orders
 - [ ] **Add new supplier form**
 - [x] **Commodities list**
-- [ ] **Commodity detail**
-  - [ ] Commodity information
-  - [ ] Suppliers list
-  - [ ] The Commodity last orders
+- [x] **Commodity detail**
+  - [x] Commodity information
+  - [x] Suppliers list
+  - [x] The Commodity last orders
 - [ ] **Add new commodity form**
-- [ ] **Orders list**
-- [ ] **Order detail**
-  - [ ] List of commodities
-  - [ ] Order info
-  - [ ] Customer info
-  - [ ] Supplier info
+- [x] **Orders list**
+- [x] **Order detail**
+  - [x] List of commodities
+  - [x] Order info
+  - [x] Customer info
+  - [x] Supplier info
 - [ ] **Add new order form**

@@ -21,6 +21,7 @@
         ></commodity-detail-supplier>
       </div>
     </div>
+    <div v-else class="commodity-suppliers__info">Brak Dostawców</div>
   </div>
 </template>
 
@@ -57,10 +58,10 @@ export default defineComponent({
   }
 
   &__info {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 }
 </style>
