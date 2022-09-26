@@ -1,5 +1,3 @@
-import { ICustomer, ISupplier, ICommodity } from "./";
-
 export interface IOrder {
   id: string;
 

@@ -1,9 +1,5 @@
 export * from "./IOpenListElement";
-export * from "./ICustomer";
 export * from "./IOrder";
-export * from "./ICompany";
-export * from "./ISupplier";
-export * from "./ICommodity";
 export * from "./ICustomerInfo";
 export * from "./ICompanyInfo";
 export * from "./ISupplierInfo";
@@ -13,3 +9,4 @@ export * from "./IOrderHistoryInfo";
 export * from "./ICompanyDetail";
 export * from "./ISupplierDetail";
 export * from "./ICommodityDetail";
+export * from "./IOrderDetail";

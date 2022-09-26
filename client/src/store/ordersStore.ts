@@ -1,11 +1,12 @@
 import axios, { AxiosError } from "axios";
 import { State } from "./index";
-import { IOrder, IOrderHistoryInfo } from "@/types";
+import { IOrder, IOrderDetail, IOrderHistoryInfo } from "@/types";
 import { Module } from "vuex";
 
 export interface IOrdersState {
   ordersHistory: IOrderHistoryInfo[];
   ordersInfo: Array<IOrder>;
+  orderDetail: IOrderDetail | null;
 }
 
 interface OrdersHistoryPayload {
@@ -17,6 +18,7 @@ export const ordersState: Module<IOrdersState, State> = {
   state: {
     ordersHistory: [],
     ordersInfo: [],
+    orderDetail: null,
   },
   getters: {},
   mutations: {
@@ -25,6 +27,9 @@ export const ordersState: Module<IOrdersState, State> = {
     },
     setOrdersInfo(state, payload: Array<IOrder>) {
       state.ordersInfo = payload;
+    },
+    setOrderDetail(state, payload: IOrderDetail) {
+      state.orderDetail = payload;
     },
   },
   actions: {
@@ -38,6 +43,15 @@ export const ordersState: Module<IOrdersState, State> = {
       try {
         const res = await axios("http://localhost:5000/order/");
         context.commit("setOrdersInfo", res.data);
+      } catch (error) {
+        const err = error as AxiosError;
+        console.log(err.request.status);
+      }
+    },
+    async getOrderDetail(context, payload: string) {
+      try {
+        const res = await axios("http://localhost:5000/order/" + payload);
+        context.commit("setOrderDetail", res.data);
       } catch (error) {
         const err = error as AxiosError;
         console.log(err.request.status);

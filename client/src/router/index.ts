@@ -11,6 +11,7 @@ import CompanyDetailViewVue from "@/views/CompanyDetailView.vue";
 import SupplierDetailViewVue from "@/views/SupplierDetailView.vue";
 import CommodityDetailViewVue from "@/views/CommodityDetailView.vue";
 import DashboardOrdersViewVue from "@/views/DashboardOrdersView.vue";
+import OrderDetailViewVue from "@/views/OrderDetailView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -68,6 +69,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "orders",
         component: DashboardOrdersViewVue,
         name: "DashboardOrders",
+      },
+      {
+        path: "orders/:id",
+        component: OrderDetailViewVue,
+        name: "OrderDetail",
       },
     ],
   },

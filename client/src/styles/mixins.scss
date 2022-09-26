@@ -38,11 +38,12 @@
 
 @mixin dashboard-list($grid) {
   &__info {
-    margin: 1.4rem 0;
+    margin: 1.4rem 0 1rem 0;
     padding-bottom: 1rem;
     display: grid;
     grid-template-columns: $grid;
     border-bottom: 1px solid #ccc;
+    font-weight: 500;
     div {
       text-align: center;
     }
@@ -52,6 +53,34 @@
     grid-template-columns: $grid;
     padding: 1rem 0;
     border-bottom: 1px solid #ccc;
+    div {
+      text-align: center;
+    }
+  }
+}
+
+@mixin order-detail-element($start-col, $end-col, $start-row, $end-row) {
+  grid-column-start: $start-row;
+  grid-column-end: $end-row;
+  grid-row-start: $start-col;
+  grid-row-end: $end-col;
+  background-color: white;
+  padding: 1rem;
+  h1 {
+    @include item-detail-header;
+  }
+  &--header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    div {
+      text-align: center;
+    }
+  }
+  &--info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     div {
       text-align: center;
     }
