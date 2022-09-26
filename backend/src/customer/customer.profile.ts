@@ -1,3 +1,4 @@
+import { OrderDetailCustomer } from './dto/OrderDetailCustomer';
 import { GetCustomerDto } from './dto/GetCustomerDto';
 import { Customer } from './customer.schema';
 import {
@@ -24,6 +25,15 @@ export class CustomerProfile extends AutomapperProfile {
                 mapper,
                 Customer,
                 CustomerDto,
+                forMember(
+                    (output) => output.id,
+                    mapFrom((source) => source._id),
+                ),
+            );
+            createMap(
+                mapper,
+                Customer,
+                OrderDetailCustomer,
                 forMember(
                     (output) => output.id,
                     mapFrom((source) => source._id),

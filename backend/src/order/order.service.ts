@@ -1,5 +1,9 @@
 import { Order, OrderDocument } from './order.schema';
-import { Injectable, BadRequestException } from '@nestjs/common';
+import {
+    Injectable,
+    BadRequestException,
+    NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { PostOrderDto } from './dto';
@@ -25,6 +29,24 @@ export class OrderService {
                 },
             ])
             .sort('createdAt');
+    }
+
+    async getById(id: ObjectId): Promise<Order> {
+        const order = await this.orderModel.findById(id).populate([
+            {
+                path: 'commodities',
+                populate: {
+                    path: 'commodity',
+                    model: 'Commodity',
+                },
+            },
+        ]);
+
+        if (!order) {
+            throw new NotFoundException();
+        }
+
+        return order;
     }
 
     //Return limited list of orders

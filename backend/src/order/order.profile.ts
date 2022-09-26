@@ -1,5 +1,6 @@
+import { OrderDetailCommodity } from 'src/commodity/dto';
 import { GetOrderCommodityDto } from './dto/GetOrderCommodityDto';
-import { GetOrderDto, OrderInfoDto, OrderDto } from './dto';
+import { GetOrderDto, OrderInfoDto, OrderDto, OrderDetailDto } from './dto';
 import {
     Mapper,
     MappingProfile,
@@ -98,6 +99,33 @@ export class OrderProfile extends AutomapperProfile {
                             );
                         });
                         return newCommoditys;
+                    }),
+                ),
+            );
+            createMap(
+                mapper,
+                Order,
+                OrderDetailDto,
+                forMember(
+                    (d) => d.id,
+                    mapFrom((source) => source._id),
+                ),
+                forMember(
+                    (d) => d.commodities,
+                    mapFrom((source) => {
+                        const mapedCommodities = source.commodities.map(
+                            (item) => {
+                                return new OrderDetailCommodity(
+                                    item.commodity._id,
+                                    item.commodity.name,
+                                    item.commodity.description,
+                                    item.price,
+                                    item.quantity,
+                                );
+                            },
+                        );
+
+                        return mapedCommodities;
                     }),
                 ),
             );
