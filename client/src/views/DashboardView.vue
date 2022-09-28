@@ -4,8 +4,11 @@
     <dashboard-header :class-type="'dashboard__header'"></dashboard-header>
     <div class="dashboard__location">
       <h2>{{ displayLocation() }}</h2>
+      <add-new-button :key="$route.fullPath"></add-new-button>
     </div>
-    <main class="dashboard__main"><router-view></router-view></main>
+    <main class="dashboard__main">
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
@@ -13,11 +16,13 @@
 import DashboardHeader from "../components/DashboardHeader.vue";
 import DashboardNav from "@/components/DashboardNav.vue";
 import { defineComponent } from "vue";
+import AddNewButton from "@/components/AddNewButton.vue";
 
 export default defineComponent({
   components: {
     DashboardNav,
     DashboardHeader,
+    AddNewButton,
   },
   methods: {
     displayLocation() {
@@ -92,6 +97,7 @@ export default defineComponent({
     grid-area: location;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 1rem;
     font-size: 1.75rem;
     font-weight: 500;
