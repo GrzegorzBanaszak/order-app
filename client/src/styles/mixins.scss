@@ -10,7 +10,7 @@
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 5;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 @mixin display-info-header {
@@ -84,5 +84,30 @@
     div {
       text-align: center;
     }
+  }
+}
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%)
+) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
   }
 }

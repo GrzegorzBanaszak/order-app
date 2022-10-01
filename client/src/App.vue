@@ -14,4 +14,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
 }
+a {
+  text-decoration: none;
+}
 </style>

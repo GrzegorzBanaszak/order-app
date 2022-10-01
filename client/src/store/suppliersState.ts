@@ -13,7 +13,14 @@ export const suppliersState: Module<ISuppliersState, State> = {
     suppliers: [],
     supplierDetail: null,
   },
-  getters: {},
+  getters: {
+    getFiltred: (state) => (search: string) => {
+      const lowerCaseSearch = search.toLowerCase();
+      return state.suppliers.filter((item) =>
+        item.name.toLowerCase().includes(lowerCaseSearch)
+      );
+    },
+  },
   mutations: {
     setSuppliers(state, payload: ISupplierInfo[]) {
       state.suppliers = payload;
