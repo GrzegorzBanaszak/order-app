@@ -1,5 +1,5 @@
 <template>
-  <form class="add-form">
+  <form class="add-form" @submit="submitForm">
     <h2 class="add-form__header">Dodaj nowego klienta</h2>
     <div class="add-form__body">
       <form-group
@@ -30,7 +30,7 @@
         type-value="text"
         placeholder-value="Wpisz nazwę"
         name-value="company"
-        :listDropdown="$store.getters.getFiltred(search)"
+        :listDropdown="$store.getters.getFiltredCompanies(search)"
         @selected="elementClick"
         @reset="isCorrectSelected"
       ></form-group-dropdown>
@@ -45,12 +45,13 @@ import { useStore } from "@/store";
 import { defineComponent } from "vue";
 import FormGroup from "@/components/FormGroup.vue";
 import FormGroupDropdown from "@/components/FormGroupDropdown.vue";
+import { ICustomerPost } from "@/types";
 
 export default defineComponent({
   components: { FormGroup, FormGroupDropdown },
   setup() {
     const store = useStore();
-    store.dispatch("getSuppliers");
+    store.dispatch("getCompanies");
   },
   data() {
     return {
@@ -69,6 +70,23 @@ export default defineComponent({
     isCorrectSelected() {
       if (this.companyId !== "") {
         this.companyId = "";
+      }
+    },
+    async submitForm(e: Event) {
+      e.preventDefault();
+
+      if (this.firstName && this.lastName) {
+        let data: ICustomerPost = {
+          name: this.firstName + " " + this.lastName,
+          phoneNumber: this.phoneNumber,
+          company: this.companyId !== "" ? this.companyId : null,
+        };
+
+        await this.$store.dispatch("addCustomer", data);
+
+        if (!this.$store.state.customersState.isError) {
+          this.$router.replace({ replace: true, path: "/d/customers" });
+        }
       }
     },
   },

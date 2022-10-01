@@ -13,7 +13,14 @@ export const companiesState: Module<ICompaniesState, State> = {
     companies: [],
     companyDetail: null,
   },
-  getters: {},
+  getters: {
+    getFiltredCompanies: (state) => (search: string) => {
+      const lowerCaseSearch = search.toLowerCase();
+      return state.companies.filter((item) =>
+        item.name.toLowerCase().includes(lowerCaseSearch)
+      );
+    },
+  },
   mutations: {
     setCompanies(state, payload: ICompanyInfo[]) {
       state.companies = payload;

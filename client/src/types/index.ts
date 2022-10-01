@@ -10,3 +10,4 @@ export * from "./ICompanyDetail";
 export * from "./ISupplierDetail";
 export * from "./ICommodityDetail";
 export * from "./IOrderDetail";
+export * from "./ICustomerPost";
