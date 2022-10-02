@@ -53,11 +53,14 @@ export default defineComponent({
   input {
     padding: 0.5rem 1rem;
     font-size: 1.2rem;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
     width: 17.188rem;
+    transition: all 0.2s;
     &:focus {
       outline: none;
+      /* padding-bottom: 0.7rem; */
+      border-bottom: 2px solid #ccc;
     }
   }
 }

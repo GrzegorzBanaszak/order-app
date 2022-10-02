@@ -124,29 +124,4 @@ export default defineComponent({
     font-size: 1.1rem;
   }
 }
-
-.form-select {
-  position: relative;
-  &__container {
-    @include scrollbars(5px, #ccc, white);
-    position: absolute;
-    top: 5.313rem;
-    max-height: 120px;
-    width: 17.188rem;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    background-color: white;
-    overflow: auto;
-    border-radius: 0 0 10px 10px;
-  }
-  &__element {
-    padding: 0.5rem 0.2rem;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #fafafa;
-    }
-  }
-}
 </style>
