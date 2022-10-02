@@ -21,7 +21,7 @@ export class CommodityService {
     ) {}
 
     async getAll(): Promise<CommodityInfoDto[]> {
-        const commodities = await this.commodityModel.find();
+        const commodities = await this.commodityModel.find().sort('-createdAt');
 
         const commoditisInfo = new Array<CommodityInfoDto>(0);
 

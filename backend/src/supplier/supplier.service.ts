@@ -16,9 +16,7 @@ export class SupplierService {
     ) {}
 
     async getAll(): Promise<SupplierInfoDto[]> {
-        const suppliers = await this.supplierModel
-            .find()
-            .sort({ createdAt: 1 });
+        const suppliers = await this.supplierModel.find().sort('-createdAt');
 
         const suppliersInfo: SupplierInfoDto[] = [];
 

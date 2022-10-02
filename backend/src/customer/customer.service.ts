@@ -5,7 +5,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Customer, CustomerDocument } from './customer.schema';
 import { Order, OrderDocument } from 'src/order/order.schema';
-import { StringDecoder } from 'string_decoder';
 
 @Injectable()
 export class CustomerService {
@@ -17,7 +16,7 @@ export class CustomerService {
     ) {}
 
     async getAll(): Promise<GetCustomerDto[]> {
-        const customers = await this.customerModel.find();
+        const customers = await this.customerModel.find().sort('-createdAt');
 
         const customersDto: GetCustomerDto[] = [];
 

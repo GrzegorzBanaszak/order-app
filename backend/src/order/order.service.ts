@@ -28,7 +28,7 @@ export class OrderService {
                     },
                 },
             ])
-            .sort('createdAt');
+            .sort('-createdAt');
     }
 
     async getById(id: ObjectId): Promise<Order> {

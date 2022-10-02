@@ -20,7 +20,7 @@ export class CompanyService {
     ) {}
 
     async getAll(): Promise<CompanyInfoDto[]> {
-        const companies = await this.companyModel.find();
+        const companies = await this.companyModel.find().sort('-createdAt');
 
         const companiesInfo: CompanyInfoDto[] = [];
 
