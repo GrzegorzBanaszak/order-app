@@ -3,10 +3,10 @@ import { IsNotEmpty } from 'class-validator';
 
 export class PostCompanyDto {
     @AutoMap()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'Prosze podać nazwę firmy' })
     name: string;
 
     @AutoMap()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'Prosze podać nip' })
     nip: string;
 }

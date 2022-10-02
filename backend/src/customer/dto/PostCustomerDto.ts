@@ -12,7 +12,7 @@ export class PostCustomerDto {
 
     @AutoMap()
     @IsString()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'Podaj numer telefonu' })
     phoneNumber: string;
 
     @AutoMap()
