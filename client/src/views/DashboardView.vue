@@ -9,6 +9,7 @@
     <main class="dashboard__main">
       <router-view></router-view>
     </main>
+    <pop-up v-if="$store.state.popupState.isShow"></pop-up>
   </div>
 </template>
 
@@ -17,12 +18,14 @@ import DashboardHeader from "../components/DashboardHeader.vue";
 import DashboardNav from "@/components/DashboardNav.vue";
 import { defineComponent } from "vue";
 import AddNewButton from "@/components/AddNewButton.vue";
+import PopUp from "@/components/PopUp.vue";
 
 export default defineComponent({
   components: {
     DashboardNav,
     DashboardHeader,
     AddNewButton,
+    PopUp,
   },
   methods: {
     displayLocation() {

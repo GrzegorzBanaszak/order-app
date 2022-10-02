@@ -1,17 +1,24 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { State } from "./index";
-import { ICompanyDetail, ICompanyInfo } from "@/types";
+import {
+  AxiosErrorDataType,
+  ICompanyDetail,
+  ICompanyInfo,
+  ICustomerPost,
+} from "@/types";
 import { Module } from "vuex";
 
 export interface ICompaniesState {
   companies: ICompanyInfo[];
   companyDetail: ICompanyDetail | null;
+  isError: boolean;
 }
 
 export const companiesState: Module<ICompaniesState, State> = {
   state: {
     companies: [],
     companyDetail: null,
+    isError: false,
   },
   getters: {
     getFiltredCompanies: (state) => (search: string) => {
@@ -28,6 +35,9 @@ export const companiesState: Module<ICompaniesState, State> = {
     setCompanyDetail(state, payload: ICompanyDetail) {
       state.companyDetail = payload;
     },
+    toggleCompanyError(state) {
+      state.isError = !state.isError;
+    },
   },
   actions: {
     async getCompanies(context) {
@@ -40,6 +50,24 @@ export const companiesState: Module<ICompaniesState, State> = {
         context.commit("setCompanyDetail", res.data);
       } catch (error: any) {
         console.log(error.request.status);
+      }
+    },
+    async addCompany(context, payload: ICustomerPost) {
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/company/add",
+          payload
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie dodać firmę ${res.data.name}`,
+        ]);
+        setTimeout(() => {
+          context.commit("popupReset");
+        }, 5000);
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        context.commit("toggleCompanyError");
+        context.commit("displayErrorPopup", err.response?.data.message);
       }
     },
   },

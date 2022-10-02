@@ -59,7 +59,6 @@ export default defineComponent({
     transition: all 0.2s;
     &:focus {
       outline: none;
-      /* padding-bottom: 0.7rem; */
       border-bottom: 2px solid #ccc;
     }
   }

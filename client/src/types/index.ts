@@ -11,3 +11,5 @@ export * from "./ISupplierDetail";
 export * from "./ICommodityDetail";
 export * from "./IOrderDetail";
 export * from "./ICustomerPost";
+export * from "./ICompanyPost";
+export * from "./AxiosErrorDataType";

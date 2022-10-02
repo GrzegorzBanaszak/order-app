@@ -13,6 +13,7 @@ import CommodityDetailViewVue from "@/views/CommodityDetailView.vue";
 import DashboardOrdersViewVue from "@/views/DashboardOrdersView.vue";
 import OrderDetailViewVue from "@/views/OrderDetailView.vue";
 import CustomerAddFormVue from "@/views/CustomerAddForm.vue";
+import CompanyAddFormVue from "@/views/CompanyAddForm.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -50,6 +51,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "companies/:id",
         component: CompanyDetailViewVue,
         name: "CompanyDetail",
+      },
+      {
+        path: "companies/add",
+        component: CompanyAddFormVue,
+        name: "CompanyAdd",
       },
       {
         path: "commodities",

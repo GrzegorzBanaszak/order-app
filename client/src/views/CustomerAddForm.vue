@@ -86,6 +86,8 @@ export default defineComponent({
 
         if (!this.$store.state.customersState.isError) {
           this.$router.replace({ replace: true, path: "/d/customers" });
+        } else {
+          this.$store.commit("toggleCustomerError");
         }
       }
     },
@@ -102,6 +104,7 @@ export default defineComponent({
     padding-bottom: 1rem;
     border-bottom: 1px solid #ccc;
     font-size: 1.8rem;
+    margin-bottom: 1rem;
   }
   &__body {
     display: flex;
