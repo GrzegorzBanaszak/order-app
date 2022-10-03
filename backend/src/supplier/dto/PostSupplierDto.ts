@@ -1,11 +1,11 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
 
 export class PostSupplierDto {
     @IsString()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'Podaj nazwę dostawcy' })
     name: string;
 
     @IsNumber()
-    @IsNotEmpty()
+    @Min(1, { message: 'Podaj cene dostawy' })
     price: number;
 }
