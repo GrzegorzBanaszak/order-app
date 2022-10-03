@@ -106,19 +106,19 @@ To style i use preprocesor Sass and Vuex to manage a states
   - [x] Customer information
   - [x] The company to which the customer belong
   - [x] The customer last orders
-- [ ] **Add new customer form**
+- [x] **Add new customer form**
 - [x] **Companies list**
 - [x] **Company detail**
   - [x] Comapny information
   - [x] Employees belong to the company
   - [x] The company last orders
-- [ ] **Add new company form**
+- [x] **Add new company form**
 - [x] **Suppliers list**
 - [x] **Supplier detail**
   - [x] Supplier information
   - [x] The most ordered commodities
   - [x] The supplier last orders
-- [ ] **Add new supplier form**
+- [x] **Add new supplier form**
 - [x] **Commodities list**
 - [x] **Commodity detail**
   - [x] Commodity information

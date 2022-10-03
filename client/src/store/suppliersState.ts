@@ -1,17 +1,24 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { State } from "./index";
-import { ISupplierDetail, ISupplierInfo } from "@/types";
+import {
+  AxiosErrorDataType,
+  ISupplierDetail,
+  ISupplierInfo,
+  ISupplierPost,
+} from "@/types";
 import { Module } from "vuex";
 
 export interface ISuppliersState {
   suppliers: ISupplierInfo[];
   supplierDetail: ISupplierDetail | null;
+  isError: boolean;
 }
 
 export const suppliersState: Module<ISuppliersState, State> = {
   state: {
     suppliers: [],
     supplierDetail: null,
+    isError: false,
   },
   getters: {
     getFiltred: (state) => (search: string) => {
@@ -28,6 +35,9 @@ export const suppliersState: Module<ISuppliersState, State> = {
     setSupplierDetail(state, payload: ISupplierDetail) {
       state.supplierDetail = payload;
     },
+    toggleSupplierError(state) {
+      state.isError = !state.isError;
+    },
   },
   actions: {
     async getSuppliers(context) {
@@ -40,6 +50,24 @@ export const suppliersState: Module<ISuppliersState, State> = {
         context.commit("setSupplierDetail", res.data);
       } catch (error: any) {
         console.log(error.request.status);
+      }
+    },
+    async addSupplier(context, payload: ISupplierPost) {
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/supplier/add",
+          payload
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie dodać dostawcę ${res.data.name}`,
+        ]);
+        setTimeout(() => {
+          context.commit("popupReset");
+        }, 5000);
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        context.commit("toggleSupplierError");
+        context.commit("displayErrorPopup", err.response?.data.message);
       }
     },
   },
