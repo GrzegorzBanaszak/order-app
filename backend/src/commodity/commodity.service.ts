@@ -96,6 +96,7 @@ export class CommodityService {
                     commodity.name,
                     commodity.description,
                     Array.from(suppliers, ([key, value]) => value),
+                    commodity.indexNumber ? commodity.indexNumber : '',
                 );
             } else {
                 return new CommodityDetailDto(
@@ -103,6 +104,7 @@ export class CommodityService {
                     commodity.name,
                     commodity.description,
                     [],
+                    commodity.indexNumber ? commodity.indexNumber : '',
                 );
             }
         } catch (error) {

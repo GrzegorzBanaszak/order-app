@@ -9,5 +9,8 @@ export class GetCommodityDto {
     name: string;
 
     @AutoMap()
+    indexNumber?: string;
+
+    @AutoMap()
     description?: string;
 }

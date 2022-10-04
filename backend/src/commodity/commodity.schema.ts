@@ -17,6 +17,10 @@ export class Commodity {
     @AutoMap()
     @Prop()
     description: string;
+
+    @AutoMap()
+    @Prop()
+    indexNumber?: string;
 }
 
 export const CommoditySchema = SchemaFactory.createForClass(Commodity);
