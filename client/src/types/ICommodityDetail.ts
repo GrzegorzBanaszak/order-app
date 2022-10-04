@@ -2,6 +2,7 @@ export interface ICommodityDetail {
   id: string;
   name: string;
   description: string;
+  indexNumber: string;
   suppliers: Array<CommodityDetailSupplier>;
 }
 

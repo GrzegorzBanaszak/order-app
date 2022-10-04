@@ -3,6 +3,10 @@
     <h1>Informacje o towarze <info-blue-icon /></h1>
     <p>Nazwa: {{ $store.state.commoditiesState.commodityDetail?.name }}</p>
     <p>
+      Numer katalogowy:
+      {{ $store.state.commoditiesState.commodityDetail?.indexNumber }}
+    </p>
+    <p>
       Opis: {{ $store.state.commoditiesState.commodityDetail?.description }}
     </p>
   </div>

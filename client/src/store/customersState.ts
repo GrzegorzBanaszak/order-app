@@ -19,7 +19,7 @@ export const customersState: Module<ICustomersState, State> = {
     customers: [],
     customerDetail: null,
     isError: false,
-  } as ICustomersState,
+  },
   getters: {},
   mutations: {
     setCustomers(state: ICustomersState, payload: ICustomerInfo[]) {
