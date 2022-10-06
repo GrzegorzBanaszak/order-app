@@ -1,6 +1,5 @@
 import { ObjectId } from 'mongodb';
 import { ParseObjectIdPipe } from '../pipes/parseObjectId.pipe';
-import { GetOrderDto } from './dto/GetOrderGto';
 import { Order } from './order.schema';
 import { PostOrderDto } from './dto/PostOrderDto';
 import { OrderService } from './order.service';

@@ -20,4 +20,7 @@ export class OrderDetailCommodity {
     description: string;
     price: number;
     quantity: number;
+    supplierName: string;
+    isCustomerPayForDelivery: boolean;
+    status: string;
 }

@@ -9,6 +9,7 @@ import { Model } from 'mongoose';
 import { PostOrderDto } from './dto';
 import { orderBy } from 'lodash';
 import { ObjectId } from 'mongodb';
+import * as moment from 'moment';
 
 @Injectable()
 export class OrderService {
@@ -38,6 +39,13 @@ export class OrderService {
                 populate: {
                     path: 'commodity',
                     model: 'Commodity',
+                },
+            },
+            {
+                path: 'commodities',
+                populate: {
+                    path: 'supplier',
+                    model: 'Supplier',
                 },
             },
         ]);
@@ -120,16 +128,36 @@ export class OrderService {
     }
 
     async add(data: PostOrderDto) {
-        const order = new this.orderModel(data);
-        await order.populate({
-            path: 'commodities',
-            populate: {
-                path: 'commodity',
-                model: 'Commodity',
-            },
-        });
+        try {
+            const startOfMonth = moment()
+                .startOf('month')
+                .format('YYYY-MM-DD hh:mm');
+            const endOfMonth = moment()
+                .endOf('month')
+                .format('YYYY-MM-DD hh:mm');
 
-        return await order.save();
+            const orders = await this.orderModel.find({
+                createdAt: { $gt: startOfMonth, $lt: endOfMonth },
+            });
+
+            const currentData = moment();
+
+            const orderNumber = `${orders.length + 1}/${
+                currentData.month() + 1
+            }/${currentData.year()}`;
+
+            const orderToAdd = {
+                ...data,
+                orderNumber,
+                advance: data.advance ? data.advance : 0,
+            };
+
+            const order = new this.orderModel(orderToAdd);
+
+            return await order.save();
+        } catch (err: any) {
+            throw new Error(err);
+        }
     }
 
     async getOrdersByType(id: ObjectId, type: string): Promise<Order[]> {
@@ -158,7 +186,7 @@ export class OrderService {
             case 'supplier':
                 orders = await this.orderModel
                     .find({
-                        supplier: id,
+                        'commodities.supplier': id,
                     })
                     .sort('createdAt');
                 break;

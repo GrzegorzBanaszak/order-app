@@ -7,6 +7,33 @@ import { Schema as SchemaType } from 'mongoose';
 import { Customer } from 'src/customer/customer.schema';
 export type OrderDocument = Order & Document;
 
+export class OrderCommodity {
+    @Prop({
+        type: SchemaType.Types.ObjectId,
+        ref: 'Commodity',
+    })
+    commodity: Commodity;
+
+    @Prop({
+        type: SchemaType.Types.ObjectId,
+        ref: 'Supplier',
+        autopopulate: true,
+    })
+    supplier: Supplier;
+
+    @Prop()
+    price: number;
+
+    @Prop()
+    quantity: number;
+
+    @Prop()
+    isCustomerPayForDelivery: boolean;
+
+    @Prop()
+    status: string;
+}
+
 @Schema({ timestamps: true })
 export class Order {
     @AutoMap()
@@ -26,15 +53,7 @@ export class Order {
     customer: Customer;
 
     @AutoMap()
-    @Prop({
-        type: SchemaType.Types.ObjectId,
-        ref: 'Supplier',
-        autopopulate: true,
-    })
-    supplier: Supplier;
-
-    @AutoMap()
-    @Prop([Object])
+    @Prop([OrderCommodity])
     commodities: OrderCommodity[];
 
     @AutoMap()
@@ -43,25 +62,11 @@ export class Order {
 
     @AutoMap()
     @Prop()
-    advance?: number;
+    advance: number;
 
     @AutoMap()
     @Prop()
     createdAt: Date;
-}
-
-export class OrderCommodity {
-    @Prop({
-        type: SchemaType.Types.ObjectId,
-        ref: 'Commodity',
-    })
-    commodity: Commodity;
-
-    @Prop()
-    price: number;
-
-    @Prop()
-    quantity: number;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

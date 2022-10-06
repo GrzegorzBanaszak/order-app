@@ -2,7 +2,6 @@ import { AutoMap } from '@automapper/classes';
 import { Schema } from 'mongoose';
 import { OrderDetailCommodity } from 'src/commodity/dto';
 import { OrderDetailCustomer } from 'src/customer/dto';
-import { OrderDetailSupplier } from 'src/supplier/dto';
 
 export class OrderDetailDto {
     id: Schema.Types.ObjectId;
@@ -18,9 +17,6 @@ export class OrderDetailDto {
 
     @AutoMap()
     status: string;
-
-    @AutoMap()
-    supplier: OrderDetailSupplier;
 
     commodities: Array<OrderDetailCommodity>;
 

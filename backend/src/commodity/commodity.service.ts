@@ -72,23 +72,40 @@ export class CommodityService {
                 throw new NotFoundException();
             }
 
-            const orders = await this.orderModel.find({
-                'commodities.commodity': id,
-            });
+            const orders = await this.orderModel
+                .find({
+                    'commodities.commodity': id,
+                })
+                .populate({
+                    path: 'commodities',
+                    populate: {
+                        path: 'commodity',
+                        model: 'Commodity',
+                    },
+                })
+                .populate({
+                    path: 'commodities',
+                    populate: {
+                        path: 'supplier',
+                        model: 'Supplier',
+                    },
+                });
 
             const suppliers = new Map<any, CommoditySupplier>();
 
             if (orders.length > 0) {
                 orders.forEach((order) => {
-                    if (!suppliers.get(order.supplier._id)) {
-                        suppliers.set(
-                            order.supplier._id,
-                            new CommoditySupplier(
-                                order.supplier._id,
-                                order.supplier.name,
-                            ),
-                        );
-                    }
+                    order.commodities.forEach((c) => {
+                        if (!suppliers.get(c.supplier._id)) {
+                            suppliers.set(
+                                c.supplier._id,
+                                new CommoditySupplier(
+                                    c.supplier._id,
+                                    c.supplier.name,
+                                ),
+                            );
+                        }
+                    });
                 });
 
                 return new CommodityDetailDto(
