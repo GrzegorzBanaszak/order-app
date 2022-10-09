@@ -22,9 +22,8 @@ export class SupplierService {
 
         for (const supplier of suppliers) {
             const orders = await this.orderModel
-                .find({ supplier: supplier._id })
+                .find({ 'commodities.supplier': supplier._id.toString() })
                 .sort({ createdAt: 1 });
-
             if (orders.length > 0) {
                 suppliersInfo.push(
                     new SupplierInfoDto(
@@ -53,16 +52,14 @@ export class SupplierService {
     async getDetail(id: ObjectId) {
         const supplier = await this.supplierModel.findById(id);
         const orders = await this.orderModel
-            .find({ supplier: id })
-            .populate([
-                {
-                    path: 'commodities',
-                    populate: {
-                        path: 'commodity',
-                        model: 'Commodity',
-                    },
+            .find({ 'commodities.supplier': id.toString() })
+            .populate({
+                path: 'commodities',
+                populate: {
+                    path: 'commodity',
+                    model: 'Commodity',
                 },
-            ])
+            })
             .sort('-createdAt');
 
         if (!supplier) {

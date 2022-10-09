@@ -167,7 +167,7 @@ export class OrderService {
             case 'commodity':
                 orders = await this.orderModel
                     .find({
-                        'commodities.commodity': id,
+                        'commodities.commodity': id.toString(),
                     })
                     .sort('createdAt');
                 break;
@@ -186,7 +186,7 @@ export class OrderService {
             case 'supplier':
                 orders = await this.orderModel
                     .find({
-                        'commodities.supplier': id,
+                        'commodities.supplier': id.toString(),
                     })
                     .sort('createdAt');
                 break;

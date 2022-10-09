@@ -11,13 +11,13 @@ export class OrderCommodity {
     @Prop({
         type: SchemaType.Types.ObjectId,
         ref: 'Commodity',
+        autopopulate: true,
     })
     commodity: Commodity;
 
     @Prop({
         type: SchemaType.Types.ObjectId,
         ref: 'Supplier',
-        autopopulate: true,
     })
     supplier: Supplier;
 

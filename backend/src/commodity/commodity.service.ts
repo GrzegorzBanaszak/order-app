@@ -28,7 +28,7 @@ export class CommodityService {
         for (const commodity of commodities) {
             const order = await this.orderModel
                 .findOne({
-                    'commodities.commodity': commodity._id,
+                    'commodities.commodity': commodity._id.toString(),
                 })
                 .sort('createdAt')
                 .populate({
@@ -74,7 +74,7 @@ export class CommodityService {
 
             const orders = await this.orderModel
                 .find({
-                    'commodities.commodity': id,
+                    'commodities.commodity': id.toString(),
                 })
                 .populate({
                     path: 'commodities',
