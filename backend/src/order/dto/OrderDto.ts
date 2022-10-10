@@ -18,7 +18,8 @@ export class OrderDto {
 
     customer: string;
 
-    supplier: string;
+    @AutoMap()
+    advance: number;
 
     totalPrice: number;
 }

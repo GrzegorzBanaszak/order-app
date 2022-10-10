@@ -28,6 +28,13 @@ export class OrderService {
                         model: 'Commodity',
                     },
                 },
+                {
+                    path: 'commodities',
+                    populate: {
+                        path: 'supplier',
+                        model: 'Supplier',
+                    },
+                },
             ])
             .sort('-createdAt');
     }
