@@ -4,9 +4,9 @@
     <div class="orders-list__info">
       <div>Numer zamówienia</div>
       <div>Zamawiający</div>
-      <div>Dostawca</div>
       <div>Data</div>
       <div>Kwota</div>
+      <div>Zaliczka</div>
       <div>Status</div>
       <div>Detale</div>
     </div>

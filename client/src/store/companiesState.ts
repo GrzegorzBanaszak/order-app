@@ -41,12 +41,16 @@ export const companiesState: Module<ICompaniesState, State> = {
   },
   actions: {
     async getCompanies(context) {
-      const res = await axios("http://localhost:5000/company");
+      const res = await axios(
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/company`
+      );
       context.commit("setCompanies", res.data);
     },
     async getCompanyDetail(context, payload: string) {
       try {
-        const res = await axios("http://localhost:5000/company/" + payload);
+        const res = await axios(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/${payload}`
+        );
         context.commit("setCompanyDetail", res.data);
       } catch (error: any) {
         console.log(error.request.status);
@@ -55,7 +59,7 @@ export const companiesState: Module<ICompaniesState, State> = {
     async addCompany(context, payload: ICustomerPost) {
       try {
         const res = await axios.post(
-          "http://localhost:5000/company/add",
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/add`,
           payload
         );
         context.commit("displaySuccessPopup", [

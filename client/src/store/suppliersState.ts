@@ -41,12 +41,16 @@ export const suppliersState: Module<ISuppliersState, State> = {
   },
   actions: {
     async getSuppliers(context) {
-      const res = await axios("http://localhost:5000/supplier");
+      const res = await axios(
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier`
+      );
       context.commit("setSuppliers", res.data);
     },
     async getSupplierDetail(context, payload: string) {
       try {
-        const res = await axios("http://localhost:5000/supplier/" + payload);
+        const res = await axios(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/${payload}`
+        );
         context.commit("setSupplierDetail", res.data);
       } catch (error: any) {
         console.log(error.request.status);
@@ -55,7 +59,7 @@ export const suppliersState: Module<ISuppliersState, State> = {
     async addSupplier(context, payload: ISupplierPost) {
       try {
         const res = await axios.post(
-          "http://localhost:5000/supplier/add",
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/add`,
           payload
         );
         context.commit("displaySuccessPopup", [

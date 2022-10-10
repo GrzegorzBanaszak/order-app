@@ -29,15 +29,21 @@ export const openState: Module<IOpenState, State> = {
   },
   actions: {
     async getOrders({ commit }) {
-      const res = await axios("http://localhost:5000/order/last/5");
+      const res = await axios(
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/last/5`
+      );
       commit("setFilteredOrders", res.data);
     },
     async getBestCustomers({ commit }) {
-      const res = await axios("http://localhost:5000/order/best/customers");
+      const res = await axios(
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/best/customers`
+      );
       commit("setBestCustomers", res.data);
     },
     async getBestCommodities({ commit }) {
-      const res = await axios("http://localhost:5000/order/best/commodities");
+      const res = await axios(
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/best/commodities`
+      );
       commit("setBestCommodities", res.data);
     },
   },

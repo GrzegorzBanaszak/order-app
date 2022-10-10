@@ -11,7 +11,7 @@ export interface IOrder {
 
   customer: string;
 
-  supplier: string;
+  advance: number;
 
   totalPrice: number;
 }

@@ -34,13 +34,17 @@ export const customersState: Module<ICustomersState, State> = {
   },
   actions: {
     async getCustomers(context) {
-      const res = await axios("http://localhost:5000/customer");
+      const res = await axios(
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer`
+      );
       context.commit("setCustomers", res.data);
     },
 
     async getCustomerDetail(context, payload: string) {
       try {
-        const res = await axios("http://localhost:5000/customer/" + payload);
+        const res = await axios(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/${payload}`
+        );
         context.commit("setCustomerDetail", res.data);
       } catch (error: any) {
         console.log(error.request.status);
@@ -49,7 +53,7 @@ export const customersState: Module<ICustomersState, State> = {
     async addCustomer(context, payload: ICustomerPost) {
       try {
         const res = await axios.post(
-          "http://localhost:5000/customer/add",
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/add`,
           payload
         );
         context.commit("displaySuccessPopup", [

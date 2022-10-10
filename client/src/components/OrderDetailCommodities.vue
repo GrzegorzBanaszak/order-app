@@ -3,9 +3,11 @@
     <h1>Lista towarów <package-blue-icon /></h1>
     <div class="detail-order__commodities--header">
       <div>Nazwa</div>
+      <div>Dostawca</div>
       <div>Opis</div>
       <div>Ilość</div>
       <div>Cena</div>
+      <div>Status</div>
       <div>Detale</div>
     </div>
     <order-detail-commodity

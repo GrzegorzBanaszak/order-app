@@ -1,9 +1,9 @@
 <template>
   <div>{{ orderInfo.orderNumber }}</div>
   <div>{{ orderInfo.customer }}</div>
-  <div>{{ orderInfo.supplier }}</div>
   <div>{{ getDate() }}</div>
   <div>{{ orderInfo.totalPrice }} zł</div>
+  <div>{{ orderInfo.advance }} zł</div>
   <div>{{ orderInfo.status }}</div>
   <div>
     <router-link :to="'/d/orders/' + orderInfo.id"><dotts-icon /></router-link>

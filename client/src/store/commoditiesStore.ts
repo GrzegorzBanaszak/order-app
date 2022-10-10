@@ -34,12 +34,16 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
   },
   actions: {
     async setCommodities(context) {
-      const res = await axios("http://localhost:5000/commodity");
+      const res = await axios(
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity`
+      );
       context.commit("setCommodities", res.data);
     },
     async getCommodityDetail(context, payload: string) {
       try {
-        const res = await axios("http://localhost:5000/commodity/" + payload);
+        const res = await axios(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/${payload}`
+        );
         context.commit("setCommodityDetail", res.data);
       } catch (error) {
         const err = error as AxiosError;
@@ -49,7 +53,7 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
     async addCommodity(context, payload: ICommodityPost) {
       try {
         const res = await axios.post(
-          "http://localhost:5000/commodity/add",
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/add`,
           payload
         );
         context.commit("displaySuccessPopup", [

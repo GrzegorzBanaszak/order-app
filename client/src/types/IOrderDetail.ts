@@ -4,7 +4,6 @@ export interface IOrderDetail {
   createdAt: Date;
   status: string;
   advance: number;
-  supplier: IOrderDetailSupplier;
   customer: IOrderDetailCustomer;
   commodities: Array<IOrderDetailCommodity>;
 }
@@ -27,4 +26,7 @@ export interface IOrderDetailCommodity {
   description: string;
   price: number;
   quantity: number;
+  isCustomerPayForDelivery: boolean;
+  supplierName: string;
+  status: string;
 }

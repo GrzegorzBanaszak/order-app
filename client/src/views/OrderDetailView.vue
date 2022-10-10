@@ -1,7 +1,6 @@
 <template>
   <order-detail-info></order-detail-info>
   <order-detail-customer></order-detail-customer>
-  <order-detail-supplier></order-detail-supplier>
   <order-detail-commodities></order-detail-commodities>
 </template>
 
@@ -59,7 +58,7 @@ export default defineComponent({
     }
     &--header {
       display: grid;
-      grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+      grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 1fr;
       font-weight: 500;
       margin: 0.7rem 0;
       padding-bottom: 1rem;
@@ -73,7 +72,7 @@ export default defineComponent({
       padding: 0.5rem 0;
       border-bottom: 1px solid #ccc;
       display: grid;
-      grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+      grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 1fr;
       div {
         text-align: center;
       }

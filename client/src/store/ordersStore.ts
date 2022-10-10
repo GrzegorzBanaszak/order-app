@@ -35,13 +35,15 @@ export const ordersState: Module<IOrdersState, State> = {
   actions: {
     async getOrdersHistory(context, payload: OrdersHistoryPayload) {
       const res = await axios(
-        `http://localhost:5000/order/${payload.type}/${payload.id}`
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload.type}/${payload.id}`
       );
       context.commit("setOrdersHistory", res.data);
     },
     async getOrdersInfo(context) {
       try {
-        const res = await axios("http://localhost:5000/order/");
+        const res = await axios(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/`
+        );
         context.commit("setOrdersInfo", res.data);
       } catch (error) {
         const err = error as AxiosError;
@@ -50,7 +52,9 @@ export const ordersState: Module<IOrdersState, State> = {
     },
     async getOrderDetail(context, payload: string) {
       try {
-        const res = await axios("http://localhost:5000/order/" + payload);
+        const res = await axios(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload}`
+        );
         context.commit("setOrderDetail", res.data);
       } catch (error) {
         const err = error as AxiosError;
