@@ -1,6 +1,6 @@
 <template>
   <form class="add-form" @submit="submitForm">
-    <h2 class="add-form__header">Dodaj nową firmę</h2>
+    <h2 class="add-form__header">Dodaj nowy towar</h2>
     <div class="add-form__body">
       <form-group
         v-model="name"

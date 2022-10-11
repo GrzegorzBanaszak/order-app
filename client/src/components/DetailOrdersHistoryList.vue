@@ -91,7 +91,7 @@ export default defineComponent({
     }
   }
   &__message {
-    font-size: 2rem;
+    font-size: 1.4rem;
     font-weight: 700;
     text-align: center;
     margin-top: 2rem;

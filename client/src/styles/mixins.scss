@@ -28,12 +28,14 @@
   padding-bottom: 0.4rem;
   border-bottom: 1px solid #ccc;
   margin-bottom: 1rem;
+  font-size: 1.3rem;
 }
 
 @mixin item-detail-element {
   margin: 1rem 0;
   font-size: 1.5rem;
   font-weight: 500;
+  font-size: 1.3rem;
 }
 
 @mixin dashboard-list($grid) {
