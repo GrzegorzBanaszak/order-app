@@ -1,0 +1,79 @@
+.add-form {
+  background-color: white;
+  @include display-info-list;
+  &__header {
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__button {
+    width: 17.188rem;
+    display: block;
+    margin: 1rem auto;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0.7rem 0;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 20px;
+    background-color: #3f51b5;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+}
+
+.form-order {
+  background-color: white;
+  @include display-info-list;
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+}
+
+.form-select {
+  position: relative;
+  &__container {
+    @include scrollbars(5px, #ccc, white);
+    position: absolute;
+    top: 5.313rem;
+    max-height: 120px;
+    width: 17.188rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    background-color: white;
+    overflow: auto;
+    border-radius: 0 0 10px 10px;
+  }
+  &__selected {
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 17.188rem;
+    transition: all 0.2s;
+    text-align: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__element {
+    padding: 0.5rem 0.2rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #fafafa;
+    }
+  }
+}

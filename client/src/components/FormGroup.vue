@@ -6,6 +6,7 @@
       :type="typeValue"
       :placeholder="placeholderValue"
       :name="nameValue"
+      autocomplete="off"
     />
   </div>
 </template>
@@ -57,6 +58,8 @@ export default defineComponent({
     border-bottom: 1px solid #ccc;
     width: 17.188rem;
     transition: all 0.2s;
+    text-align: center;
+
     &:focus {
       outline: none;
       border-bottom: 2px solid #ccc;

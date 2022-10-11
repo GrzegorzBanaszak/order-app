@@ -20,7 +20,14 @@ export const customersState: Module<ICustomersState, State> = {
     customerDetail: null,
     isError: false,
   },
-  getters: {},
+  getters: {
+    getFiltredCustomer: (state) => (search: string) => {
+      const lowerCaseSearch = search.toLowerCase();
+      return state.customers.filter((item) =>
+        item.name.toLowerCase().includes(lowerCaseSearch)
+      );
+    },
+  },
   mutations: {
     setCustomers(state: ICustomersState, payload: ICustomerInfo[]) {
       state.customers = payload;

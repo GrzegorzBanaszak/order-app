@@ -94,37 +94,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-.add-form {
-  background-color: white;
-  @include display-info-list;
-  &__header {
-    text-align: center;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #ccc;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
-  &__body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  &__button {
-    width: 17.188rem;
-    display: block;
-    margin: 1rem auto;
-    overflow: hidden;
-    cursor: pointer;
-    padding: 0.7rem 0;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 20px;
-    background-color: #3f51b5;
-    color: white;
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
-}
-</style>
