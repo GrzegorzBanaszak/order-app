@@ -1,14 +1,22 @@
 <template>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <g clip-path="url(#clip0_1_6)">
-<rect width="24" height="24" rx="2" fill="#1B5E20"/>
-<path d="M3.75 3.75V20.25H20.25V3.75H3.75ZM5.25 5.25H18.75V18.75H5.25V5.25ZM15.9609 8.46094L10.5 13.9219L8.03906 11.4609L6.96094 12.5391L9.96094 15.5391L10.5 16.0547L11.0391 15.5391L17.0391 9.53906L15.9609 8.46094Z" fill="white"/>
-</g>
-<defs>
-<clipPath id="clip0_1_6">
-<rect width="24" height="24" fill="white"/>
-</clipPath>
-</defs>
-</svg>
-
+      <rect width="24" height="24" rx="2" fill="#1B5E20" />
+      <path
+        d="M3.75 3.75V20.25H20.25V3.75H3.75ZM5.25 5.25H18.75V18.75H5.25V5.25ZM15.9609 8.46094L10.5 13.9219L8.03906 11.4609L6.96094 12.5391L9.96094 15.5391L10.5 16.0547L11.0391 15.5391L17.0391 9.53906L15.9609 8.46094Z"
+        fill="white"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_1_6">
+        <rect width="24" height="24" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
 </template>

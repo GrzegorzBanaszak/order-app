@@ -40,71 +40,84 @@
   }
 }
 
-.form-list{
+.form-list {
   margin: 1rem;
-  &__header{
+  &__header {
     display: grid;
     grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    div{
+    div {
       text-align: center;
       font-size: 0.7rem;
     }
   }
-  &__body{
+  &__body {
     margin-top: 0.7rem;
-    border:1px solid #ccc;
+    border: 1px solid #ccc;
     padding: 0.7rem 0;
   }
-  &__button{
-    display:block;
+  &__button {
+    display: block;
     width: 95%;
     padding: 0.7rem;
     margin: 0 auto;
-    border:none;
+    border: none;
     text-transform: uppercase;
     cursor: pointer;
     background-color: #43a047;
     color: white;
     font-weight: 700;
     transition: all 0.2s ease-in;
-    &:hover{
+    &:hover {
       background-color: #388e3c;
     }
   }
-  &__new{
+  &__new {
     display: grid;
     grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
-
-    input[type=text]{
+    input[type="text"] {
       display: block;
       width: 100px;
       justify-self: center;
-      border:none;
-      border-bottom:1px solid #ccc;
+      border: none;
+      border-bottom: 1px solid #ccc;
       outline: none;
       text-align: center;
     }
-    input[type=number]{
+    input[type="number"] {
       display: block;
       width: 35px;
       justify-self: center;
-      border:none;
-      border-bottom:1px solid #ccc;
+      border: none;
+      border-bottom: 1px solid #ccc;
       outline: none;
       text-align: center;
     }
   }
-  &__control{
+
+  &__selected {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+  }
+  &__dropdown {
+    position: absolute;
+    border: 1px solid #ccc;
+    bottom: -20px;
+    background-color: white;
+    width: 100px;
+  }
+
+  &__control {
     display: flex;
     justify-content: center;
-    gap:0.4rem;
-    svg{
+    gap: 0.4rem;
+    svg {
       cursor: pointer;
     }
   }
 }
-
 
 .form-select {
   position: relative;
