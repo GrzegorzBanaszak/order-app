@@ -5,7 +5,7 @@
     text-align: center;
     padding-bottom: 1rem;
     border-bottom: 1px solid #ccc;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
   }
   &__body {
@@ -40,12 +40,78 @@
   }
 }
 
+.form-list{
+  margin: 1rem;
+  &__header{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    div{
+      text-align: center;
+      font-size: 0.7rem;
+    }
+  }
+  &__body{
+    margin-top: 0.7rem;
+    border:1px solid #ccc;
+    padding: 0.7rem 0;
+  }
+  &__button{
+    display:block;
+    width: 95%;
+    padding: 0.7rem;
+    margin: 0 auto;
+    border:none;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: #43a047;
+    color: white;
+    font-weight: 700;
+    transition: all 0.2s ease-in;
+    &:hover{
+      background-color: #388e3c;
+    }
+  }
+  &__new{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+
+    input[type=text]{
+      display: block;
+      width: 100px;
+      justify-self: center;
+      border:none;
+      border-bottom:1px solid #ccc;
+      outline: none;
+      text-align: center;
+    }
+    input[type=number]{
+      display: block;
+      width: 35px;
+      justify-self: center;
+      border:none;
+      border-bottom:1px solid #ccc;
+      outline: none;
+      text-align: center;
+    }
+  }
+  &__control{
+    display: flex;
+    justify-content: center;
+    gap:0.4rem;
+    svg{
+      cursor: pointer;
+    }
+  }
+}
+
+
 .form-select {
   position: relative;
   &__container {
     @include scrollbars(5px, #ccc, white);
     position: absolute;
-    top: 5.313rem;
+    top: 4.24rem;
     max-height: 120px;
     width: 17.188rem;
     display: flex;
@@ -57,7 +123,7 @@
   }
   &__selected {
     padding: 0.5rem 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border: none;
     border-bottom: 1px solid #ccc;
     width: 17.188rem;

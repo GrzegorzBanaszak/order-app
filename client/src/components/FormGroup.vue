@@ -48,12 +48,12 @@ export default defineComponent({
   align-items: center;
   margin: 1rem 0;
   label {
-    margin-bottom: 1rem;
-    font-size: 1.6rem;
+    margin-bottom: 0.7rem;
+    font-size: 1.2rem;
   }
   input {
     padding: 0.5rem 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border: none;
     border-bottom: 1px solid #ccc;
     width: 17.188rem;

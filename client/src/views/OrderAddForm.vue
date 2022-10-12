@@ -26,6 +26,7 @@
         @selected="(item:string) => (status = item)"
       ></form-group-select>
     </div>
+    <order-form-list></order-form-list>
   </form>
 </template>
 
@@ -34,9 +35,10 @@ import { defineComponent } from "vue";
 import FormGroup from "@/components/FormGroup.vue";
 import FormGroupDropdown from "@/components/FormGroupDropdown.vue";
 import FormGroupSelect from "@/components/FormGroupSelect.vue";
+import OrderFormList from "@/components/OrderFormList.vue"
 
 export default defineComponent({
-  components: { FormGroup, FormGroupDropdown, FormGroupSelect },
+  components: { FormGroup, FormGroupDropdown, FormGroupSelect,OrderFormList },
   mounted() {
     this.$store.dispatch("getCustomers");
   },
