@@ -44,7 +44,7 @@
   margin: 1rem;
   &__header {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
     div {
       text-align: center;
       font-size: 0.7rem;
@@ -73,11 +73,11 @@
   }
   &__new {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
 
     input[type="text"] {
       display: block;
-      width: 100px;
+      width: 160px;
       justify-self: center;
       border: none;
       border-bottom: 1px solid #ccc;
@@ -103,10 +103,24 @@
   }
   &__dropdown {
     position: absolute;
+    top: 22px;
+    width: 160px;
+    @include scrollbars(5px, #ccc, white);
+    max-height: 120px;
+    display: flex;
+    flex-direction: column;
     border: 1px solid #ccc;
-    bottom: -20px;
     background-color: white;
-    width: 100px;
+    overflow: auto;
+  }
+  &__element {
+    cursor: pointer;
+    margin: 0.2rem 0;
+    padding: 0.2rem 0;
+    &:hover {
+      cursor: pointer;
+      background-color: #fafafa;
+    }
   }
 
   &__control {
