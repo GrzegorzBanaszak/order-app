@@ -1,11 +1,16 @@
 <template>
   <div class="form-list__new">
-    <input type="text" />
+    <order-form-list-select
+      type-value="text"
+      v-model="searchCustomer"
+      :list-dropdown="$store.getters.getFiltredCustomer(searchCustomer)"
+      @selected="selectCustomer"
+      @reset="() => (searchCustomer !== '' ? (searchCustomer = '') : null)"
+    />
     <order-form-list-select
       type-value="text"
       v-model="searchSupplier"
-      :search-value="searchSupplier"
-      :list-dropdown="$store.getters.getFiltred(searchSupplier)"
+      :list-dropdown="$store.getters.getFiltredSupplier(searchSupplier)"
       @selected="selectSupplier"
       @reset="() => (supplierId !== '' ? (supplierId = '') : null)"
     />
@@ -13,9 +18,14 @@
     <input type="checkbox" v-model="payForDelivery" />
     <input type="number" name="quantity" v-model="quantity" />
     <input type="number" name="price" v-model="price" />
-    <input type="text" />
+    <order-form-list-select
+      type-value="text"
+      :is-read-only="true"
+      :list-dropdown="['W przygotowaniu', 'Wysłano', 'Do odbioru']"
+      @selected="(item) => (status = item)"
+    />
     <div class="form-list__control">
-      <accept-icon></accept-icon>
+      <accept-icon @click="addItemToList"></accept-icon>
       <remove-icon @click="$emit('hideForm')"></remove-icon>
     </div>
   </div>
@@ -26,24 +36,50 @@ import { defineComponent } from "vue";
 import AcceptIcon from "@/icons/AcceptIcon.vue";
 import RemoveIcon from "@/icons/RemoveIcon.vue";
 import OrderFormListSelect from "@/components/OrderFormListSelect.vue";
+import { IOrderFormListElement } from "@/types";
 
 export default defineComponent({
   components: { AcceptIcon, RemoveIcon, OrderFormListSelect },
   data() {
     return {
       searchSupplier: "",
+      searchCustomer: "",
       supplierId: "",
+      customerId: "",
       quantity: 0,
       price: 0,
       payForDelivery: false,
       deliveryCost: 0,
+      status: "",
     };
   },
   methods: {
-    selectSupplier({ id, price }: { id: string; price: number }) {
+    selectSupplier(item: any) {
       this.searchSupplier = "";
-      this.supplierId = id;
-      this.deliveryCost = price;
+      this.supplierId = item.id;
+      this.deliveryCost = item.price;
+    },
+    selectCustomer(item: any) {
+      (this.searchCustomer = ""), (this.customerId = item.id);
+    },
+    addItemToList() {
+      if (
+        this.supplierId &&
+        this.customerId &&
+        this.price > 0 &&
+        this.quantity > 0 &&
+        this.status
+      ) {
+        const item: IOrderFormListElement = {
+          supplierId: this.supplierId,
+          customerId: this.customerId,
+          price: this.price,
+          quantity: this.quantity,
+          status: this.status,
+        };
+
+        this.$emit("addToList", item);
+      }
     },
   },
 });

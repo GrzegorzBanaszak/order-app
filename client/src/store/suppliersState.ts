@@ -21,7 +21,7 @@ export const suppliersState: Module<ISuppliersState, State> = {
     isError: false,
   },
   getters: {
-    getFiltred: (state) => (search: string) => {
+    getFiltredSupplier: (state) => (search: string) => {
       const lowerCaseSearch = search.toLowerCase();
       return state.suppliers.filter((item) =>
         item.name.toLowerCase().includes(lowerCaseSearch)

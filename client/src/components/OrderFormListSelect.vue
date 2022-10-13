@@ -7,13 +7,14 @@
       @focusin="isFocus = true"
       @focusout="hideDropdown"
       autocomplete="off"
+      :readonly="isReadOnly"
     />
     <div v-if="isFocus" class="form-list__dropdown">
       <span
         class="form-list__element"
-        @click="selectedElement(item.id, item.name, item.price)"
+        @click="selectedElement(item)"
         v-for="item in listDropdown"
-        >{{ item.name }}</span
+        >{{ item.name ? item.name : item }}</span
       >
     </div>
   </div>
@@ -32,9 +33,9 @@ export default defineComponent({
       type: Object as PropType<Array<any>>,
       default: [],
     },
-    searchValue: {
-      type: String,
-      required: true,
+    isReadOnly: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -48,10 +49,10 @@ export default defineComponent({
       this.$emit("reset");
       this.$emit("update:modelValue", (e.target as HTMLInputElement).value);
     },
-    selectedElement(id: string, name: string, price: number) {
+    selectedElement(item: any) {
       this.isFocus = false;
-      this.inputValue = name;
-      this.$emit("selected", { id, price });
+      this.inputValue = item.name ? item.name : item;
+      this.$emit("selected", item);
     },
     hideDropdown() {
       setTimeout(() => {

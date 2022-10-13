@@ -26,7 +26,7 @@
         @selected="(item:string) => (status = item)"
       ></form-group-select>
     </div>
-    <order-form-list></order-form-list>
+    <order-form-list @addToList="addToCommodityList"></order-form-list>
   </form>
 </template>
 
@@ -35,10 +35,11 @@ import { defineComponent } from "vue";
 import FormGroup from "@/components/FormGroup.vue";
 import FormGroupDropdown from "@/components/FormGroupDropdown.vue";
 import FormGroupSelect from "@/components/FormGroupSelect.vue";
-import OrderFormList from "@/components/OrderFormList.vue"
+import OrderFormList from "@/components/OrderFormList.vue";
+import { IOrderFormListElement } from "@/types";
 
 export default defineComponent({
-  components: { FormGroup, FormGroupDropdown, FormGroupSelect,OrderFormList },
+  components: { FormGroup, FormGroupDropdown, FormGroupSelect, OrderFormList },
   mounted() {
     this.$store.dispatch("getCustomers");
   },
@@ -48,6 +49,7 @@ export default defineComponent({
       searchCustomer: "",
       customerId: "",
       status: "",
+      listOfElements: new Array<IOrderFormListElement>(),
     };
   },
   methods: {
@@ -59,6 +61,9 @@ export default defineComponent({
       if (this.customerId !== "") {
         this.customerId = "";
       }
+    },
+    addToCommodityList(item: IOrderFormListElement) {
+      this.listOfElements.push(item);
     },
     async submitForm(e: Event) {
       e.preventDefault();

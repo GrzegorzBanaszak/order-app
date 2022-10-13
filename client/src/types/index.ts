@@ -15,3 +15,4 @@ export * from "./ICompanyPost";
 export * from "./AxiosErrorDataType";
 export * from "./ISupplierPost";
 export * from "./ICommodityPost";
+export * from "./IOrderFormListElement";

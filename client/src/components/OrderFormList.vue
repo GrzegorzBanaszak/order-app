@@ -12,6 +12,7 @@
     <div class="form-list__body">
       <order-form-list-add
         @hideForm="toggleShowAddForm"
+        @addToList="addItemToList"
         v-if="isAddFormShow"
       ></order-form-list-add>
       <button @click="toggleShowAddForm" v-else class="form-list__button">
@@ -24,6 +25,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import OrderFormListAdd from "@/components/OrderFormListAdd.vue";
+import { IOrderFormListElement } from "@/types";
 
 export default defineComponent({
   components: { OrderFormListAdd },
@@ -38,6 +40,10 @@ export default defineComponent({
   methods: {
     toggleShowAddForm() {
       this.isAddFormShow = !this.isAddFormShow;
+    },
+    addItemToList(item: IOrderFormListElement) {
+      this.$emit("addToList", item);
+      this.isAddFormShow = false;
     },
   },
 });
