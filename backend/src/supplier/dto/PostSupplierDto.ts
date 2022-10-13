@@ -6,6 +6,6 @@ export class PostSupplierDto {
     name: string;
 
     @IsNumber()
-    @Min(1, { message: 'Podaj cene dostawy' })
+    @Min(0, { message: 'Podaj cene dostawy' })
     price: number;
 }
