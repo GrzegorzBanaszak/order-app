@@ -31,6 +31,7 @@ export default defineComponent({
   components: { OrderFormListAdd },
   mounted() {
     this.$store.dispatch("getSuppliers");
+    this.$store.dispatch("setCommodities");
   },
   data() {
     return {

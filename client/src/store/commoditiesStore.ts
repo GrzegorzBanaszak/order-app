@@ -20,7 +20,14 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
     commodityDetail: null,
     isError: false,
   },
-  getters: {},
+  getters: {
+    getFiltredCommodities: (state) => (search: string) => {
+      const lowerCaseSearch = search.toLowerCase();
+      return state.commodities.filter((item) =>
+        item.name.toLowerCase().includes(lowerCaseSearch)
+      );
+    },
+  },
   mutations: {
     setCommodities(state, payload: ICommodityInfo[]) {
       state.commodities = payload;

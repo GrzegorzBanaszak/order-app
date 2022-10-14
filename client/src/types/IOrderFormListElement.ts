@@ -1,6 +1,6 @@
 export interface IOrderFormListElement {
   supplierId: string;
-  customerId: string;
+  commodityId: string;
   price: number;
   quantity: number;
   status: string;

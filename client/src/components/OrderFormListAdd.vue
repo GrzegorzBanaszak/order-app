@@ -2,10 +2,10 @@
   <div class="form-list__new">
     <order-form-list-select
       type-value="text"
-      v-model="searchCustomer"
-      :list-dropdown="$store.getters.getFiltredCustomer(searchCustomer)"
+      v-model="searchCommodity"
+      :list-dropdown="$store.getters.getFiltredCommodities(searchCommodity)"
       @selected="selectCustomer"
-      @reset="() => (searchCustomer !== '' ? (searchCustomer = '') : null)"
+      @reset="() => (searchCommodity !== '' ? (searchCommodity = '') : null)"
     />
     <order-form-list-select
       type-value="text"
@@ -43,9 +43,9 @@ export default defineComponent({
   data() {
     return {
       searchSupplier: "",
-      searchCustomer: "",
+      searchCommodity: "",
       supplierId: "",
-      customerId: "",
+      commodityId: "",
       quantity: 0,
       price: 0,
       payForDelivery: false,
@@ -60,19 +60,19 @@ export default defineComponent({
       this.deliveryCost = item.price;
     },
     selectCustomer(item: any) {
-      (this.searchCustomer = ""), (this.customerId = item.id);
+      (this.searchCommodity = ""), (this.commodityId = item.id);
     },
     addItemToList() {
       if (
         this.supplierId &&
-        this.customerId &&
+        this.commodityId &&
         this.price > 0 &&
         this.quantity > 0 &&
         this.status
       ) {
         const item: IOrderFormListElement = {
           supplierId: this.supplierId,
-          customerId: this.customerId,
+          commodityId: this.commodityId,
           price: this.price,
           quantity: this.quantity,
           status: this.status,
