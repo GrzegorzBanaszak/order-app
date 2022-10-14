@@ -1,12 +1,18 @@
 import axios, { AxiosError } from "axios";
 import { State } from "./index";
-import { IOrder, IOrderDetail, IOrderHistoryInfo } from "@/types";
+import {
+  IOrder,
+  IOrderDetail,
+  IOrderFormListElement,
+  IOrderHistoryInfo,
+} from "@/types";
 import { Module } from "vuex";
 
 export interface IOrdersState {
   ordersHistory: IOrderHistoryInfo[];
   ordersInfo: Array<IOrder>;
   orderDetail: IOrderDetail | null;
+  ordersFormElements: Array<IOrderFormListElement>;
 }
 
 interface OrdersHistoryPayload {
@@ -19,6 +25,7 @@ export const ordersState: Module<IOrdersState, State> = {
     ordersHistory: [],
     ordersInfo: [],
     orderDetail: null,
+    ordersFormElements: [],
   },
   getters: {},
   mutations: {
@@ -31,6 +38,9 @@ export const ordersState: Module<IOrdersState, State> = {
     setOrderDetail(state, payload: IOrderDetail) {
       state.orderDetail = payload;
     },
+    addFormElement(state, payload:IOrderFormListElement){
+      state.ordersFormElements.push(payload);
+    }
   },
   actions: {
     async getOrdersHistory(context, payload: OrdersHistoryPayload) {

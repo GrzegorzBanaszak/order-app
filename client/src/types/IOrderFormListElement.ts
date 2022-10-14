@@ -1,7 +1,11 @@
 export interface IOrderFormListElement {
-  supplierId: string;
-  commodityId: string;
+  supplier: string;
+  supplierName:string;
+  commodity: string;
+  commodityName:string;
+  deliveryCost:number;
   price: number;
   quantity: number;
   status: string;
+  isCustomerPayForDelivery:boolean;
 }

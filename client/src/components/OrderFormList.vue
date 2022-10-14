@@ -10,9 +10,9 @@
       <div>Status</div>
     </div>
     <div class="form-list__body">
+      <order-form-list-element v-for="(item,index) in $store.state.ordersState.ordersFormElements" :key="index" :order-item="item"></order-form-list-element>
       <order-form-list-add
         @hideForm="toggleShowAddForm"
-        @addToList="addItemToList"
         v-if="isAddFormShow"
       ></order-form-list-add>
       <button @click="toggleShowAddForm" v-else class="form-list__button">
@@ -25,10 +25,10 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import OrderFormListAdd from "@/components/OrderFormListAdd.vue";
-import { IOrderFormListElement } from "@/types";
+import OrderFormListElement from "@/components/OrderFormListElement.vue";
 
 export default defineComponent({
-  components: { OrderFormListAdd },
+  components: { OrderFormListAdd, OrderFormListElement },
   mounted() {
     this.$store.dispatch("getSuppliers");
     this.$store.dispatch("setCommodities");
@@ -41,10 +41,6 @@ export default defineComponent({
   methods: {
     toggleShowAddForm() {
       this.isAddFormShow = !this.isAddFormShow;
-    },
-    addItemToList(item: IOrderFormListElement) {
-      this.$emit("addToList", item);
-      this.isAddFormShow = false;
     },
   },
 });

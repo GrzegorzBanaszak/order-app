@@ -26,7 +26,7 @@
         @selected="(item:string) => (status = item)"
       ></form-group-select>
     </div>
-    <order-form-list @addToList="addToCommodityList"></order-form-list>
+    <order-form-list></order-form-list>
   </form>
 </template>
 
@@ -49,7 +49,6 @@ export default defineComponent({
       searchCustomer: "",
       customerId: "",
       status: "",
-      listOfElements: new Array<IOrderFormListElement>(),
     };
   },
   methods: {
@@ -61,9 +60,6 @@ export default defineComponent({
       if (this.customerId !== "") {
         this.customerId = "";
       }
-    },
-    addToCommodityList(item: IOrderFormListElement) {
-      this.listOfElements.push(item);
     },
     async submitForm(e: Event) {
       e.preventDefault();

@@ -71,6 +71,14 @@
       background-color: #388e3c;
     }
   }
+  &__item{
+    display: grid;
+    grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
+    margin: 1rem 0;
+    div{
+      text-align: center;
+    }
+  }
   &__new {
     display: grid;
     grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;

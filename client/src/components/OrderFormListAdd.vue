@@ -45,11 +45,13 @@ export default defineComponent({
       searchSupplier: "",
       searchCommodity: "",
       supplierId: "",
+      supplierName: "",
       commodityId: "",
+      commodityName: "",
       quantity: 0,
       price: 0,
       payForDelivery: false,
-      deliveryCost: 0,
+      deliveryCost: 0 as number,
       status: "",
     };
   },
@@ -57,10 +59,13 @@ export default defineComponent({
     selectSupplier(item: any) {
       this.searchSupplier = "";
       this.supplierId = item.id;
+      this.supplierName = item.name;
       this.deliveryCost = item.price;
     },
     selectCustomer(item: any) {
-      (this.searchCommodity = ""), (this.commodityId = item.id);
+      this.searchCommodity = ""; 
+      this.commodityId = item.id;
+      this.commodityName = item.name;
     },
     addItemToList() {
       if (
@@ -71,14 +76,20 @@ export default defineComponent({
         this.status
       ) {
         const item: IOrderFormListElement = {
-          supplierId: this.supplierId,
-          commodityId: this.commodityId,
+          supplier: this.supplierId,
+          supplierName: this.supplierName,
+          commodity: this.commodityId,
+          commodityName: this.commodityName,
           price: this.price,
           quantity: this.quantity,
           status: this.status,
+          isCustomerPayForDelivery: this.payForDelivery,
+          deliveryCost:this.deliveryCost
         };
 
-        this.$emit("addToList", item);
+        this.$store.commit("addFormElement",item)
+
+        this.$emit("hideForm");
       }
     },
   },
