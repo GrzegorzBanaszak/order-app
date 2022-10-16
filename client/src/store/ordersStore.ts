@@ -3,6 +3,7 @@ import { State } from "./index";
 import {
   IOrder,
   IOrderDetail,
+  IOrderElementEditData,
   IOrderFormListElement,
   IOrderHistoryInfo,
 } from "@/types";
@@ -12,7 +13,7 @@ export interface IOrdersState {
   ordersHistory: IOrderHistoryInfo[];
   ordersInfo: Array<IOrder>;
   orderDetail: IOrderDetail | null;
-  ordersFormElements: Array<IOrderFormListElement>;
+  ordersFormElements: Map<string, IOrderFormListElement>;
 }
 
 interface OrdersHistoryPayload {
@@ -25,7 +26,7 @@ export const ordersState: Module<IOrdersState, State> = {
     ordersHistory: [],
     ordersInfo: [],
     orderDetail: null,
-    ordersFormElements: [],
+    ordersFormElements: new Map(),
   },
   getters: {},
   mutations: {
@@ -39,10 +40,17 @@ export const ordersState: Module<IOrdersState, State> = {
       state.orderDetail = payload;
     },
     addFormElement(state, payload: IOrderFormListElement) {
-      state.ordersFormElements.push(payload);
+      state.ordersFormElements.set(payload.id, payload);
+    },
+    editFormElement(state, payload: IOrderElementEditData) {
+      const item = state.ordersFormElements.get(payload.id);
+      if (item) {
+        item.price = payload.price;
+        item.quantity = payload.quantity;
+      }
     },
     resetOrdersElements(state) {
-      state.ordersFormElements = [];
+      state.ordersFormElements = new Map();
     },
   },
   actions: {

@@ -16,3 +16,4 @@ export * from "./AxiosErrorDataType";
 export * from "./ISupplierPost";
 export * from "./ICommodityPost";
 export * from "./IOrderFormListElement";
+export * from "./IOrderElementEditData";

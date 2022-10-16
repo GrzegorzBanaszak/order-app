@@ -39,6 +39,7 @@ import AcceptIcon from "@/icons/AcceptIcon.vue";
 import RemoveIcon from "@/icons/RemoveIcon.vue";
 import OrderFormListSelect from "@/components/OrderFormListSelect.vue";
 import { IOrderFormListElement } from "@/types";
+import { v4 as uuidv4 } from "uuid";
 
 export default defineComponent({
   components: { AcceptIcon, RemoveIcon, OrderFormListSelect },
@@ -78,6 +79,7 @@ export default defineComponent({
         this.status
       ) {
         const item: IOrderFormListElement = {
+          id: uuidv4(),
           supplier: this.supplierId,
           supplierName: this.supplierName,
           commodity: this.commodityId,
@@ -95,7 +97,7 @@ export default defineComponent({
       }
     },
     setMargin(): string {
-      return this.$store.state.ordersState.ordersFormElements.length > 0
+      return this.$store.state.ordersState.ordersFormElements.size > 0
         ? "space-1"
         : "";
     },

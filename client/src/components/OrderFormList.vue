@@ -11,9 +11,9 @@
     </div>
     <div class="form-list__body">
       <order-form-list-element
-        v-for="(item, index) in $store.state.ordersState.ordersFormElements"
-        :key="index"
-        :order-item="item"
+        v-for="item in $store.state.ordersState.ordersFormElements"
+        :key="item[0]"
+        :order-item="item[1]"
       ></order-form-list-element>
       <order-form-list-add
         @hideForm="toggleShowAddForm"
@@ -47,7 +47,7 @@ export default defineComponent({
       this.isAddFormShow = !this.isAddFormShow;
     },
     setMargin(): string {
-      return this.$store.state.ordersState.ordersFormElements.length > 0
+      return this.$store.state.ordersState.ordersFormElements.size > 0
         ? "space-1"
         : "";
     },

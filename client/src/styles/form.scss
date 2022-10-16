@@ -43,6 +43,24 @@
 //Style for add new order list
 .form-list {
   margin: 1rem;
+  input[type="text"] {
+    display: block;
+    width: 160px;
+    justify-self: center;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    text-align: center;
+  }
+  input[type="number"] {
+    display: block;
+    width: 35px;
+    justify-self: center;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    text-align: center;
+  }
   &__header {
     display: grid;
     grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
@@ -80,27 +98,17 @@
       text-align: center;
     }
   }
+  &__item {
+    display: grid;
+    grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
+    margin: 1rem 0;
+    div {
+      text-align: center;
+    }
+  }
   &__new {
     display: grid;
     grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
-    input[type="text"] {
-      display: block;
-      width: 160px;
-      justify-self: center;
-      border: none;
-      border-bottom: 1px solid #ccc;
-      outline: none;
-      text-align: center;
-    }
-    input[type="number"] {
-      display: block;
-      width: 35px;
-      justify-self: center;
-      border: none;
-      border-bottom: 1px solid #ccc;
-      outline: none;
-      text-align: center;
-    }
 
     &--checkbox {
       display: flex;
