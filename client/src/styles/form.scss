@@ -40,6 +40,7 @@
   }
 }
 
+//Style for add new order list
 .form-list {
   margin: 1rem;
   &__header {
@@ -59,7 +60,7 @@
     display: block;
     width: 95%;
     padding: 0.7rem;
-    margin: 0 auto;
+    margin: 2rem auto 0 auto;
     border: none;
     text-transform: uppercase;
     cursor: pointer;
@@ -71,18 +72,18 @@
       background-color: #388e3c;
     }
   }
-  &__item{
+  &__item {
     display: grid;
     grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
     margin: 1rem 0;
-    div{
+    div {
       text-align: center;
     }
   }
   &__new {
     display: grid;
     grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
-
+    margin-top: 2rem;
     input[type="text"] {
       display: block;
       width: 160px;
@@ -100,6 +101,16 @@
       border-bottom: 1px solid #ccc;
       outline: none;
       text-align: center;
+    }
+
+    &--checkbox {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    input[type="checkbox"] {
+      height: 20px;
+      width: 20px;
     }
   }
 

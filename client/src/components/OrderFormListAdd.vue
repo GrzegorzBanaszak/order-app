@@ -15,7 +15,9 @@
       @reset="() => (supplierId !== '' ? (supplierId = '') : null)"
     />
     <input type="number" readonly v-model="deliveryCost" />
-    <input type="checkbox" v-model="payForDelivery" />
+    <div class="form-list__new--checkbox">
+      <input type="checkbox" v-model="payForDelivery" />
+    </div>
     <input type="number" name="quantity" v-model="quantity" />
     <input type="number" name="price" v-model="price" />
     <order-form-list-select
@@ -63,7 +65,7 @@ export default defineComponent({
       this.deliveryCost = item.price;
     },
     selectCustomer(item: any) {
-      this.searchCommodity = ""; 
+      this.searchCommodity = "";
       this.commodityId = item.id;
       this.commodityName = item.name;
     },
@@ -84,10 +86,10 @@ export default defineComponent({
           quantity: this.quantity,
           status: this.status,
           isCustomerPayForDelivery: this.payForDelivery,
-          deliveryCost:this.deliveryCost
+          deliveryCost: this.deliveryCost,
         };
 
-        this.$store.commit("addFormElement",item)
+        this.$store.commit("addFormElement", item);
 
         this.$emit("hideForm");
       }
