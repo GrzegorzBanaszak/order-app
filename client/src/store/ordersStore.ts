@@ -38,9 +38,12 @@ export const ordersState: Module<IOrdersState, State> = {
     setOrderDetail(state, payload: IOrderDetail) {
       state.orderDetail = payload;
     },
-    addFormElement(state, payload:IOrderFormListElement){
+    addFormElement(state, payload: IOrderFormListElement) {
       state.ordersFormElements.push(payload);
-    }
+    },
+    resetOrdersElements(state) {
+      state.ordersFormElements = [];
+    },
   },
   actions: {
     async getOrdersHistory(context, payload: OrdersHistoryPayload) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="form-list__new">
+  <div :class="'form-list__new ' + setMargin()">
     <order-form-list-select
       type-value="text"
       v-model="searchCommodity"
@@ -93,6 +93,11 @@ export default defineComponent({
 
         this.$emit("hideForm");
       }
+    },
+    setMargin(): string {
+      return this.$store.state.ordersState.ordersFormElements.length > 0
+        ? "space-1"
+        : "";
     },
   },
 });

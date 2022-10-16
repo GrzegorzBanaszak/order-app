@@ -60,7 +60,7 @@
     display: block;
     width: 95%;
     padding: 0.7rem;
-    margin: 2rem auto 0 auto;
+    margin: 0 auto;
     border: none;
     text-transform: uppercase;
     cursor: pointer;
@@ -83,7 +83,6 @@
   &__new {
     display: grid;
     grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
-    margin-top: 2rem;
     input[type="text"] {
       display: block;
       width: 160px;
@@ -122,7 +121,7 @@
   }
   &__dropdown {
     position: absolute;
-    top: 22px;
+    top: 30px;
     width: 160px;
     @include scrollbars(5px, #ccc, white);
     max-height: 120px;
@@ -150,6 +149,10 @@
       cursor: pointer;
     }
   }
+}
+
+.space-1 {
+  margin-top: 2rem;
 }
 
 .form-select {

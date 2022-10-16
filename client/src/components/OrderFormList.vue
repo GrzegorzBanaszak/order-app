@@ -10,12 +10,20 @@
       <div>Status</div>
     </div>
     <div class="form-list__body">
-      <order-form-list-element v-for="(item,index) in $store.state.ordersState.ordersFormElements" :key="index" :order-item="item"></order-form-list-element>
+      <order-form-list-element
+        v-for="(item, index) in $store.state.ordersState.ordersFormElements"
+        :key="index"
+        :order-item="item"
+      ></order-form-list-element>
       <order-form-list-add
         @hideForm="toggleShowAddForm"
         v-if="isAddFormShow"
       ></order-form-list-add>
-      <button @click="toggleShowAddForm" v-else class="form-list__button">
+      <button
+        @click="toggleShowAddForm"
+        v-else
+        :class="'form-list__button ' + setMargin()"
+      >
         Dodaj towar
       </button>
     </div>
@@ -29,10 +37,6 @@ import OrderFormListElement from "@/components/OrderFormListElement.vue";
 
 export default defineComponent({
   components: { OrderFormListAdd, OrderFormListElement },
-  mounted() {
-    this.$store.dispatch("getSuppliers");
-    this.$store.dispatch("setCommodities");
-  },
   data() {
     return {
       isAddFormShow: false,
@@ -41,6 +45,11 @@ export default defineComponent({
   methods: {
     toggleShowAddForm() {
       this.isAddFormShow = !this.isAddFormShow;
+    },
+    setMargin(): string {
+      return this.$store.state.ordersState.ordersFormElements.length > 0
+        ? "space-1"
+        : "";
     },
   },
 });

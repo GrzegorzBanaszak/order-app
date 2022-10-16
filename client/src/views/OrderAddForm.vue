@@ -36,12 +36,14 @@ import FormGroup from "@/components/FormGroup.vue";
 import FormGroupDropdown from "@/components/FormGroupDropdown.vue";
 import FormGroupSelect from "@/components/FormGroupSelect.vue";
 import OrderFormList from "@/components/OrderFormList.vue";
-import { IOrderFormListElement } from "@/types";
 
 export default defineComponent({
   components: { FormGroup, FormGroupDropdown, FormGroupSelect, OrderFormList },
   mounted() {
     this.$store.dispatch("getCustomers");
+    this.$store.dispatch("getSuppliers");
+    this.$store.dispatch("setCommodities");
+    this.$store.commit("resetOrdersElements");
   },
   data() {
     return {

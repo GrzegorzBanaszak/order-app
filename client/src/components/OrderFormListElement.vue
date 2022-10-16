@@ -1,12 +1,19 @@
 <template>
   <div class="form-list__item">
-    <div>{{orderItem.commodityName}}</div>
-    <div>{{orderItem.supplierName}}</div>
-    <div>{{orderItem.deliveryCost}}</div>
-    <div><input type="checkbox" readonly :value="orderItem.isCustomerPayForDelivery" /></div>
-    <div>{{orderItem.quantity}}</div>
-    <div>{{orderItem.price}}</div>
-    <div>{{orderItem.status}}</div>
+    <div>{{ orderItem.commodityName }}</div>
+    <div>{{ orderItem.supplierName }}</div>
+    <div>{{ orderItem.deliveryCost }}</div>
+    <div>
+      <input
+        type="checkbox"
+        readonly
+        :value="orderItem.isCustomerPayForDelivery"
+      />
+    </div>
+    <div>{{ orderItem.quantity }}</div>
+    <div>{{ orderItem.price }}</div>
+    <div>{{ orderItem.status }}</div>
+    <div></div>
   </div>
 </template>
 
