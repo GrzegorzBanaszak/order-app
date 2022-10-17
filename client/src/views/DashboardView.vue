@@ -27,6 +27,9 @@ export default defineComponent({
     AddNewButton,
     PopUp,
   },
+  mounted(){
+    document.title ="Zamówienia"
+  },
   methods: {
     displayLocation() {
       switch (this.$route.path.split("/")[2]) {

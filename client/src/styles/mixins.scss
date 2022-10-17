@@ -16,7 +16,7 @@
 @mixin display-info-header {
   display: flex;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 
@@ -27,15 +27,14 @@
   gap: 1rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid #ccc;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
 }
 
 @mixin item-detail-element {
   margin: 1rem 0;
-  font-size: 1.5rem;
   font-weight: 500;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 @mixin dashboard-list($grid) {
@@ -46,6 +45,7 @@
     grid-template-columns: $grid;
     border-bottom: 1px solid #ccc;
     font-weight: 500;
+    font-size: 0.8rem;
     div {
       text-align: center;
     }

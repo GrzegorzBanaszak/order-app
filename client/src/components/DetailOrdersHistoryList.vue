@@ -69,16 +69,17 @@ export default defineComponent({
   grid-column-end: 5;
   grid-row-start: 3;
   grid-row-end: 5;
-  padding: 1rem;
+  padding: 0.4rem;
   &__title {
     @include item-detail-header;
   }
   &__info {
-    margin: 1.4rem 0;
+    margin: 0.4rem 0;
     display: grid;
     grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr;
     div {
       text-align: center;
+      font-size: 0.8rem;
       font-weight: 500;
     }
   }
