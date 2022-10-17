@@ -89,7 +89,7 @@ export default defineComponent({
     grid-area: nav;
     background-color: #37474f;
     color: #b0bec5;
-    padding: 2rem;
+    padding: 2rem 1rem;
   }
   &__main {
     grid-area: main;

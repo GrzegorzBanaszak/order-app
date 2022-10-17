@@ -65,7 +65,7 @@ export default defineComponent({
     align-items: center;
     color: white;
     text-transform: uppercase;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 2rem;
   }
   &__menu {
