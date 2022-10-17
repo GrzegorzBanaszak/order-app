@@ -7,7 +7,7 @@ import { Schema } from 'mongoose';
 export class PostCustomerDto {
     @AutoMap()
     @IsString()
-    @IsNotEmpty()
+    @IsNotEmpty({ message: 'Podaj imie i nazwisko' })
     name: string;
 
     @AutoMap()

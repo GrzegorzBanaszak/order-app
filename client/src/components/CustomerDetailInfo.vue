@@ -2,11 +2,7 @@
   <div class="detail-customer__info">
     <h1>Informacje o kliencie <info-blue-icon /></h1>
     <p>
-      Imię: {{ $store.state.customersState.customerDetail?.name.split(" ")[0] }}
-    </p>
-    <p>
-      Nazwisko:
-      {{ $store.state.customersState.customerDetail?.name.split(" ")[1] }}
+      Imię i nazwisko: {{ $store.state.customersState.customerDetail?.name }}
     </p>
     <p>
       Numer telefonu:
