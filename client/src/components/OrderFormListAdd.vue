@@ -23,7 +23,7 @@
     <order-form-list-select
       type-value="text"
       :is-read-only="true"
-      :list-dropdown="['W przygotowaniu', 'Wysłano', 'Do odbioru']"
+      :list-dropdown="['W przygotowaniu', 'Wysłano', 'Do odbioru', 'Odebrano']"
       @selected="(item) => (status = item)"
     />
     <div class="form-list__control">

@@ -22,7 +22,12 @@
       ></form-group-dropdown>
       <form-group-select
         label-value="Status"
-        :list-dropdown="['W przygotowaniu', 'Wysłano', 'Do odbioru']"
+        :list-dropdown="[
+          'W przygotowaniu',
+          'Wysłano',
+          'Do odbioru',
+          'Odebrano',
+        ]"
         @selected="(item:string) => (status = item)"
       ></form-group-select>
     </div>
@@ -49,10 +54,10 @@ export default defineComponent({
   },
   data() {
     return {
-      advance: 0 as number,
+      advance: 0,
       searchCustomer: "",
       customerId: "",
-      status: "",
+      status: "W przygotowaniu",
     };
   },
   methods: {
@@ -85,7 +90,7 @@ export default defineComponent({
 
       const data: IOrderPost = {
         customer: this.customerId,
-        advance: this.advance,
+        advance: Number(this.advance),
         status: this.status,
         commodities: commoditiesList,
       };
