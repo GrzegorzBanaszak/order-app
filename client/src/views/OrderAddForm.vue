@@ -27,6 +27,7 @@
       ></form-group-select>
     </div>
     <order-form-list></order-form-list>
+    <button class="add-form__button" type="submit">Dodaj</button>
   </form>
 </template>
 
@@ -36,6 +37,7 @@ import FormGroup from "@/components/FormGroup.vue";
 import FormGroupDropdown from "@/components/FormGroupDropdown.vue";
 import FormGroupSelect from "@/components/FormGroupSelect.vue";
 import OrderFormList from "@/components/OrderFormList.vue";
+import { IOrderPost, IOrderPostCommodity } from "@/types";
 
 export default defineComponent({
   components: { FormGroup, FormGroupDropdown, FormGroupSelect, OrderFormList },
@@ -47,7 +49,7 @@ export default defineComponent({
   },
   data() {
     return {
-      advance: 0,
+      advance: 0 as number,
       searchCustomer: "",
       customerId: "",
       status: "",
@@ -65,6 +67,36 @@ export default defineComponent({
     },
     async submitForm(e: Event) {
       e.preventDefault();
+
+      const commoditiesList = new Array<IOrderPostCommodity>(0);
+
+      if (this.$store.state.ordersState.ordersFormElements.size > 0) {
+        this.$store.state.ordersState.ordersFormElements.forEach((item) => {
+          commoditiesList.push({
+            commodity: item.commodity,
+            supplier: item.supplier,
+            quantity: item.quantity,
+            price: item.price,
+            isCustomerPayForDelivery: item.isCustomerPayForDelivery,
+            status: item.status,
+          });
+        });
+      }
+
+      const data: IOrderPost = {
+        customer: this.customerId,
+        advance: this.advance,
+        status: this.status,
+        commodities: commoditiesList,
+      };
+
+      await this.$store.dispatch("addOrder", data);
+
+      if (!this.$store.state.ordersState.isError) {
+        this.$router.replace({ replace: true, path: "/d/orders" });
+      } else {
+        this.$store.commit("toggleOrderError");
+      }
     },
   },
 });

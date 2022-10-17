@@ -1,11 +1,13 @@
 import axios, { AxiosError } from "axios";
 import { State } from "./index";
 import {
+  AxiosErrorDataType,
   IOrder,
   IOrderDetail,
   IOrderElementEditData,
   IOrderFormListElement,
   IOrderHistoryInfo,
+  IOrderPost,
 } from "@/types";
 import { Module } from "vuex";
 
@@ -14,6 +16,7 @@ export interface IOrdersState {
   ordersInfo: Array<IOrder>;
   orderDetail: IOrderDetail | null;
   ordersFormElements: Map<string, IOrderFormListElement>;
+  isError: boolean;
 }
 
 interface OrdersHistoryPayload {
@@ -27,6 +30,7 @@ export const ordersState: Module<IOrdersState, State> = {
     ordersInfo: [],
     orderDetail: null,
     ordersFormElements: new Map(),
+    isError: false,
   },
   getters: {},
   mutations: {
@@ -51,6 +55,9 @@ export const ordersState: Module<IOrdersState, State> = {
     },
     resetOrdersElements(state) {
       state.ordersFormElements = new Map();
+    },
+    toggleOrderError(state) {
+      state.isError = !state.isError;
     },
   },
   actions: {
@@ -80,6 +87,24 @@ export const ordersState: Module<IOrdersState, State> = {
       } catch (error) {
         const err = error as AxiosError;
         console.log(err.request.status);
+      }
+    },
+    async addOrder(context, payload: IOrderPost) {
+      try {
+        const res = await axios.post(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/add`,
+          payload
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie dodać zamówienie ${res.data.orderNumber}`,
+        ]);
+        setTimeout(() => {
+          context.commit("popupReset");
+        }, 5000);
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        context.commit("toggleOrderError");
+        context.commit("displayErrorPopup", err.response?.data.message);
       }
     },
   },

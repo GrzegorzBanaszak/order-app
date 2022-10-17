@@ -17,3 +17,5 @@ export * from "./ISupplierPost";
 export * from "./ICommodityPost";
 export * from "./IOrderFormListElement";
 export * from "./IOrderElementEditData";
+export * from "./IOrderPost";
+export * from "./IOrderPostCommodity";
