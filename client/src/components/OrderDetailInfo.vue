@@ -1,27 +1,35 @@
 <template>
   <div class="detail-order__info">
-    <h1>Informacje o dostawie <info-blue-icon /></h1>
-    <p>
-      Numer zamówienia:
-      {{ $store.state.ordersState.orderDetail?.orderNumber }}
-    </p>
-    <p>
-      Data zamówienia:
-      {{ getDate() }}
-    </p>
-    <p>Status: {{ $store.state.ordersState.orderDetail?.status }}</p>
-    <p>
-      Kwota:
-      {{
-        $store.state.ordersState.orderDetail?.commodities.reduce(
+    <h1>Informacje o dostawie
+      <info-blue-icon />
+    </h1>
+    <div class="detail-order__information">
+      <div>
+        <p>
+          Numer:
+          {{ $store.state.ordersState.orderDetail?.orderNumber }}
+        </p>
+        <p>
+          Data:
+          {{ getDate() }}
+        </p>
+        <p>Status: {{ $store.state.ordersState.orderDetail?.status }}</p>
+      </div>
+      <div>
+        <p>
+          Kwota:
+          {{
+          $store.state.ordersState.orderDetail?.commodities.reduce(
           (prev, curr) => (prev += curr.price * curr.quantity),
           0
-        )
-      }}
-      zł
-    </p>
-    <p>Zaliczka: {{ $store.state.ordersState.orderDetail?.advance }} zł</p>
-    <p>Pozostało do zapłaty: {{ toPay() }} zł</p>
+          )
+          }}
+          zł
+        </p>
+        <p>Zaliczka: {{ $store.state.ordersState.orderDetail?.advance }} zł</p>
+        <p>Pozostało do zapłaty: {{ toPay() }} zł</p>
+      </div>
+    </div>
   </div>
 </template>
 

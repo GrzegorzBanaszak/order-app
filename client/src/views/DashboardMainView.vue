@@ -53,6 +53,8 @@ export default defineComponent({
     grid-row-end: 5;
     background-color: white;
     padding: 1rem;
+    overflow-y: auto;
+    @include scrollbars(5px, #ccc, white);
   }
   &__best {
     &--customers {
@@ -60,12 +62,16 @@ export default defineComponent({
       grid-row-end: 3;
       background-color: white;
       padding: 1rem;
+      overflow-y: auto;
+      @include scrollbars(5px, #ccc, white);
     }
     &--commadity {
       grid-row-start: 1;
       grid-row-end: 3;
       background-color: white;
       padding: 1rem;
+      overflow-y: auto;
+      @include scrollbars(5px, #ccc, white);
     }
   }
 }

@@ -41,6 +41,7 @@ export default defineComponent({
   &__header {
     @include display-info-header;
   }
-  @include dashboard-list(2fr 1fr 1fr 1fr 1fr 1fr 1fr);
+  @include dashboard-list(2fr 3fr 1fr 1fr 1fr 2fr 1fr);
+  
 }
 </style>

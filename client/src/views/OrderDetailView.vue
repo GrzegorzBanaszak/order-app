@@ -29,15 +29,20 @@ export default defineComponent({
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 1;
-    grid-row-end: 3;
+    grid-row-end: 2;
     background-color: white;
-    padding: 1rem;
+    padding: 0.5rem;
     h1 {
       @include item-detail-header;
     }
     p {
       @include item-detail-element;
     }
+  }
+  &__information{
+    display: flex;
+    gap:2rem;
+
   }
   &__supplier {
     @include order-detail-element(2, 3, 3, 5);
@@ -48,7 +53,7 @@ export default defineComponent({
   &__commodities {
     grid-column-start: 1;
     grid-column-end: 5;
-    grid-row-start: 3;
+    grid-row-start: 2;
     grid-row-end: 5;
     background-color: white;
     padding: 1rem;
@@ -58,21 +63,22 @@ export default defineComponent({
     }
     &--header {
       display: grid;
-      grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 30% 25% 20% 5% 5% 10% 5%;
       font-weight: 500;
-      margin: 0.7rem 0;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid #ccc;
+      margin: 0.5rem 0;
+      padding-bottom: 0.5rem;
+      font-size: 0.9rem;
       div {
         text-align: center;
       }
     }
     &--element {
-      margin: 0.7rem 0;
+      margin: 0.5rem 0;
       padding: 0.5rem 0;
+      font-size: 0.9rem;
       border-bottom: 1px solid #ccc;
       display: grid;
-      grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 30% 25% 20% 5% 5% 10% 5%;
       div {
         text-align: center;
       }
