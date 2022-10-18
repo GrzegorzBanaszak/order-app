@@ -11,7 +11,7 @@
     >
       <div class="supplier-best__header">
         <div>Nazwa towaru</div>
-        <div>Ilośc całkowita</div>
+        <div>Ilość</div>
         <div>Ostatnia cena</div>
         <div>Detale</div>
       </div>
@@ -44,10 +44,13 @@ export default defineComponent({
 .supplier-best {
   overflow-y: auto;
   height: 100%;
+  padding: 0.4rem;
+  @include scrollbars(5px, #ccc, white);
   &__header {
-    margin: 0.7rem 0;
+    margin: 0.4rem 0;
+    font-size: 0.8rem;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     div {
       text-align: center;
       font-weight: 500;
@@ -56,8 +59,9 @@ export default defineComponent({
 
   &__element {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    margin-bottom: 1.5rem;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    margin: 0.4rem 0;
+    font-size: 0.8rem;
     div {
       text-align: center;
     }

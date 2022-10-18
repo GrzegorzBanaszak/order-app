@@ -42,7 +42,8 @@ export default defineComponent({
   &__header {
     margin: 0.7rem 0;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 2fr 1fr;
+    font-size: 0.9rem;
     div {
       text-align: center;
       font-weight: 500;
@@ -50,8 +51,9 @@ export default defineComponent({
   }
   &__element {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin-bottom: 1.5rem;
+    grid-template-columns: 2fr 1fr;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
     div {
       text-align: center;
     }

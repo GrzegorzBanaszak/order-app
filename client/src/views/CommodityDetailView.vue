@@ -30,7 +30,7 @@ export default defineComponent({
     grid-row-start: 1;
     grid-row-end: 3;
     background-color: white;
-    padding: 1rem;
+    padding: 0.5rem;
     h1 {
       @include item-detail-header;
     }
@@ -44,7 +44,7 @@ export default defineComponent({
     grid-row-start: 1;
     grid-row-end: 3;
     background-color: white;
-    padding: 1rem;
+    padding: 0.5rem;
     h1 {
       @include item-detail-header;
     }

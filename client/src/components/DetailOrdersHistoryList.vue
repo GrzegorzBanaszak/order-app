@@ -86,7 +86,8 @@ export default defineComponent({
   &__element {
     display: grid;
     grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr;
-    margin-bottom: 1.5rem;
+    margin: 0.3rem 0;
+    font-size: 0.8rem;
     div {
       text-align: center;
     }
