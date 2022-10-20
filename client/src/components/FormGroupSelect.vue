@@ -1,4 +1,4 @@
-<template>
+``<template>
   <div class="form-group form-select">
     <label>{{ labelValue }}</label>
     <div @click="showList = !showList" class="form-select__selected">

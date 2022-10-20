@@ -32,6 +32,7 @@ export default defineComponent({
     grid-row-end: 2;
     background-color: white;
     padding: 0.5rem;
+    position: relative;
     h1 {
       @include item-detail-header;
     }
@@ -39,10 +40,45 @@ export default defineComponent({
       @include item-detail-element;
     }
   }
+  &__edit{
+    position: absolute;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.4rem;
+    svg{
+      cursor: pointer;
+    }
+  }
+  &__status{
+    border-bottom: 2px solid #ccc;
+    margin-left: 0.4rem;
+    width: 120px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    &--dropdown{
+      width: 100%;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap:0.4rem;
+      background-color: white;
+      top: 20px;
+      border: 1px solid #ccc;
+    }
+    span{
+      &:hover{
+        background-color:#e8e8e8 ;
+      }
+    }
+  }
   &__information{
     display: flex;
     gap:2rem;
-
+    p{
+      display: flex;
+    }
   }
   &__supplier {
     @include order-detail-element(2, 3, 3, 5);
