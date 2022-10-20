@@ -8,8 +8,10 @@
       :placeholder="placeholderValue"
       :name="nameValue"
       autocomplete="off"
+      @focusin="isFocus = true"
+      @focusout="hideDropdown"
     />
-    <div v-if="searchValue !== ''" class="form-select__container">
+    <div v-if="isFocus" class="form-select__container">
       <span
         class="form-select__element"
         @click="selectedElement(item.id, item.name)"
@@ -53,6 +55,7 @@ export default defineComponent({
   data() {
     return {
       inputValue: "",
+      isFocus:false as boolean
     };
   },
   methods: {
@@ -63,6 +66,11 @@ export default defineComponent({
     selectedElement(id: string, name: string) {
       this.inputValue = name;
       this.$emit("selected", id);
+    },
+    hideDropdown() {
+      setTimeout(() => {
+        this.isFocus = false;
+      }, 100);
     },
   },
 });
