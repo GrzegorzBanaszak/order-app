@@ -215,16 +215,38 @@ export class OrderService {
         return orders;
     }
 
-    async updateStatus(id:ObjectId,status:string): Promise<Order>{
+    async updateStatus(id: ObjectId, status: string): Promise<Order> {
+        const order = await this.orderModel
+            .findByIdAndUpdate(
+                id,
+                { status },
+                {
+                    new: true,
+                },
+            )
+            .populate([
+                {
+                    path: 'commodities',
+                    populate: {
+                        path: 'commodity',
+                        model: 'Commodity',
+                    },
+                },
+                {
+                    path: 'commodities',
+                    populate: {
+                        path: 'supplier',
+                        model: 'Supplier',
+                    },
+                },
+            ]);
 
-        const order = await this.orderModel.findByIdAndUpdate(id,{status},{
-            new:true
-        })
-
-        if(!order){
-            throw new NotFoundException("Nie istnieje zamówienie o tym numerze")
+        if (!order) {
+            throw new NotFoundException(
+                'Nie istnieje zamówienie o tym numerze',
+            );
         }
 
-        return order
+        return order;
     }
 }

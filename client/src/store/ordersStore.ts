@@ -8,6 +8,7 @@ import {
   IOrderFormListElement,
   IOrderHistoryInfo,
   IOrderPost,
+  IStatusUpdate,
 } from "@/types";
 import { Module } from "vuex";
 
@@ -104,6 +105,17 @@ export const ordersState: Module<IOrdersState, State> = {
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleOrderError");
+        context.commit("displayErrorPopup", err.response?.data.message);
+      }
+    },
+    async updateStatus(context, payload: IStatusUpdate) {
+      try {
+        const res = await axios.patch(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload.id}/${payload.status}`
+        );
+        context.commit("setOrderDetail", res.data);
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("displayErrorPopup", err.response?.data.message);
       }
     },

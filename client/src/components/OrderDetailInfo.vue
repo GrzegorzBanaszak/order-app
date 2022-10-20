@@ -3,7 +3,7 @@
     <h1>Informacje o dostawie
       <info-blue-icon />
       <div v-if="isEdit" class="detail-order__edit">
-        <accept-icon />
+        <accept-icon @click="updateOrderStatus" />
         <remove-icon @click="isEdit = false" />
       </div>
       <div v-else class="detail-order__edit">
@@ -20,7 +20,8 @@
           Data:
           {{ getDate() }}
         </p>
-        <p v-if="isEdit">Status:
+        <p v-if="isEdit">
+          Status:
         <div @click="showDropdown = !showDropdown" class="detail-order__status">
           {{ selectedValue }}
           <div v-if="showDropdown" class="detail-order__status--dropdown">
@@ -28,6 +29,7 @@
           </div>
         </div>
         </p>
+
         <p v-else>Status: {{ $store.state.ordersState.orderDetail?.status }}</p>
       </div>
       <div>
@@ -55,6 +57,7 @@ import EditIcon from "@/icons/EditIcon.vue";
 import AcceptIcon from "@/icons/AcceptIcon.vue";
 import RemoveIcon from "@/icons/RemoveIcon.vue";
 import moment from "moment";
+import { IStatusUpdate } from "@/types";
 
 export default defineComponent({
   components: { InfoBlueIcon, EditIcon, AcceptIcon, RemoveIcon },
@@ -103,6 +106,11 @@ export default defineComponent({
     },
     async updateOrderStatus() {
 
+      const data: IStatusUpdate = { id: this.$store.state.ordersState.orderDetail?.id!, status: this.selectedValue }
+
+      await this.$store.dispatch("updateStatus", data)
+
+      this.isEdit = false
     }
   },
 });
