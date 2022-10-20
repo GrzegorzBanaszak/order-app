@@ -214,4 +214,17 @@ export class OrderService {
 
         return orders;
     }
+
+    async updateStatus(id:ObjectId,status:string): Promise<Order>{
+
+        const order = await this.orderModel.findByIdAndUpdate(id,{status},{
+            new:true
+        })
+
+        if(!order){
+            throw new NotFoundException("Nie istnieje zamówienie o tym numerze")
+        }
+
+        return order
+    }
 }

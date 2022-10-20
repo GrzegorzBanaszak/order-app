@@ -9,6 +9,7 @@ import {
     Get,
     Param,
     ParseIntPipe,
+    Patch,
     Post,
     UseGuards,
     UseInterceptors,
@@ -62,5 +63,11 @@ export class OrderController {
     @Post('add')
     async add(@Body() data: PostOrderDto) {
         return await this.orderService.add(data);
+    }
+
+    @Patch(":id/:status")
+    @UseInterceptors(MapInterceptor(Order, OrderDetailDto))
+    async updateStatus(@Param('id', ParseObjectIdPipe) id: ObjectId,@Param('status') status:string){
+        return await this.orderService.updateStatus(id,status)
     }
 }
