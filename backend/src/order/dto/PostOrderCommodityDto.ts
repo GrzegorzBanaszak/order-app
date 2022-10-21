@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsNumber } from 'class-validator';
 import { Schema } from 'mongoose';
 
 export class PostOrderCommodityDto {
@@ -19,8 +19,4 @@ export class PostOrderCommodityDto {
     @IsNotEmpty()
     @IsBoolean()
     isCustomerPayForDelivery: boolean;
-
-    @IsNotEmpty()
-    @IsString()
-    status: string;
 }
