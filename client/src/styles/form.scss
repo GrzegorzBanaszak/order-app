@@ -45,7 +45,7 @@
   margin: 1rem;
   input[type="text"] {
     display: block;
-    width: 160px;
+    width: 100%;
     justify-self: center;
     border: none;
     border-bottom: 1px solid #ccc;
@@ -63,7 +63,8 @@
   }
   &__header {
     display: grid;
-    grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
+    grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
     div {
       text-align: center;
       font-size: 0.7rem;
@@ -92,15 +93,8 @@
   }
   &__item {
     display: grid;
-    grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
-    margin: 1rem 0;
-    div {
-      text-align: center;
-    }
-  }
-  &__item {
-    display: grid;
-    grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
+    grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
     margin: 1rem 0;
     div {
       text-align: center;
@@ -108,8 +102,8 @@
   }
   &__new {
     display: grid;
-    grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 2fr 1fr;
-
+    grid-template-columns: 3fr 3fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
     &--checkbox {
       display: flex;
       align-items: center;
@@ -130,7 +124,7 @@
   &__dropdown {
     position: absolute;
     top: 30px;
-    width: 160px;
+    width: 100%;
     @include scrollbars(5px, #ccc, white);
     max-height: 120px;
     display: flex;
@@ -168,6 +162,7 @@
   &__container {
     @include scrollbars(5px, #ccc, white);
     position: absolute;
+    z-index: 2;
     top: 4.24rem;
     max-height: 120px;
     width: 17.188rem;

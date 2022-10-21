@@ -17,7 +17,6 @@
     </div>
     <div>{{ orderItem.quantity }}</div>
     <div>{{ orderItem.price }}</div>
-    <div>{{ orderItem.status }}</div>
     <div class="form-list__control">
       <edit-icon @click="isEdit = !isEdit"></edit-icon>
       <trash-icon></trash-icon>

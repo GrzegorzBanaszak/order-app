@@ -29,9 +29,6 @@ export class OrderCommodity {
 
     @Prop()
     isCustomerPayForDelivery: boolean;
-
-    @Prop()
-    status: string;
 }
 
 @Schema({ timestamps: true })

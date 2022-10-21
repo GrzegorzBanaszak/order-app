@@ -9,7 +9,6 @@ export class OrderDetailCommodity {
         quantity: number,
         isCustomerPayForDelivery: boolean,
         supplierName: string,
-        status: string,
     ) {
         this.id = id;
         this.name = name;
@@ -18,7 +17,6 @@ export class OrderDetailCommodity {
         this.quantity = quantity;
         this.isCustomerPayForDelivery = isCustomerPayForDelivery;
         this.supplierName = supplierName;
-        this.status = status;
     }
 
     id: Schema.Types.ObjectId;
@@ -28,5 +26,4 @@ export class OrderDetailCommodity {
     quantity: number;
     supplierName: string;
     isCustomerPayForDelivery: boolean;
-    status: string;
 }

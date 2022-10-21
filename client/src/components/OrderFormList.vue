@@ -7,7 +7,6 @@
       <div>Liczona dostawa</div>
       <div>Ilość</div>
       <div>Cena</div>
-      <div>Status</div>
     </div>
     <div class="form-list__body">
       <order-form-list-element

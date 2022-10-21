@@ -99,7 +99,7 @@ export default defineComponent({
     }
     &--header {
       display: grid;
-      grid-template-columns: 30% 25% 20% 5% 5% 10% 5%;
+      grid-template-columns: 30% 25% 20% 5% 10% 5% 5%;
       font-weight: 500;
       margin: 0.5rem 0;
       padding-bottom: 0.5rem;
@@ -114,7 +114,7 @@ export default defineComponent({
       font-size: 0.9rem;
       border-bottom: 1px solid #ccc;
       display: grid;
-      grid-template-columns: 30% 25% 20% 5% 5% 10% 5%;
+      grid-template-columns: 30% 25% 20% 5% 10% 5% 5%;
       div {
         text-align: center;
       }

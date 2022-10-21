@@ -6,8 +6,7 @@
       <div>Dostawca</div>
       <div>Opis</div>
       <div>Ilość</div>
-      <div>Cena</div>
-      <div>Status</div>
+      <div>Cena brutto</div>
       <div>Detale</div>
     </div>
     <order-detail-commodity

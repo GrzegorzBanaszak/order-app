@@ -83,7 +83,6 @@ export default defineComponent({
             quantity: item.quantity,
             price: item.price,
             isCustomerPayForDelivery: item.isCustomerPayForDelivery,
-            status: item.status,
           });
         });
       }
