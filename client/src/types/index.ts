@@ -21,3 +21,4 @@ export * from "./IOrderPost";
 export * from "./IOrderPostCommodity";
 export * from "./IStatusUpdate";
 export * from "./ICustomerEditData";
+export * from "./IPopupConfirmData";

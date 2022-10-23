@@ -12,12 +12,12 @@
     <router-link :to="'/d/customers/edit/' + customerInfo.id">
       <pen-black-icon></pen-black-icon>
     </router-link>
-    <trash-black-icon></trash-black-icon>
+    <trash-black-icon @click="removeElement"></trash-black-icon>
   </div>
 </template>
 
 <script lang="ts">
-import { ICustomerInfo } from "@/types";
+import { ICustomerInfo, IPopupConfirmData } from "@/types";
 import moment from "moment";
 import { defineComponent, PropType } from "vue";
 import DottsIcon from "@/icons/DottsIcon.vue";
@@ -42,6 +42,21 @@ export default defineComponent({
         return "Brak";
       }
     },
+    removeElement() {
+
+      const remove = async () => {
+        await this.$store.dispatch("removeCustomer", this.customerInfo.id)
+      }
+
+      const messages = ['Czy napewno chcesz usunąć', this.customerInfo.name]
+
+      const data: IPopupConfirmData = {
+        remove,
+        messages
+      }
+
+      this.$store.commit("displayRemovePopup", data)
+    }
   },
 });
 </script>

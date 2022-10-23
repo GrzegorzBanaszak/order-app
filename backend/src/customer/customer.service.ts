@@ -1,6 +1,11 @@
 import { GetCustomerDto } from 'src/customer/dto';
 import { PostCustomerDto } from './dto/PostCustomerDto';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+    HttpException,
+    HttpStatus,
+    Injectable,
+    NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Customer, CustomerDocument } from './customer.schema';
@@ -81,9 +86,25 @@ export class CustomerService {
         return updatedCustomer;
     }
 
-    async delete(id: string): Promise<string> {
-        await this.customerModel.findByIdAndDelete(id);
+    async delete(id: string): Promise<Customer> {
+        const customersOrder = await this.orderModel.find({ customer: id });
 
-        return id;
+        if (customersOrder.length > 0) {
+            throw new HttpException(
+                'Nie można usunąć klienta który posiada zamówienia',
+                HttpStatus.FORBIDDEN,
+            );
+        }
+
+        const data = await this.customerModel.findByIdAndDelete(id);
+
+        if (!data) {
+            throw new HttpException(
+                'Nie udało sie usunąć klienta',
+                HttpStatus.BAD_REQUEST,
+            );
+        }
+
+        return data;
     }
 }

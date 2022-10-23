@@ -78,7 +78,6 @@ export const customersState: Module<ICustomersState, State> = {
     },
     async editCustomer(context, payload: ICustomerEditData) {
       try {
-        console.log(payload.data);
         const res = await axios.put(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/update/${payload.id}`,
           payload.data
@@ -93,6 +92,24 @@ export const customersState: Module<ICustomersState, State> = {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleCustomerError");
         context.commit("displayErrorPopup", err.response?.data.message);
+      }
+    },
+    async removeCustomer(context, payload: string) {
+      try {
+        const res = await axios.delete(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/delete/${payload}`
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie usunąc klienta ${res.data.name}`,
+        ]);
+        context.dispatch("getCustomers");
+        setTimeout(() => {
+          context.commit("popupReset");
+        }, 5000);
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        const messages = [err.response?.data.message];
+        context.commit("displayErrorPopup", messages);
       }
     },
   },
