@@ -20,12 +20,6 @@
     </div>
     <input type="number" name="quantity" v-model="quantity" />
     <input type="number" name="price" v-model="price" />
-    <order-form-list-select
-      type-value="text"
-      :is-read-only="true"
-      :list-dropdown="['W przygotowaniu', 'Wysłano', 'Do odbioru', 'Odebrano']"
-      @selected="(item) => (status = item)"
-    />
     <div class="form-list__control">
       <accept-icon @click="addItemToList"></accept-icon>
       <remove-icon @click="$emit('hideForm')"></remove-icon>
@@ -55,7 +49,6 @@ export default defineComponent({
       price: 0,
       payForDelivery: false,
       deliveryCost: 0 as number,
-      status: "",
     };
   },
   methods: {
@@ -75,8 +68,7 @@ export default defineComponent({
         this.supplierId &&
         this.commodityId &&
         this.price > 0 &&
-        this.quantity > 0 &&
-        this.status
+        this.quantity > 0
       ) {
         const item: IOrderFormListElement = {
           id: uuidv4(),
@@ -86,7 +78,6 @@ export default defineComponent({
           commodityName: this.commodityName,
           price: this.price,
           quantity: this.quantity,
-          status: this.status,
           isCustomerPayForDelivery: this.payForDelivery,
           deliveryCost: this.deliveryCost,
         };

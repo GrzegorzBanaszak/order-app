@@ -97,8 +97,7 @@ export class OrderProfile extends AutomapperProfile {
                                     item.price,
                                     item.quantity,
                                     item.isCustomerPayForDelivery,
-                                    item.supplier.name,
-                                    item.status,
+                                    item.supplier.name
                                 );
                             },
                         );

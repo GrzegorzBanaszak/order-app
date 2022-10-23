@@ -4,5 +4,4 @@ export interface IOrderPostCommodity{
     quantity: number;
     supplier: string;
     isCustomerPayForDelivery: boolean;
-    status: string;
 }

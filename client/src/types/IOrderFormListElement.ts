@@ -7,6 +7,5 @@ export interface IOrderFormListElement {
   deliveryCost: number;
   price: number;
   quantity: number;
-  status: string;
   isCustomerPayForDelivery: boolean;
 }
