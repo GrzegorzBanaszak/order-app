@@ -66,9 +66,6 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
         context.commit("displaySuccessPopup", [
           `Udało sie dodać towar ${res.data.name}`,
         ]);
-        setTimeout(() => {
-          context.commit("popupReset");
-        }, 5000);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleCommodityError");

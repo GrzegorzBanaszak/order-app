@@ -65,9 +65,6 @@ export const companiesState: Module<ICompaniesState, State> = {
         context.commit("displaySuccessPopup", [
           `Udało sie dodać firmę ${res.data.name}`,
         ]);
-        setTimeout(() => {
-          context.commit("popupReset");
-        }, 5000);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleCompanyError");

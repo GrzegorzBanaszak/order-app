@@ -65,9 +65,6 @@ export const suppliersState: Module<ISuppliersState, State> = {
         context.commit("displaySuccessPopup", [
           `Udało sie dodać dostawcę ${res.data.name}`,
         ]);
-        setTimeout(() => {
-          context.commit("popupReset");
-        }, 5000);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleSupplierError");

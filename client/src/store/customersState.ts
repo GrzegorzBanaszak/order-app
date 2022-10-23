@@ -67,9 +67,6 @@ export const customersState: Module<ICustomersState, State> = {
         context.commit("displaySuccessPopup", [
           `Udało sie dodać klienta ${res.data.name}`,
         ]);
-        setTimeout(() => {
-          context.commit("popupReset");
-        }, 5000);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleCustomerError");
@@ -85,9 +82,6 @@ export const customersState: Module<ICustomersState, State> = {
         context.commit("displaySuccessPopup", [
           `Udało sie zaktualizować klienta ${res.data.name}`,
         ]);
-        setTimeout(() => {
-          context.commit("popupReset");
-        }, 5000);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleCustomerError");
@@ -103,9 +97,6 @@ export const customersState: Module<ICustomersState, State> = {
           `Udało sie usunąc klienta ${res.data.name}`,
         ]);
         context.dispatch("getCustomers");
-        setTimeout(() => {
-          context.commit("popupReset");
-        }, 5000);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         const messages = [err.response?.data.message];

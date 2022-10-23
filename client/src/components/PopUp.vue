@@ -1,31 +1,52 @@
 <template>
-  <div v-if="$store.state.popupState.layoutType === 'info'" :class="'popup ' + $store.state.popupState.styleType">
+  <div
+    v-if="popupData.layoutType === 'info'"
+    :class="'popup ' + popupData.styleType"
+  >
     <h3 class="popup__header">
-      {{ $store.state.popupState.title }}
+      {{ popupData.title }}
     </h3>
     <div class="popup__body">
-      <p v-for="item in $store.state.popupState.message">{{ item }}</p>
-      <button @click="$store.commit('popupReset')">Ok</button>
+      <p v-for="item in popupData.message">{{ item }}</p>
+      <button @click="$store.commit('popupRemove', popupData.id)">Ok</button>
     </div>
   </div>
   <div v-else class="popup">
     <h3 class="popup__header">
-      {{ $store.state.popupState.title }}
+      {{ popupData.title }}
     </h3>
     <div class="popup__body">
-      <p v-for="item in $store.state.popupState.message">{{ item }}</p>
+      <p v-for="item in popupData.message">{{ item }}</p>
       <div class="popup__btns">
-        <button @click="$store.dispatch('removeConfirm')">Tak</button>
-        <button @click="$store.commit('popupReset')">Nie</button>
+        <button
+          class="popup__btn--yes"
+          @click="$store.dispatch('removeConfirm', popupData.id)"
+        >
+          Tak
+        </button>
+        <button
+          class="popup__btn--no"
+          @click="$store.commit('popupRemove', popupData.id)"
+        >
+          Nie
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { IPopupData } from "@/types";
+import { defineComponent, PropType } from "vue";
 
-export default defineComponent({});
+export default defineComponent({
+  props: {
+    popupData: {
+      type: Object as PropType<IPopupData>,
+      required: true,
+    },
+  },
+});
 </script>
 
 <style lang="scss">
@@ -38,7 +59,16 @@ export default defineComponent({});
   border: 1px solid #ccc;
   border-radius: 20px;
   padding: 2rem;
-
+  &__btn {
+    &--yes {
+      background-color: #1b5e20;
+      color: white;
+    }
+    &--no {
+      background-color: #b71c1c;
+      color: white;
+    }
+  }
   &__header {
     text-align: center;
     margin-bottom: 1rem;
@@ -49,6 +79,7 @@ export default defineComponent({});
   &__body {
     p {
       margin: 0.5rem 0;
+      text-align: center;
     }
 
     button {

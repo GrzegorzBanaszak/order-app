@@ -9,7 +9,11 @@
     <main class="dashboard__main">
       <router-view></router-view>
     </main>
-    <pop-up v-if="$store.state.popupState.isShow"></pop-up>
+    <pop-up
+      v-if="$store.state.popupState.popups.size > 0"
+      v-for="item in $store.state.popupState.popups"
+      :popup-data="item[1]"
+    ></pop-up>
   </div>
 </template>
 
@@ -27,8 +31,8 @@ export default defineComponent({
     AddNewButton,
     PopUp,
   },
-  mounted(){
-    document.title ="Zamówienia"
+  mounted() {
+    document.title = "Zamówienia";
   },
   methods: {
     displayLocation() {
@@ -70,6 +74,7 @@ export default defineComponent({
       "nav main main main main"
       "nav main main main main";
   }
+
   &__header {
     grid-area: header;
     background-color: white;
@@ -80,17 +85,20 @@ export default defineComponent({
     padding: 1rem;
     font-size: 1.25rem;
     font-weight: 500;
+
     h2 {
       font-size: 1.625rem;
       font-weight: 500;
     }
   }
+
   &__nav {
     grid-area: nav;
     background-color: #37474f;
     color: #b0bec5;
     padding: 2rem 1rem;
   }
+
   &__main {
     grid-area: main;
     display: grid;
@@ -99,6 +107,7 @@ export default defineComponent({
     padding: 0 1rem;
     gap: 0.7rem;
   }
+
   &__location {
     grid-area: location;
     display: flex;

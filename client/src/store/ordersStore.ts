@@ -99,9 +99,6 @@ export const ordersState: Module<IOrdersState, State> = {
         context.commit("displaySuccessPopup", [
           `Udało sie dodać zamówienie ${res.data.orderNumber}`,
         ]);
-        setTimeout(() => {
-          context.commit("popupReset");
-        }, 5000);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleOrderError");

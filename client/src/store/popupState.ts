@@ -1,58 +1,65 @@
+import { IPopupData } from "./../types/IPopupData";
 import { IPopupConfirmData } from "@/types";
 import { Module } from "vuex";
 import { State } from "./index";
+import { v4 as uuidv4 } from "uuid";
+
 export interface IPopupState {
-  isShow: boolean;
-  styleType: string;
-  layoutType: string;
-  title: string;
-  message: Array<string>;
-  remove?: () => Promise<void>;
+  popups: Map<string, IPopupData>;
 }
 
 export const popupState: Module<IPopupState, State> = {
   state: {
-    isShow: false,
-    styleType: "",
-    layoutType: "",
-    message: [],
-    title: "",
+    popups: new Map(),
   },
   getters: {},
   mutations: {
     displayErrorPopup(state, payload: Array<string>) {
-      state.isShow = true;
-      state.message = payload;
-      state.styleType = "type-error";
-      state.title = "Błąd";
-      state.layoutType = "info";
+      const id = uuidv4();
+      const popupData: IPopupData = {
+        id,
+        styleType: "type-error",
+        layoutType: "info",
+        title: "Uwaga",
+        message: payload,
+      };
+      state.popups.set(id, popupData);
     },
     displaySuccessPopup(state, payload: Array<string>) {
-      state.isShow = true;
-      state.message = payload;
-      state.styleType = "type-success";
-      state.title = "Pomyślnie dodano";
-      state.layoutType = "info";
+      const id = uuidv4();
+      const popupData: IPopupData = {
+        id,
+        styleType: "type-success",
+        layoutType: "info",
+        title: "Pomyślne dodanie",
+        message: payload,
+      };
+      state.popups.set(id, popupData);
     },
-    popupReset(state) {
-      state.isShow = false;
-      state.message = [];
-      state.styleType = "";
-      state.title = "";
-      state.layoutType = "";
+    popupRemove(state, payload: string) {
+      state.popups.delete(payload);
     },
     displayRemovePopup(state, payload: IPopupConfirmData) {
-      state.isShow = true;
-      state.layoutType = "confirm";
-      state.title = "Potwierdz";
-      state.message = payload.messages;
-      state.remove = payload.remove;
+      const id = uuidv4();
+      const popupData: IPopupData = {
+        id,
+        styleType: "type-error",
+        layoutType: "confirm",
+        title: "Uwaga",
+        message: payload.messages,
+        remove: payload.remove,
+      };
+      state.popups.set(id, popupData);
     },
   },
   actions: {
-    async removeConfirm(context) {
-      context.commit("popupReset");
-      if (context.state.remove) await context.state.remove();
+    async removeConfirm(context, payload: string) {
+      const popup = context.state.popups.get(payload);
+
+      if (popup && popup.remove) {
+        await popup.remove();
+        context.commit("popupRemove", payload);
+      }
     },
   },
 };
