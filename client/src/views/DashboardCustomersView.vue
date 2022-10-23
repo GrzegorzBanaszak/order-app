@@ -8,12 +8,8 @@
       <div>Numer telefonu</div>
       <div>Detale</div>
     </div>
-    <div
-      v-if="$store.state.customersState"
-      v-for="item in $store.state.customersState.customers"
-      :key="item.id"
-      class="customers-list__element"
-    >
+    <div v-if="$store.state.customersState" v-for="item in $store.state.customersState.customers" :key="item.id"
+      class="customers-list__element">
       <customers-list-element :customer-info="item"></customers-list-element>
     </div>
   </div>
@@ -36,9 +32,21 @@ export default defineComponent({
 <style lang="scss">
 .customers-list {
   @include display-info-list;
+
   &__header {
     @include display-info-header;
   }
+
   @include dashboard-list(2fr 2fr 2fr 1fr 1fr);
+}
+
+.list-element__controller {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+
+  svg {
+    cursor: pointer;
+  }
 }
 </style>

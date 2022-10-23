@@ -2,6 +2,7 @@ import { State } from "./index";
 import {
   AxiosErrorDataType,
   ICustomerDetail,
+  ICustomerEditData,
   ICustomerInfo,
   ICustomerPost,
 } from "@/types";
@@ -65,6 +66,25 @@ export const customersState: Module<ICustomersState, State> = {
         );
         context.commit("displaySuccessPopup", [
           `Udało sie dodać klienta ${res.data.name}`,
+        ]);
+        setTimeout(() => {
+          context.commit("popupReset");
+        }, 5000);
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        context.commit("toggleCustomerError");
+        context.commit("displayErrorPopup", err.response?.data.message);
+      }
+    },
+    async editCustomer(context, payload: ICustomerEditData) {
+      try {
+        console.log(payload.data);
+        const res = await axios.put(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/update/${payload.id}`,
+          payload.data
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie zaktualizować klienta ${res.data.name}`,
         ]);
         setTimeout(() => {
           context.commit("popupReset");

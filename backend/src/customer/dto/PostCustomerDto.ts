@@ -1,6 +1,6 @@
 import { AutoMap } from '@automapper/classes';
 import { Type } from 'class-transformer';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsMongoId, IsNotEmpty, IsString } from 'class-validator';
 import { ObjectId } from 'mongodb';
 import { Schema } from 'mongoose';
 
@@ -16,6 +16,6 @@ export class PostCustomerDto {
     phoneNumber: string;
 
     @AutoMap()
-    @Type(() => ObjectId)
+    @IsMongoId()
     company?: Schema.Types.ObjectId;
 }

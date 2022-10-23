@@ -1,31 +1,27 @@
 <template>
   <div class="form-group form-select">
     <label :for="nameValue">{{ labelValue }}</label>
-    <input
-      v-model="inputValue"
-      @input="updateValue"
-      :type="typeValue"
-      :placeholder="placeholderValue"
-      :name="nameValue"
-      autocomplete="off"
-      @focusin="isFocus = true"
-      @focusout="hideDropdown"
-    />
+    <input ref="input" @input="updateValue" :type="typeValue" :placeholder="placeholderValue" :name="nameValue"
+      autocomplete="off" @focusin="isFocus = true" @focusout="hideDropdown" />
     <div v-if="isFocus" class="form-select__container">
-      <span
-        class="form-select__element"
-        @click="selectedElement(item.id, item.name)"
-        v-for="item in listDropdown"
-        >{{ item.name }}</span
-      >
+      <span class="form-select__element" @click="selectedElement(item.id, item.name)" v-for="item in listDropdown">{{
+      item.name }}</span>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, ref } from "vue";
 
 export default defineComponent({
+  setup() {
+    const input = ref<HTMLInputElement | null>(null)
+
+    const isFocus = ref<boolean>(false)
+    return {
+      input, isFocus
+    }
+  },
   props: {
     placeholderValue: {
       type: String,
@@ -51,20 +47,25 @@ export default defineComponent({
       type: Object as PropType<Array<any>>,
       default: [],
     },
+    defaultValue: {
+      type: String
+    }
   },
-  data() {
-    return {
-      inputValue: "",
-      isFocus:false as boolean
-    };
+  watch: {
+    defaultValue: function (value) {
+      if (this.input) {
+        this.input.value = value
+      }
+    }
   },
+
   methods: {
     updateValue(e: Event) {
       this.$emit("reset");
       this.$emit("update:modelValue", (e.target as HTMLInputElement).value);
     },
     selectedElement(id: string, name: string) {
-      this.inputValue = name;
+      if (this.input) this.input.value = name
       this.$emit("selected", id);
     },
     hideDropdown() {

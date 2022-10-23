@@ -4,7 +4,7 @@
     <div class="add-form__body">
       <form-group v-model="name" label-value="Imie i nazwisko" type-value="text" placeholder-value="Podaj nazwę"
         name-value="name"></form-group>
-      <form-group v-model="phoneNumber" label-value="Numer telefonu" type-value="text"
+      <form-group v-model="phoneNumber" label-value="Numer telefonu" type-value="number"
         placeholder-value="Podaj numer telefonu" name-value="phoneNumber"></form-group>
       <form-group-dropdown v-model="search" :search-value="search" label-value="Firma" type-value="text"
         placeholder-value="Wpisz nazwę" name-value="company" :listDropdown="$store.getters.getFiltredCompanies(search)"

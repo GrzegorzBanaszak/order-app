@@ -20,3 +20,4 @@ export * from "./IOrderElementEditData";
 export * from "./IOrderPost";
 export * from "./IOrderPostCommodity";
 export * from "./IStatusUpdate";
+export * from "./ICustomerEditData";
