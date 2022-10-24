@@ -10,7 +10,7 @@
       <div>Status</div>
       <div>Detale</div>
     </div>
-    <div class="order-list_container">
+    <div class="orders-list__container">
       <div
         v-if="$store.state.ordersState.ordersInfo"
         v-for="item in $store.getters.getFiltredOrders(filterValue)"

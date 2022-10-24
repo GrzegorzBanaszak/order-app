@@ -4,7 +4,7 @@
     <div>{{ commodityItem.supplierName }}</div>
     <div>{{ commodityItem.description }}</div>
     <div>{{ commodityItem.quantity }} szt</div>
-    <div>{{ commodityItem.price }}zł</div>
+    <div>{{ commodityItem.price.toFixed(2) }} zł</div>
     <div>
       <router-link :to="'/d/commodities/' + commodityItem.id"
         ><dotts-icon

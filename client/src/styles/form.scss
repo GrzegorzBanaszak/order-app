@@ -1,6 +1,8 @@
 .add-form {
   background-color: white;
   @include display-info-list;
+  overflow-y: auto;
+  @include scrollbars(5px, #ccc, white);
   &__header {
     text-align: center;
     padding-bottom: 1rem;
@@ -17,7 +19,7 @@
     width: 17.188rem;
     display: block;
     margin: 1rem auto;
-    overflow: hidden;
+    
     cursor: pointer;
     padding: 0.7rem 0;
     text-transform: uppercase;
