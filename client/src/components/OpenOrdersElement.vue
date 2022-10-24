@@ -5,18 +5,21 @@
     <div>{{ order?.quantity }}</div>
     <div>{{ order?.totalPrice }} zł</div>
     <div>{{ order?.status }}</div>
-    <div><dotts-icon-vue /></div>
+    <div><router-link :to="`/d/orders/${order?.id}`">
+      <info-black-icon />
+    </router-link></div>
+    
   </div>
 </template>
 
 <script lang="ts">
-import DottsIconVue from "@/icons/DottsIcon.vue";
+import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
 import { IOrder } from "@/types";
 import { defineComponent, PropType } from "vue";
 import moment from "moment";
 
 export default defineComponent({
-  components: { DottsIconVue },
+  components: { InfoBlackIcon },
   props: {
     order: {
       type: Object as PropType<IOrder>,
@@ -37,7 +40,8 @@ export default defineComponent({
     div {
       text-align: center;
     }
-    margin-bottom: 1.2rem;
+    margin: 0.7rem;
   }
+  
 }
 </style>

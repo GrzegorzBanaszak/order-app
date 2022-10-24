@@ -7,12 +7,14 @@
     <h4>Status</h4>
     <h4>Detale</h4>
   </header>
-  <open-orders-element
+  <div class="open-orders__container">
+    <open-orders-element
     v-if="$store.state.openState.filteredOrders.length > 0"
     v-for="item in $store.state.openState.filteredOrders"
     :key="item.id"
     :order="item"
   ></open-orders-element>
+  </div>
 </template>
 
 <script lang="ts">
@@ -33,7 +35,13 @@ export default defineComponent({
     h4 {
       text-align: center;
     }
-    margin-bottom: 1rem;
+    margin: 1rem  0.7rem;
+  }
+  &__container{
+    max-height: 90%;
+    overflow-y: auto;
+      @include scrollbars(5px, #ccc, white);
+      padding-bottom: 1.4rem;
   }
 }
 </style>

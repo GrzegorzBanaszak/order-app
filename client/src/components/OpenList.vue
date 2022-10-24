@@ -3,12 +3,15 @@
     <h4>{{ title }}</h4>
     <component :is="icon"></component>
   </header>
-  <open-list-element
+  <div class="open-list__container"><open-list-element
     v-for="(item, index) in list"
-    :key="index"
+    :key="item._id"
     :name="item.name"
     :quantity="item.quantity"
-  ></open-list-element>
+    :id="item._id"
+    :type="listType"
+  ></open-list-element></div>
+  
 </template>
 
 <script lang="ts">
@@ -33,6 +36,10 @@ export default defineComponent({
       type: String,
       default: "",
     },
+    listType:{
+      type:String,
+      required:true
+    }
   },
 });
 </script>
@@ -43,6 +50,12 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0.5rem ;
+  }
+  &__container{
+    max-height: 100%;
+    overflow-y: auto;
+      @include scrollbars(5px, #ccc, white);
   }
 }
 </style>

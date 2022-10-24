@@ -2,16 +2,19 @@
   <div class="open-list__element">
     <div class="open-list__element--name">{{ name }}</div>
     <div class="open-list__element--quantity">{{ quantity }}</div>
-    <div><dotts-icon-vue /></div>
+    <router-link :to="`/d/${type}/${id}`">
+      <info-black-icon />
+    </router-link>
   </div>
 </template>
 
 <script lang="ts">
-import DottsIconVue from "@/icons/DottsIcon.vue";
+import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
 import { defineComponent } from "vue";
 
+
 export default defineComponent({
-  components: { DottsIconVue },
+  components: { InfoBlackIcon },
   props: {
     name: {
       type: String,
@@ -21,6 +24,14 @@ export default defineComponent({
       type: Number,
       default: 0,
     },
+    id:{
+      type:String,
+      required:true
+    },
+    type:{
+      type:String,
+      required:true
+    }
   },
 });
 </script>
@@ -28,15 +39,17 @@ export default defineComponent({
 <style lang="scss">
 .open-list {
   &__element {
-    margin: 1.3rem 0;
+    margin: 0.7rem  0.5rem;
     display: flex;
     align-items: center;
     &--name {
       width: 70%;
+      font-size: 0.9rem;
     }
     &--quantity {
       width: 20%;
       text-align: center;
+      font-size: 0.9rem;
     }
   }
 }

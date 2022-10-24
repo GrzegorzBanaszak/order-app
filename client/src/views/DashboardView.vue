@@ -104,7 +104,7 @@ export default defineComponent({
     display: grid;
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(4, 1fr);
-    padding: 0 1rem;
+    padding: 0.3rem 1rem;
     gap: 0.7rem;
   }
 

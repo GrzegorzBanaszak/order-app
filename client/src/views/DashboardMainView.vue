@@ -5,6 +5,7 @@
       :title="'Najlepsi klienci'"
       :icon="'CustomersBlueIcon'"
       :list="$store.state.openState.bestCustomers"
+      :list-type="'customers'"
     ></open-list>
   </div>
   <div class="main__best--commadity">
@@ -12,6 +13,7 @@
       :title="'Najczęściej zamawiane'"
       :icon="'PackageBlueIcon'"
       :list="$store.state.openState.bestCommodities"
+      :list-type="'commodities'"
     ></open-list>
   </div>
   <div class="main__orders"><open-orders-list /></div>
@@ -52,8 +54,7 @@ export default defineComponent({
     grid-row-start: 3;
     grid-row-end: 5;
     background-color: white;
-    padding: 1rem;
-    overflow-y: auto;
+    overflow: hidden;
     @include scrollbars(5px, #ccc, white);
   }
   &__best {
@@ -61,17 +62,13 @@ export default defineComponent({
       grid-row-start: 1;
       grid-row-end: 3;
       background-color: white;
-      padding: 1rem;
-      overflow-y: auto;
-      @include scrollbars(5px, #ccc, white);
+      overflow: hidden;
     }
     &--commadity {
       grid-row-start: 1;
       grid-row-end: 3;
       background-color: white;
-      padding: 1rem;
-      overflow-y: auto;
-      @include scrollbars(5px, #ccc, white);
+      overflow: hidden;
     }
   }
 }
