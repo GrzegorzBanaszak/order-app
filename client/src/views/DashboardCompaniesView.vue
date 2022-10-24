@@ -8,13 +8,15 @@
       <div>Ilość pracowników</div>
       <div>Detale</div>
     </div>
-    <div
-      v-if="$store.state.companiesState?.companies"
-      v-for="item in $store.state.companiesState?.companies"
-      :key="item.id"
-      class="companies-list__element"
-    >
-      <companies-list-element :company-info="item"></companies-list-element>
+    <div class="companies-list__container">
+      <div
+        v-if="$store.state.companiesState?.companies"
+        v-for="item in $store.state.companiesState?.companies"
+        :key="item.id"
+        class="companies-list__element"
+      >
+        <companies-list-element :company-info="item"></companies-list-element>
+      </div>
     </div>
   </div>
 </template>

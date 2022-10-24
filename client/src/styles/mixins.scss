@@ -4,18 +4,20 @@
 }
 
 @mixin display-info-list {
-  padding: 1rem;
   background-color: white;
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 5;
-  overflow-y: auto;
+  overflow-y: hidden;
+  width: 100%;
 }
 
 @mixin display-info-header {
+  padding: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.5rem;
   font-weight: 700;
 }
@@ -50,16 +52,21 @@
       text-align: center;
     }
   }
-  @include scrollbars(5px, #ccc, white);
+  
   &__element {
     display: grid;
     grid-template-columns: $grid;
-    padding: 0.6rem 0;
+    padding: 0.6rem 1rem;
     border-bottom: 1px solid #ccc;
     font-size: 0.9rem;
     div {
       text-align: center;
     }
+  }
+  &__container{
+    @include scrollbars(5px, #ccc, white);
+    overflow-y: auto;
+    height: 100%;
   }
 }
 

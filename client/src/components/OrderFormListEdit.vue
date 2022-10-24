@@ -12,7 +12,7 @@
     </div>
     <input type="number" name="quantity" v-model="quantity" />
     <input type="number" name="price" v-model="price" />
-    <div>{{ orderItem.status }}</div>
+
     <div class="form-list__control">
       <accept-icon @click="updateElement"></accept-icon>
       <remove-icon @click="$emit('hideForm')"></remove-icon>
