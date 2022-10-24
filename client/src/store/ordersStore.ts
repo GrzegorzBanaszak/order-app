@@ -33,7 +33,12 @@ export const ordersState: Module<IOrdersState, State> = {
     ordersFormElements: new Map(),
     isError: false,
   },
-  getters: {},
+  getters: {
+    getFiltredOrders:(state) => (search:string) => {
+      const lowerCaseSearch = search.toLowerCase();
+      return state.ordersInfo.filter(item =>item.customer.toLowerCase().includes(lowerCaseSearch))
+    }
+  },
   mutations: {
     setOrdersHistory(state, payload: IOrderHistoryInfo[]) {
       state.ordersHistory = payload;

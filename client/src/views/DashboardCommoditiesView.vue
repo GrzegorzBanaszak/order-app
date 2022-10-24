@@ -1,21 +1,23 @@
 <template>
   <div class="commodities-list">
-    <header class="commodities-list__header">Lista Towarów</header>
+    <header class="commodities-list__header">Lista Towarów <search-filter-input v-model="filterValue"/></header>
     <div class="commodities-list__info">
       <div>Nazwa towaru</div>
       <div>Ostatnia cena</div>
       <div>Ostatnie sprzedaż</div>
       <div>Detale</div>
     </div>
-    <div
-      v-if="$store.state.commoditiesState.commodities"
-      v-for="item in $store.state.commoditiesState.commodities"
-      :key="item.id"
-      class="commodities-list__element"
-    >
-      <commodities-list-element
-        :commodity-info="item"
-      ></commodities-list-element>
+    <div class="commodities-list__container">
+      <div
+        v-if="$store.state.commoditiesState.commodities"
+        v-for="item in $store.getters.getFiltredCommodities(filterValue)"
+        :key="item.id"
+        class="commodities-list__element"
+      >
+        <commodities-list-element
+          :commodity-info="item"
+        ></commodities-list-element>
+      </div>
     </div>
   </div>
 </template>
@@ -24,13 +26,19 @@
 import { useStore } from "@/store";
 import { defineComponent } from "vue";
 import CommoditiesListElement from "../components/CommoditiesListElement.vue";
+import SearchFilterInput from "@/components/SearchFilterInput.vue";
 
 export default defineComponent({
-  components: { CommoditiesListElement },
+  components: { CommoditiesListElement,SearchFilterInput },
   setup() {
     const store = useStore();
     store.dispatch("setCommodities");
   },
+  data(){
+    return{
+      filterValue:'' as string
+    }
+  }
 });
 </script>
 

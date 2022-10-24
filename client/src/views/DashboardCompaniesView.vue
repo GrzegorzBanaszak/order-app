@@ -1,6 +1,6 @@
 <template>
   <div class="companies-list">
-    <header class="companies-list__header">Lista Firm</header>
+    <header class="companies-list__header">Lista Firm <search-filter-input v-model="filterValue"/></header>
     <div class="companies-list__info">
       <div>Nazwa firmy</div>
       <div>Nip</div>
@@ -10,8 +10,8 @@
     </div>
     <div class="companies-list__container">
       <div
-        v-if="$store.state.companiesState?.companies"
-        v-for="item in $store.state.companiesState?.companies"
+        v-if="$store.state.companiesState.companies"
+        v-for="item in $store.getters.getFiltredCompanies(filterValue)"
         :key="item.id"
         class="companies-list__element"
       >
@@ -23,15 +23,21 @@
 
 <script lang="ts">
 import CompaniesListElement from "@/components/CompaniesListElement.vue";
+import SearchFilterInput from "@/components/SearchFilterInput.vue";
 import { defineComponent } from "vue";
 import { useStore } from "@/store";
 
 export default defineComponent({
-  components: { CompaniesListElement },
+  components: { CompaniesListElement ,SearchFilterInput},
   setup() {
     const store = useStore();
     store.dispatch("getCompanies");
   },
+  data(){
+    return{
+      filterValue:'' as string
+    }
+  }
 });
 </script>
 
