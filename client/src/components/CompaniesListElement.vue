@@ -5,21 +5,27 @@
     {{ getDate() }}
   </div>
   <div>{{ companyInfo.employers }}</div>
-  <div>
-    <router-link :to="'/d/companies/' + companyInfo.id"
-      ><dotts-icon
-    /></router-link>
+  <div class="list-element__controller">
+    <router-link :to="'/d/companies/' + companyInfo.id">
+      <info-black-icon />
+    </router-link>
+    <router-link :to="'/d/companies/edit/' + companyInfo.id">
+      <pen-black-icon></pen-black-icon>
+    </router-link>
+    <trash-black-icon @click="removeElement"></trash-black-icon>
   </div>
 </template>
 
 <script lang="ts">
-import DottsIcon from "@/icons/DottsIcon.vue";
-import { ICompanyInfo } from "@/types";
+import TrashBlackIcon from "@/icons/TrashBlackIcon.vue";
+import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
+import PenBlackIcon from "../icons/PenBlackIcon.vue";
+import { ICompanyInfo, IPopupConfirmData } from "@/types";
 import moment from "moment";
 import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
-  components: { DottsIcon },
+  components: { InfoBlackIcon, TrashBlackIcon, PenBlackIcon },
   props: {
     companyInfo: {
       type: Object as PropType<ICompanyInfo>,
@@ -33,6 +39,17 @@ export default defineComponent({
       } else {
         return "Brak";
       }
+    },
+    removeElement() {
+      const remove = async () => {
+        await this.$store.dispatch("removeCompany", this.companyInfo.id);
+      };
+      const messages = ["Czy napewno chcesz usunąć", this.companyInfo.name];
+      const data: IPopupConfirmData = {
+        remove,
+        messages,
+      };
+      this.$store.commit("displayRemovePopup", data);
     },
   },
 });

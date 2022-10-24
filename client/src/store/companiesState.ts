@@ -3,6 +3,7 @@ import { State } from "./index";
 import {
   AxiosErrorDataType,
   ICompanyDetail,
+  ICompanyEditData,
   ICompanyInfo,
   ICustomerPost,
 } from "@/types";
@@ -69,6 +70,37 @@ export const companiesState: Module<ICompaniesState, State> = {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleCompanyError");
         context.commit("displayErrorPopup", err.response?.data.message);
+      }
+    },
+    async editCompany(context, payload: ICompanyEditData) {
+      try {
+        const res = await axios.put(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/update/${payload.id}`,
+          payload.data
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie zaktualizować firmę ${res.data.name}`,
+        ]);
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        context.commit("toggleCompanyError");
+        context.commit("displayErrorPopup", err.response?.data.message);
+      }
+    },
+    async removeCompany(context, payload: string) {
+      try {
+        const res = await axios.delete(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/delete/${payload}`
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie usunąc firmę ${res.data.name}`,
+        ]);
+        context.dispatch("getCompanies");
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        const messages = [err.response?.data.message];
+        console.log(err);
+        context.commit("displayErrorPopup", messages);
       }
     },
   },

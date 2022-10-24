@@ -23,3 +23,4 @@ export * from "./IStatusUpdate";
 export * from "./ICustomerEditData";
 export * from "./IPopupConfirmData";
 export * from "./IPopupData";
+export * from "./ICompanyEditData";

@@ -39,13 +39,13 @@ export class CompanyController {
         return await this.companyService.add(data);
     }
 
-    @Put('update')
+    @Put('update/:id')
     @UseInterceptors(MapInterceptor(Company, GetCompanyDto))
-    async update(@Param() params: any, data: PostCompanyDto) {
+    async update(@Param() params: any, @Body() data: PostCompanyDto) {
         return await this.companyService.update(params.id, data);
     }
 
-    @Delete('delete')
+    @Delete('delete/:id')
     async delete(@Param() params: any) {
         return await this.companyService.delete(params.id);
     }

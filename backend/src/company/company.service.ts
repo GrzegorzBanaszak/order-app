@@ -3,7 +3,12 @@ import { Order, OrderDocument } from 'src/order/order.schema';
 import { CustomerDocument, Customer } from 'src/customer/customer.schema';
 import { PostCompanyDto } from './dto/PostComapnyDto';
 import { Company, CompanyDocument } from './company.schema';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+    HttpException,
+    HttpStatus,
+    Injectable,
+    NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CompanyInfoDto } from './dto';
@@ -114,9 +119,25 @@ export class CompanyService {
         return updatedCompany;
     }
 
-    async delete(id: string): Promise<string> {
-        await this.companyModel.findByIdAndDelete(id);
+    async delete(id: string): Promise<Company> {
+        const customers = await this.customerModel.find({ company: id });
 
-        return id;
+        if (customers.length > 0) {
+            throw new HttpException(
+                'Nie można usunąć firmy który posiada pracowników',
+                HttpStatus.FORBIDDEN,
+            );
+        }
+
+        const data = await this.companyModel.findByIdAndDelete(id);
+
+        if (!data) {
+            throw new HttpException(
+                'Nie udało sie usunąć firmy',
+                HttpStatus.BAD_REQUEST,
+            );
+        }
+
+        return data;
     }
 }

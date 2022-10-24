@@ -26,7 +26,7 @@ export default defineComponent({
 .detail-customer {
   &__info {
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 3;
     background-color: white;
@@ -39,7 +39,7 @@ export default defineComponent({
     }
   }
   &__supplier {
-    grid-column-start: 4;
+    grid-column-start: 3;
     grid-column-end: 5;
     grid-row-start: 1;
     grid-row-end: 3;

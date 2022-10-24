@@ -20,14 +20,12 @@
 import { ICustomerInfo, IPopupConfirmData } from "@/types";
 import moment from "moment";
 import { defineComponent, PropType } from "vue";
-import DottsIcon from "@/icons/DottsIcon.vue";
 import TrashBlackIcon from "@/icons/TrashBlackIcon.vue";
 import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
 import PenBlackIcon from "../icons/PenBlackIcon.vue";
 
-
 export default defineComponent({
-  components: { DottsIcon, InfoBlackIcon, TrashBlackIcon, PenBlackIcon },
+  components: { InfoBlackIcon, TrashBlackIcon, PenBlackIcon },
   props: {
     customerInfo: {
       type: Object as PropType<ICustomerInfo>,
@@ -43,20 +41,19 @@ export default defineComponent({
       }
     },
     removeElement() {
-
       const remove = async () => {
-        await this.$store.dispatch("removeCustomer", this.customerInfo.id)
-      }
+        await this.$store.dispatch("removeCustomer", this.customerInfo.id);
+      };
 
-      const messages = ['Czy napewno chcesz usunąć', this.customerInfo.name]
+      const messages = ["Czy napewno chcesz usunąć", this.customerInfo.name];
 
       const data: IPopupConfirmData = {
         remove,
-        messages
-      }
+        messages,
+      };
 
-      this.$store.commit("displayRemovePopup", data)
-    }
+      this.$store.commit("displayRemovePopup", data);
+    },
   },
 });
 </script>

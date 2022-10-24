@@ -4,21 +4,27 @@
   <div>
     {{ getDate() }}
   </div>
-  <div>
-    <router-link :to="'/d/commodities/' + commodityInfo.id"
-      ><dotts-icon
-    /></router-link>
+  <div class="list-element__controller">
+    <router-link :to="'/d/commodities/' + commodityInfo.id">
+      <info-black-icon />
+    </router-link>
+    <router-link :to="'/d/commodities/edit/' + commodityInfo.id">
+      <pen-black-icon></pen-black-icon>
+    </router-link>
+    <trash-black-icon @click="removeElement"></trash-black-icon>
   </div>
 </template>
 
 <script lang="ts">
-import DottsIcon from "@/icons/DottsIcon.vue";
+import TrashBlackIcon from "@/icons/TrashBlackIcon.vue";
+import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
+import PenBlackIcon from "../icons/PenBlackIcon.vue";
 import { ICommodityInfo } from "@/types";
 import moment from "moment";
 import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
-  components: { DottsIcon },
+  components: { InfoBlackIcon, TrashBlackIcon, PenBlackIcon },
   props: {
     commodityInfo: {
       type: Object as PropType<ICommodityInfo>,
@@ -32,6 +38,17 @@ export default defineComponent({
       } else {
         return "Brak";
       }
+    },
+    removeElement() {
+      // const remove = async () => {
+      //   await this.$store.dispatch("removeCustomer", this.customerInfo.id)
+      // }
+      // const messages = ['Czy napewno chcesz usunąć', this.customerInfo.name]
+      // const data: IPopupConfirmData = {
+      //   remove,
+      //   messages
+      // }
+      // this.$store.commit("displayRemovePopup", data)
     },
   },
 });
