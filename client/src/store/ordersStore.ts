@@ -57,6 +57,14 @@ export const ordersState: Module<IOrdersState, State> = {
       if (item) {
         item.price = payload.price;
         item.quantity = payload.quantity;
+        item.isCustomerPayForDelivery = payload.isCustomerPayForDelivery
+      }
+    },
+    removeFormElement(state,payload:string){
+      const item = state.ordersFormElements.get(payload)
+
+      if(item){
+        state.ordersFormElements.delete(payload)
       }
     },
     resetOrdersElements(state) {

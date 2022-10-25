@@ -99,7 +99,6 @@ export const companiesState: Module<ICompaniesState, State> = {
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         const messages = [err.response?.data.message];
-        console.log(err);
         context.commit("displayErrorPopup", messages);
       }
     },

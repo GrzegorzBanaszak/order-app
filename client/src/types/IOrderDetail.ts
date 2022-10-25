@@ -26,7 +26,7 @@ export interface IOrderDetailCommodity {
   description: string;
   price: number;
   quantity: number;
-  isCustomerPayForDelivery: boolean;
+  deliveryPrice: number;
   supplierName: string;
   status: string;
 }

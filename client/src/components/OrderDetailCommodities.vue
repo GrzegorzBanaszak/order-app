@@ -4,7 +4,7 @@
     <div class="detail-order__commodities--header">
       <div>Nazwa</div>
       <div>Dostawca</div>
-      <div>Opis</div>
+      <div>Cena dostawy brutto</div>
       <div>Ilość</div>
       <div>Cena brutto</div>
       <div>Detale</div>

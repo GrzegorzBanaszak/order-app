@@ -82,7 +82,7 @@ export default defineComponent({
             supplier: item.supplier,
             quantity: item.quantity,
             price: item.price,
-            isCustomerPayForDelivery: item.isCustomerPayForDelivery,
+            deliveryPrice: item.isCustomerPayForDelivery ? item.deliveryCost : 0,
           });
         });
       }

@@ -2,7 +2,7 @@
   <div class="detail-order__commodities--element">
     <div>{{ commodityItem.name }}</div>
     <div>{{ commodityItem.supplierName }}</div>
-    <div>{{ commodityItem.description }}</div>
+    <div>{{ commodityItem.deliveryPrice }} zł</div>
     <div>{{ commodityItem.quantity }} szt</div>
     <div>{{ commodityItem.price.toFixed(2) }} zł</div>
     <div>

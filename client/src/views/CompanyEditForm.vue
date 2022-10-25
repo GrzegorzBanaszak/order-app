@@ -73,10 +73,10 @@ export default defineComponent({
 
       await this.$store.dispatch("editCompany", dataToUpdate);
 
-      if (!this.$store.state.customersState.isError) {
+      if (!this.$store.state.companiesState.isError) {
         this.$router.replace({ replace: true, path: "/d/companies" });
       } else {
-        this.$store.commit("toggleCustomerError");
+        this.$store.commit("toggleCompanyError");
       }
     },
   },

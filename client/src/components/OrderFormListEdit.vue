@@ -7,7 +7,7 @@
       <input
         type="checkbox"
         readonly
-        :value="orderItem.isCustomerPayForDelivery"
+        v-model="isCustomerPayForDelivery"
       />
     </div>
     <input type="number" name="quantity" v-model="quantity" />
@@ -38,6 +38,7 @@ export default defineComponent({
     return {
       quantity: this.orderItem.quantity,
       price: this.orderItem.price,
+      isCustomerPayForDelivery:this.orderItem.isCustomerPayForDelivery
     };
   },
   methods: {
@@ -46,6 +47,7 @@ export default defineComponent({
         id: this.orderItem.id,
         quantity: this.quantity,
         price: this.price,
+        isCustomerPayForDelivery:this.isCustomerPayForDelivery
       };
 
       this.$store.commit("editFormElement", dataToUpdate);

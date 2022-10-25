@@ -7,7 +7,7 @@ export class OrderDetailCommodity {
         description: string,
         price: number,
         quantity: number,
-        isCustomerPayForDelivery: boolean,
+        deliveryPrice: number,
         supplierName: string,
     ) {
         this.id = id;
@@ -15,7 +15,7 @@ export class OrderDetailCommodity {
         this.description = description;
         this.price = price;
         this.quantity = quantity;
-        this.isCustomerPayForDelivery = isCustomerPayForDelivery;
+        this.deliveryPrice = deliveryPrice;
         this.supplierName = supplierName;
     }
 
@@ -25,5 +25,5 @@ export class OrderDetailCommodity {
     price: number;
     quantity: number;
     supplierName: string;
-    isCustomerPayForDelivery: boolean;
+    deliveryPrice: number;
 }

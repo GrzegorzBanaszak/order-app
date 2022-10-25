@@ -3,5 +3,5 @@ export interface IOrderPostCommodity{
     price: number;
     quantity: number;
     supplier: string;
-    isCustomerPayForDelivery: boolean;
+    deliveryPrice: number;
 }

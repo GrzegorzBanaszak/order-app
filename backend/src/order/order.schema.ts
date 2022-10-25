@@ -28,7 +28,7 @@ export class OrderCommodity {
     quantity: number;
 
     @Prop()
-    isCustomerPayForDelivery: boolean;
+    deliveryPrice: number;
 }
 
 @Schema({ timestamps: true })
