@@ -1,5 +1,5 @@
 import { Supplier, SupplierDocument } from './supplier.schema';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { PostSupplierDto, SupplierInfoDto, SupplierDetailDto } from './dto';
@@ -132,9 +132,29 @@ export class SupplierService {
         return updatedSupplier;
     }
 
-    async delete(id: string): Promise<string> {
-        await this.supplierModel.findByIdAndDelete({ _id: id });
+    async delete(id: ObjectId): Promise<Supplier> {
 
-        return id;
+        const orders = await this.orderModel
+        .find({
+            'commodities.supplier': id.toString(),
+        })
+
+        if(orders.length > 0){
+            throw new HttpException(
+                'Nie mozna usunąć dostawcy który posiada zamówienia',
+                HttpStatus.FORBIDDEN,
+            );
+        }
+
+        const data = await this.supplierModel.findByIdAndDelete({ _id: id });
+
+        if (!data) {
+            throw new HttpException(
+                'Nie udało sie usunąć dostawcy',
+                HttpStatus.BAD_REQUEST,
+            );
+        }
+
+        return data;
     }
-}
+} 

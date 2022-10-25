@@ -3,6 +3,7 @@ import { State } from "./index";
 import {
   AxiosErrorDataType,
   ISupplierDetail,
+  ISupplierEditData,
   ISupplierInfo,
   ISupplierPost,
 } from "@/types";
@@ -69,6 +70,36 @@ export const suppliersState: Module<ISuppliersState, State> = {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleSupplierError");
         context.commit("displayErrorPopup", err.response?.data.message);
+      }
+    },
+    async editSupplier(context, payload: ISupplierEditData) {
+      try {
+        const res = await axios.put(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/update/${payload.id}`,
+          payload.data
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie edytować dostawcę ${res.data.name}`,
+        ]);
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        context.commit("toggleSupplierError");
+        context.commit("displayErrorPopup", err.response?.data.message);
+      }
+    },
+    async removeSupplier(context, payload: string) {
+      try {
+        const res = await axios.delete(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/delete/${payload}`
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie usunąc klienta ${res.data.name}`,
+        ]);
+        context.dispatch("setSuppliers");
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        const messages = [err.response?.data.message];
+        context.commit("displayErrorPopup", messages);
       }
     },
   },

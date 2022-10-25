@@ -1,7 +1,7 @@
 <template>
   <div class="form-group">
     <label :for="nameValue">{{ labelValue }}</label>
-    <input ref="input" @input="updateValue" :type="typeValue" :placeholder="placeholderValue" :name="nameValue"
+    <input ref="input" @input="updateValue" :type="typeValue" :placeholder="placeholderValue" :name="nameValue" step=".01"
       autocomplete="off" />
   </div>
 </template>

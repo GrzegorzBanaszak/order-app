@@ -46,7 +46,7 @@ export class SupplierController {
     }
 
     @Delete('delete/:id')
-    async delete(@Param() params: any) {
-        return await this.supplierService.delete(params.id);
+    async delete(@Param('id', ParseObjectIdPipe) id: ObjectId) {
+        return await this.supplierService.delete(id);
     }
 }
