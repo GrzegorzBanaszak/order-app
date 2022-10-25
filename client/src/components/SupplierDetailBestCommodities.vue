@@ -15,15 +15,17 @@
         <div>Ostatnia cena</div>
         <div>Detale</div>
       </div>
-      <div
-        v-for="item in $store.state.suppliersState.supplierDetail
-          .bestOrderCommodities"
-        :key="item.id"
-        class="supplier-best__element"
-      >
-        <supplier-detail-best-commodity
-          :commodity-data="item"
-        ></supplier-detail-best-commodity>
+      <div class="supplier-best__container">
+        <div
+          v-for="item in $store.state.suppliersState.supplierDetail
+            .bestOrderCommodities"
+          :key="item.id"
+          class="supplier-best__element"
+        >
+          <supplier-detail-best-commodity
+            :commodity-data="item"
+          ></supplier-detail-best-commodity>
+        </div>
       </div>
     </div>
     <div v-else class="supplier-best__info">Brak towarów</div>
@@ -42,10 +44,13 @@ export default defineComponent({
 
 <style lang="scss">
 .supplier-best {
-  overflow-y: auto;
+  padding: 0 0.4rem 1rem 0.4rem;
   height: 100%;
-  padding: 0.4rem;
-  @include scrollbars(5px, #ccc, white);
+  &__container {
+    overflow-y: auto;
+    height: 80%;
+    @include scrollbars(5px, #ccc, white);
+  }
   &__header {
     margin: 0.4rem 0;
     font-size: 0.8rem;

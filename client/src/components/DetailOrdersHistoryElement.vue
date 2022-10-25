@@ -5,7 +5,7 @@
   <div>{{ orderInfo.totalPrice }} zł</div>
   <div>{{ orderInfo.status }}</div>
   <div>
-    <router-link :to="'/d/orders/' + orderInfo.id"><dotts-icon /></router-link>
+    <router-link :to="'/d/orders/' + orderInfo.id"><info-black-icon /></router-link>
   </div>
 </template>
 
@@ -13,10 +13,10 @@
 import { IOrderHistoryInfo } from "@/types";
 import moment from "moment";
 import { defineComponent, PropType } from "vue";
-import DottsIcon from "@/icons/DottsIcon.vue";
+import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
 
 export default defineComponent({
-  components: { DottsIcon },
+  components: { InfoBlackIcon },
   props: {
     orderInfo: {
       type: Object as PropType<IOrderHistoryInfo>,

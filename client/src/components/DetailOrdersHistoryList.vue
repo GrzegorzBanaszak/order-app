@@ -11,16 +11,18 @@
       <div>Status</div>
       <div>Detale</div>
     </div>
-    <div
-      v-if="$store.state.ordersState.ordersHistory.length > 0"
-      v-for="item in $store.state.ordersState.ordersHistory"
-      class="orders-history__element"
-    >
-      <detail-orders-history-element
-        :order-info="item"
-      ></detail-orders-history-element>
+    <div class="orders-history__container">
+      <div
+        v-if="$store.state.ordersState.ordersHistory.length > 0"
+        v-for="item in $store.state.ordersState.ordersHistory"
+        class="orders-history__element"
+      >
+        <detail-orders-history-element
+          :order-info="item"
+        ></detail-orders-history-element>
+      </div>
+      <div v-else class="orders-history__message">Brak zamówień</div>
     </div>
-    <div v-else class="orders-history__message">Brak zamówień</div>
   </div>
 </template>
 
@@ -70,6 +72,13 @@ export default defineComponent({
   grid-row-start: 3;
   grid-row-end: 5;
   padding: 0.4rem;
+  overflow-y: hidden;
+  &__container {
+    overflow-y: auto;
+    height: 80%;
+    @include scrollbars(5px, #ccc, white);
+    padding-bottom: 1rem;
+  }
   &__title {
     @include item-detail-header;
   }
