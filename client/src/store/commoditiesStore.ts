@@ -88,5 +88,21 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
         context.commit("displayErrorPopup", err.response?.data.message);
       }
     },
+
+    async removeCommodity(context, payload: string) {
+      try {
+        const res = await axios.delete(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/delete/${payload}`
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie usunąc towar ${res.data.name}`,
+        ]);
+        context.dispatch("setCommodities");
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        const messages = [err.response?.data.message];
+        context.commit("displayErrorPopup", messages);
+      }
+    },
   },
 };

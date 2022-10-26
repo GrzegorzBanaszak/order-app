@@ -45,7 +45,7 @@ export class CommodityController {
     }
 
     @Delete('delete/:id')
-    async delete(@Param() params: any) {
-        return await this.commodityService.delete(params.id);
+    async delete(@Param('id', ParseObjectIdPipe) id: ObjectId) {
+        return await this.commodityService.delete(id);
     }
 }

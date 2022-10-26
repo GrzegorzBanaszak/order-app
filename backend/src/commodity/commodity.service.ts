@@ -1,6 +1,11 @@
 import { ObjectId } from 'mongodb';
 import { Commodity, CommodityDocument } from './commodity.schema';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+    HttpException,
+    HttpStatus,
+    Injectable,
+    NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import {
@@ -150,8 +155,26 @@ export class CommodityService {
         return updatedCommodity;
     }
 
-    async delete(id: string): Promise<string> {
-        await this.commodityModel.findByIdAndDelete(id);
-        return id;
+    async delete(id: ObjectId): Promise<Commodity> {
+        const orders = await this.orderModel.find({
+            'commodities.commodity': id.toString(),
+        });
+
+        if (orders.length > 0) {
+            throw new HttpException(
+                'Nie można usunąć towaru który posiada zamówienia',
+                HttpStatus.FORBIDDEN,
+            );
+        }
+
+        const data = await this.commodityModel.findByIdAndDelete(id);
+
+        if (!data) {
+            throw new HttpException(
+                'Nie udało sie usunąć towaru',
+                HttpStatus.BAD_REQUEST,
+            );
+        }
+        return data;
     }
 }
