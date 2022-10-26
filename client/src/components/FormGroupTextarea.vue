@@ -2,6 +2,7 @@
   <div class="form-group-textarea">
     <label :for="nameValue">{{ labelValue }}</label>
     <textarea
+      ref="input"
       @input="updateValue"
       :type="typeValue"
       :placeholder="placeholderValue"
@@ -11,9 +12,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
+  setup() {
+    const input = ref<HTMLInputElement | null>(null);
+
+    return {
+      input,
+    };
+  },
   props: {
     placeholderValue: {
       type: String,
@@ -30,6 +38,16 @@ export default defineComponent({
     nameValue: {
       type: String,
       required: true,
+    },
+    defaultValue: {
+      type: String,
+    },
+  },
+  watch: {
+    defaultValue: function (value) {
+      if (this.input && this.defaultValue) {
+        this.input.value = value;
+      }
     },
   },
   methods: {

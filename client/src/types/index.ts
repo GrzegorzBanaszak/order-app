@@ -25,3 +25,4 @@ export * from "./IPopupConfirmData";
 export * from "./IPopupData";
 export * from "./ICompanyEditData";
 export * from "./ISupplierEditData";
+export * from "./ICommodityEditData";

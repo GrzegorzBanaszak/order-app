@@ -3,6 +3,7 @@ import { State } from "./index";
 import {
   AxiosErrorDataType,
   ICommodityDetail,
+  ICommodityEditData,
   ICommodityInfo,
   ICommodityPost,
 } from "@/types";
@@ -65,6 +66,21 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
         );
         context.commit("displaySuccessPopup", [
           `Udało sie dodać towar ${res.data.name}`,
+        ]);
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        context.commit("toggleCommodityError");
+        context.commit("displayErrorPopup", err.response?.data.message);
+      }
+    },
+    async editCommodity(context, payload: ICommodityEditData) {
+      try {
+        const res = await axios.put(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/update/${payload.id}`,
+          payload.data
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie edytować towar ${res.data.name}`,
         ]);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
