@@ -39,6 +39,9 @@ export const customersState: Module<ICustomersState, State> = {
     toggleCustomerError(state) {
       state.isError = !state.isError;
     },
+    resetCustomerDetail(state) {
+      state.customerDetail = null;
+    },
   },
   actions: {
     async getCustomers(context) {

@@ -34,10 +34,12 @@ export const ordersState: Module<IOrdersState, State> = {
     isError: false,
   },
   getters: {
-    getFiltredOrders:(state) => (search:string) => {
+    getFiltredOrders: (state) => (search: string) => {
       const lowerCaseSearch = search.toLowerCase();
-      return state.ordersInfo.filter(item =>item.customer.toLowerCase().includes(lowerCaseSearch))
-    }
+      return state.ordersInfo.filter((item) =>
+        item.customer.toLowerCase().includes(lowerCaseSearch)
+      );
+    },
   },
   mutations: {
     setOrdersHistory(state, payload: IOrderHistoryInfo[]) {
@@ -57,14 +59,14 @@ export const ordersState: Module<IOrdersState, State> = {
       if (item) {
         item.price = payload.price;
         item.quantity = payload.quantity;
-        item.isCustomerPayForDelivery = payload.isCustomerPayForDelivery
+        item.isCustomerPayForDelivery = payload.isCustomerPayForDelivery;
       }
     },
-    removeFormElement(state,payload:string){
-      const item = state.ordersFormElements.get(payload)
+    removeFormElement(state, payload: string) {
+      const item = state.ordersFormElements.get(payload);
 
-      if(item){
-        state.ordersFormElements.delete(payload)
+      if (item) {
+        state.ordersFormElements.delete(payload);
       }
     },
     resetOrdersElements(state) {
@@ -72,6 +74,9 @@ export const ordersState: Module<IOrdersState, State> = {
     },
     toggleOrderError(state) {
       state.isError = !state.isError;
+    },
+    resetOrderDetail(state) {
+      state.orderDetail = null;
     },
   },
   actions: {

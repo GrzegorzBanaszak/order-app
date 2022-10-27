@@ -39,6 +39,9 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
     toggleCommodityError(state) {
       state.isError = !state.isError;
     },
+    resetCommodityDetail(state) {
+      state.commodityDetail = null;
+    },
   },
   actions: {
     async setCommodities(context) {

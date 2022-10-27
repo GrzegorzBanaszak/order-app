@@ -19,6 +19,9 @@ export default defineComponent({
   mounted() {
     this.$store.dispatch("getCompanyDetail", this.$route.params.id);
   },
+  unmounted() {
+    this.$store.commit("resetCompanyDetail");
+  },
 });
 </script>
 

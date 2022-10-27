@@ -39,6 +39,9 @@ export const suppliersState: Module<ISuppliersState, State> = {
     toggleSupplierError(state) {
       state.isError = !state.isError;
     },
+    resetSupplierDetail(state) {
+      state.supplierDetail = null;
+    },
   },
   actions: {
     async getSuppliers(context) {

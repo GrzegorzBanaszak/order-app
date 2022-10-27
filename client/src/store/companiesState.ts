@@ -39,6 +39,9 @@ export const companiesState: Module<ICompaniesState, State> = {
     toggleCompanyError(state) {
       state.isError = !state.isError;
     },
+    resetCompanyDetail(state) {
+      state.companyDetail = null;
+    },
   },
   actions: {
     async getCompanies(context) {

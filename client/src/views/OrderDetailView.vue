@@ -20,6 +20,9 @@ export default defineComponent({
   mounted() {
     this.$store.dispatch("getOrderDetail", this.$route.params.id);
   },
+  unmounted() {
+    this.$store.commit("resetOrderDetail");
+  },
 });
 </script>
 
@@ -40,16 +43,16 @@ export default defineComponent({
       @include item-detail-element;
     }
   }
-  &__edit{
+  &__edit {
     position: absolute;
     right: 0.5rem;
     display: flex;
     gap: 0.4rem;
-    svg{
+    svg {
       cursor: pointer;
     }
   }
-  &__status{
+  &__status {
     border-bottom: 2px solid #ccc;
     margin-left: 0.4rem;
     width: 120px;
@@ -57,26 +60,26 @@ export default defineComponent({
     cursor: pointer;
     position: relative;
     user-select: none;
-    &--dropdown{
+    &--dropdown {
       width: 100%;
       position: absolute;
       display: flex;
       flex-direction: column;
-      gap:0.4rem;
+      gap: 0.4rem;
       background-color: white;
       top: 20px;
       border: 1px solid #ccc;
     }
-    span{
-      &:hover{
-        background-color:#e8e8e8 ;
+    span {
+      &:hover {
+        background-color: #e8e8e8;
       }
     }
   }
-  &__information{
+  &__information {
     display: flex;
-    gap:2rem;
-    p{
+    gap: 2rem;
+    p {
       display: flex;
     }
   }

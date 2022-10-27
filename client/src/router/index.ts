@@ -21,6 +21,7 @@ import CustomerEditFormVue from "@/views/CustomerEditForm.vue";
 import CompanyEditFormVue from "@/views/CompanyEditForm.vue";
 import SupplierEditFormVue from "@/views/SupplierEditForm.vue";
 import CommodityEditFormVue from "@/views/CommodityEditForm.vue";
+import OrderEditFormVue from "@/views/OrderEditForm.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -128,6 +129,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "orders/add",
         component: OrderAddFormVue,
         name: "OrderAdd",
+      },
+      {
+        path: "orders/edit/:id",
+        component: OrderEditFormVue,
+        name: "OrderEdit",
       },
     ],
   },

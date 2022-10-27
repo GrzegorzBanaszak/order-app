@@ -19,6 +19,9 @@ export default defineComponent({
   mounted() {
     this.$store.dispatch("getSupplierDetail", this.$route.params.id);
   },
+  unmounted() {
+    this.$store.commit("resetSupplierDetail");
+  },
 });
 </script>
 
@@ -45,7 +48,7 @@ export default defineComponent({
     grid-row-end: 3;
     background-color: white;
     padding: 1rem;
-    overflow-y:hidden ;
+    overflow-y: hidden;
     h1 {
       @include item-detail-header;
     }
