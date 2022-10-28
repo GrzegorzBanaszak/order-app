@@ -9,6 +9,7 @@ export class OrderDetailCommodity {
         quantity: number,
         deliveryPrice: number,
         supplierName: string,
+        supplierId: Schema.Types.ObjectId,
     ) {
         this.id = id;
         this.name = name;
@@ -17,6 +18,7 @@ export class OrderDetailCommodity {
         this.quantity = quantity;
         this.deliveryPrice = deliveryPrice;
         this.supplierName = supplierName;
+        this.supplierId = supplierId;
     }
 
     id: Schema.Types.ObjectId;
@@ -24,6 +26,7 @@ export class OrderDetailCommodity {
     description: string;
     price: number;
     quantity: number;
+    supplierId: Schema.Types.ObjectId;
     supplierName: string;
     deliveryPrice: number;
 }

@@ -28,5 +28,6 @@ export interface IOrderDetailCommodity {
   quantity: number;
   deliveryPrice: number;
   supplierName: string;
+  supplierId: string;
   status: string;
 }

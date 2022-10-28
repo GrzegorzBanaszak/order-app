@@ -51,6 +51,9 @@ export const ordersState: Module<IOrdersState, State> = {
     setOrderDetail(state, payload: IOrderDetail) {
       state.orderDetail = payload;
     },
+    setOrderFormElements(state, payload: Map<string, IOrderFormListElement>) {
+      state.ordersFormElements = payload;
+    },
     addFormElement(state, payload: IOrderFormListElement) {
       state.ordersFormElements.set(payload.id, payload);
     },

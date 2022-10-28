@@ -1,4 +1,5 @@
-``<template>
+``
+<template>
   <div class="form-group form-select">
     <label>{{ labelValue }}</label>
     <div @click="showList = !showList" class="form-select__selected">
@@ -28,11 +29,18 @@ export default defineComponent({
       type: Object as PropType<Array<any>>,
       default: [],
     },
+    defaultValue: {
+      type: String,
+    },
   },
   mounted() {
     this.selectedValue = this.listDropdown[0];
   },
-
+  watch: {
+    defaultValue: function (value) {
+      this.selectedValue = value;
+    },
+  },
   data() {
     return {
       selectedValue: "",
@@ -48,4 +56,3 @@ export default defineComponent({
   },
 });
 </script>
-

@@ -1,8 +1,15 @@
 <template>
   <div class="form-group">
     <label :for="nameValue">{{ labelValue }}</label>
-    <input ref="input" @input="updateValue" :type="typeValue" :placeholder="placeholderValue" :name="nameValue" step=".01"
-      autocomplete="off" />
+    <input
+      ref="input"
+      @input="updateValue"
+      :type="typeValue"
+      :placeholder="placeholderValue"
+      :name="nameValue"
+      step=".01"
+      autocomplete="off"
+    />
   </div>
 </template>
 
@@ -11,11 +18,11 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
-    const input = ref<HTMLInputElement | null>(null)
+    const input = ref<HTMLInputElement | null>(null);
 
     return {
-      input
-    }
+      input,
+    };
   },
   props: {
     placeholderValue: {
@@ -35,15 +42,15 @@ export default defineComponent({
       required: true,
     },
     defaultValue: {
-      type: String
-    }
+      type: [String, Number],
+    },
   },
   watch: {
     defaultValue: function (value) {
       if (this.input && this.defaultValue) {
-        this.input.value = value
+        this.input.value = value;
       }
-    }
+    },
   },
   methods: {
     updateValue(e: Event) {
