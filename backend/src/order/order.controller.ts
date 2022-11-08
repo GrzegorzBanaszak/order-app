@@ -11,6 +11,7 @@ import {
     ParseIntPipe,
     Patch,
     Post,
+    Put,
     UseGuards,
     UseInterceptors,
 } from '@nestjs/common';
@@ -65,9 +66,21 @@ export class OrderController {
         return await this.orderService.add(data);
     }
 
-    @Patch(":id/:status")
+    @Patch(':id/:status')
     @UseInterceptors(MapInterceptor(Order, OrderDetailDto))
-    async updateStatus(@Param('id', ParseObjectIdPipe) id: ObjectId,@Param('status') status:string){
-        return await this.orderService.updateStatus(id,status)
+    async updateStatus(
+        @Param('id', ParseObjectIdPipe) id: ObjectId,
+        @Param('status') status: string,
+    ) {
+        return await this.orderService.updateStatus(id, status);
+    }
+
+    @Put('update/:id')
+    @UseInterceptors(MapInterceptor(Order, OrderDetailDto))
+    async updateOrder(
+        @Param('id', ParseObjectIdPipe) id: ObjectId,
+        @Body() data: PostOrderDto,
+    ) {
+        return await this.orderService.updateOrder(id, data);
     }
 }

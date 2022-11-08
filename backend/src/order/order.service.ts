@@ -249,4 +249,39 @@ export class OrderService {
 
         return order;
     }
+
+    async updateOrder(id: ObjectId, data: PostOrderDto): Promise<Order> {
+        try {
+            const updatedOrder = await this.orderModel
+                .findByIdAndUpdate(id, data, { new: true })
+                .populate([
+                    {
+                        path: 'commodities',
+                        populate: {
+                            path: 'commodity',
+                            model: 'Commodity',
+                        },
+                    },
+                    {
+                        path: 'commodities',
+                        populate: {
+                            path: 'supplier',
+                            model: 'Supplier',
+                        },
+                    },
+                ]);
+
+            if (!updatedOrder) {
+                throw new NotFoundException(
+                    'Nie udało sie zaktualizować zamówienia',
+                );
+            }
+
+            return updatedOrder;
+        } catch (error) {
+            throw new BadRequestException(
+                'Nie udało sie wykponać aktualizacji',
+            );
+        }
+    }
 }
