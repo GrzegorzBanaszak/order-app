@@ -7,6 +7,7 @@ export interface IOpenState {
   bestCustomers: IOpenListElement[];
   bestCommodities: IOpenListElement[];
   filteredOrders: IOrder[];
+  location: Array<string>;
 }
 
 export const openState: Module<IOpenState, State> = {
@@ -14,6 +15,7 @@ export const openState: Module<IOpenState, State> = {
     bestCommodities: [],
     bestCustomers: [],
     filteredOrders: [],
+    location: new Array<string>(0),
   },
   getters: {},
   mutations: {
@@ -25,6 +27,9 @@ export const openState: Module<IOpenState, State> = {
     },
     setBestCommodities(state, payload: IOpenListElement[]) {
       state.bestCommodities = payload;
+    },
+    setLocation(state, payload: Array<string>) {
+      state.location = payload;
     },
   },
   actions: {

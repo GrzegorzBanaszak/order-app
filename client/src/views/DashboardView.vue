@@ -3,7 +3,7 @@
     <dashboard-nav :class-type="'dashboard__nav'"></dashboard-nav>
     <dashboard-header :class-type="'dashboard__header'"></dashboard-header>
     <div class="dashboard__location">
-      <h2>{{ displayLocation() }}</h2>
+      <h2>{{ displayLocation($store.state.openState.location[2]) }}</h2>
       <add-new-button :key="$route.fullPath"></add-new-button>
     </div>
     <main class="dashboard__main">
@@ -34,8 +34,13 @@ export default defineComponent({
   mounted() {
     document.title = "Zamówienia";
   },
+  watch: {
+    $route(to, from) {
+      this.$store.commit("setLocation", to.path.split("/"));
+    },
+  },
   methods: {
-    displayLocation() {
+    displayLocation(location: string) {
       switch (this.$route.path.split("/")[2]) {
         case "customers":
           return "Klienci";

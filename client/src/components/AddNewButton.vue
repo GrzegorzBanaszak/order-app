@@ -1,8 +1,8 @@
 <template>
   <router-link
-    v-if="type !== ''"
+    v-if="$store.state.openState.location.length === 3"
     class="button__container"
-    :to="'/d/' + type + '/add'"
+    :to="'/d/' + $store.state.openState.location[2] + '/add'"
     @mouseenter="showText = true"
     @mouseleave="showText = false"
   >
@@ -20,7 +20,6 @@ import { defineComponent } from "vue";
 export default defineComponent({
   data() {
     return {
-      type: "",
       text: "",
       showText: false,
     };
@@ -29,27 +28,21 @@ export default defineComponent({
     displayLocation() {
       switch (this.$route.path.split("/")[2]) {
         case "customers":
-          this.type = "customers";
           this.text = "klienta";
           break;
         case "companies":
-          this.type = "companies";
           this.text = "firme";
           break;
         case "commodities":
-          this.type = "commodities";
           this.text = "towar";
           break;
         case "suppliers":
-          this.type = "suppliers";
           this.text = "dostawce";
           break;
         case "orders":
-          this.type = "orders";
           this.text = "zamówienie";
           break;
         default:
-          this.type = "";
           this.text = "";
           break;
       }
