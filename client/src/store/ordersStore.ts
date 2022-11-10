@@ -4,6 +4,7 @@ import {
   AxiosErrorDataType,
   IOrder,
   IOrderDetail,
+  IOrderEditData,
   IOrderElementEditData,
   IOrderFormListElement,
   IOrderHistoryInfo,
@@ -119,6 +120,21 @@ export const ordersState: Module<IOrdersState, State> = {
         );
         context.commit("displaySuccessPopup", [
           `Udało sie dodać zamówienie ${res.data.orderNumber}`,
+        ]);
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        context.commit("toggleOrderError");
+        context.commit("displayErrorPopup", err.response?.data.message);
+      }
+    },
+    async editOrder(context, payload: IOrderEditData) {
+      try {
+        const res = await axios.put(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/update/${payload.id}`,
+          payload.data
+        );
+        context.commit("displaySuccessPopup", [
+          `Udało sie zaktualizować zamówienie ${res.data.orderNumber}`,
         ]);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;

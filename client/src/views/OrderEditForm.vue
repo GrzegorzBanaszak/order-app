@@ -1,6 +1,6 @@
 <template>
   <form class="form-order" @submit="submitForm">
-    <h2 class="add-form__header">Dodaj nowe zamówienie</h2>
+    <h2 class="add-form__header">Edytuj zamówienie</h2>
     <div class="form-order__header">
       <form-group
         v-model="advance"
@@ -35,7 +35,7 @@
       ></form-group-select>
     </div>
     <order-form-list></order-form-list>
-    <button class="add-form__button" type="submit">Dodaj</button>
+    <button class="add-form__button" type="submit">Edytuj zamówienie</button>
   </form>
 </template>
 
@@ -46,6 +46,7 @@ import FormGroupDropdown from "@/components/FormGroupDropdown.vue";
 import FormGroupSelect from "@/components/FormGroupSelect.vue";
 import OrderFormList from "@/components/OrderFormList.vue";
 import {
+  IOrderEditData,
   IOrderFormListElement,
   IOrderPost,
   IOrderPostCommodity,
@@ -140,7 +141,12 @@ export default defineComponent({
         commodities: commoditiesList,
       };
 
-      await this.$store.dispatch("addOrder", data);
+      const editData: IOrderEditData = {
+        id: this.$route.params.id as string,
+        data,
+      };
+
+      await this.$store.dispatch("editOrder", editData);
 
       if (!this.$store.state.ordersState.isError) {
         this.$router.replace({ replace: true, path: "/d/orders" });
