@@ -2,7 +2,7 @@
   <div>{{ supplierItem.name }}</div>
   <div>
     <router-link :to="'/d/suppliers/' + supplierItem.id"
-      ><dotts-icon
+      ><info-black-icon
     /></router-link>
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script lang="ts">
 import { CommodityDetailSupplier } from "@/types";
 import { defineComponent, PropType } from "vue";
-import DottsIcon from "@/icons/DottsIcon.vue";
+import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
 
 export default defineComponent({
   props: {
@@ -19,6 +19,6 @@ export default defineComponent({
       required: true,
     },
   },
-  components: { DottsIcon },
+  components: { InfoBlackIcon },
 });
 </script>

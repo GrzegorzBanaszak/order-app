@@ -7,7 +7,7 @@
     <div>{{ commodityItem.price.toFixed(2) }} zł</div>
     <div>
       <router-link :to="'/d/commodities/' + commodityItem.id"
-        ><dotts-icon
+        ><info-black-icon
       /></router-link>
     </div>
   </div>
@@ -16,10 +16,10 @@
 <script lang="ts">
 import { IOrderDetailCommodity } from "@/types";
 import { defineComponent, PropType } from "vue";
-import DottsIcon from "@/icons/DottsIcon.vue";
+import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
 
 export default defineComponent({
-  components: { DottsIcon },
+  components: { InfoBlackIcon },
   props: {
     commodityItem: {
       type: Object as PropType<IOrderDetailCommodity>,

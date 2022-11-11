@@ -16,7 +16,7 @@
           :to="
             '/d/customers/' + $store.state.ordersState.orderDetail?.customer.id
           "
-          ><dotts-icon
+          ><info-black-icon
         /></router-link>
       </div>
     </div>
@@ -26,8 +26,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import CustomersBlueIcon from "@/icons/CustomersBlueIcon.vue";
-import DottsIcon from "@/icons/DottsIcon.vue";
+import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
+
 export default defineComponent({
-  components: { CustomersBlueIcon, DottsIcon },
+  components: { CustomersBlueIcon, InfoBlackIcon },
 });
 </script>
