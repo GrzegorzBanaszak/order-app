@@ -1,3 +1,4 @@
+import { AutoMap } from '@automapper/classes';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as SchemaType } from 'mongoose';
 
@@ -8,9 +9,11 @@ export class User {
     @Prop({ auto: true })
     _id: SchemaType.Types.ObjectId;
 
+    @AutoMap()
     @Prop({ required: true, unique: true })
     email: string;
 
+    @AutoMap()
     @Prop({ required: true, unique: true })
     username: string;
 

@@ -1,6 +1,11 @@
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+    BadRequestException,
+    ForbiddenException,
+    Injectable,
+    NotFoundException,
+} from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import * as argon from 'argon2';
 import { PostUserDto, RegisterPostDto } from 'src/user/dto';
@@ -57,6 +62,20 @@ export class AuthService {
             accese_token: token,
             user: payload,
         };
+    }
+
+    async getUser(id: string) {
+        try {
+            const user = await this.userService.getById(id);
+
+            if (!user) {
+                throw new NotFoundException('Nie ma urzytkownika o takim id');
+            }
+
+            return user;
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
     }
 
     private async generetToken(userId: Schema.Types.ObjectId, email: string) {
