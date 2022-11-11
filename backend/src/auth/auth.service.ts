@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import * as argon from 'argon2';
-import { PostUserDto } from 'src/user/dto';
+import { PostUserDto, RegisterPostDto } from 'src/user/dto';
 import { Schema } from 'mongoose';
 @Injectable({})
 export class AuthService {
@@ -22,7 +22,11 @@ export class AuthService {
 
         if (!pwMatches) throw new ForbiddenException('Credentials incorrect');
 
-        const payload = { email: user.email, id: user._id };
+        const payload = {
+            email: user.email,
+            id: user._id,
+            username: user.username,
+        };
         const token = await this.generetToken(user._id, user.email);
 
         return {
@@ -31,14 +35,22 @@ export class AuthService {
         };
     }
 
-    async register(data: PostUserDto) {
+    async register(data: RegisterPostDto) {
         const argonHash = await argon.hash(data.password);
-        const user = await this.userService.createUser(data.email, argonHash);
+        const user = await this.userService.createUser(
+            data.email,
+            data.username,
+            argonHash,
+        );
 
         if (!user) {
             throw new ForbiddenException('Credentials incorrect');
         }
-        const payload = { email: user.email, id: user._id };
+        const payload = {
+            email: user.email,
+            id: user._id,
+            username: user.username,
+        };
         const token = await this.generetToken(user._id, user.email);
 
         return {

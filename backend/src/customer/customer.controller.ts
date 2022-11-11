@@ -17,15 +17,12 @@ import { CustomerService } from './customer.service';
 import { AuthGuard } from '@nestjs/passport';
 import { CustomerDto } from './dto';
 
-// @UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'))
 @Controller('customer')
 export class CustomerController {
     constructor(private customerService: CustomerService) {}
 
     @Get()
-    // @UseInterceptors(
-    //     MapInterceptor(Customer, GetCustomerDto, { isArray: true }),
-    // )
     async getAll() {
         return await this.customerService.getAll();
     }

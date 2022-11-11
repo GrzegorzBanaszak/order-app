@@ -18,7 +18,7 @@ import {
 } from '@nestjs/common';
 import { ParseObjectIdPipe } from 'src/pipes/parseObjectId.pipe';
 
-// @UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'))
 @Controller('company')
 export class CompanyController {
     constructor(private companyService: CompanyService) {}

@@ -18,7 +18,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ParseObjectIdPipe } from 'src/pipes/parseObjectId.pipe';
 import { ObjectId } from 'mongodb';
 
-// @UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'))
 @Controller('supplier')
 export class SupplierController {
     constructor(private supplierService: SupplierService) {}

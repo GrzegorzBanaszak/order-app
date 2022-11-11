@@ -7,6 +7,7 @@ import { ISuppliersState, suppliersState } from "./suppliersState";
 import { commoditiesState, ICommoditiesState } from "./commoditiesStore";
 import { IOrdersState, ordersState } from "./ordersStore";
 import { IPopupState, popupState } from "./popupState";
+import { authState, IAuthState } from "./authState";
 
 export interface State {
   customersState: ICustomersState;
@@ -16,6 +17,7 @@ export interface State {
   commoditiesState: ICommoditiesState;
   ordersState: IOrdersState;
   popupState: IPopupState;
+  authState: IAuthState;
 }
 
 export const key: InjectionKey<Store<State>> = Symbol();
@@ -29,6 +31,7 @@ export const store = createStore<State>({
     commoditiesState,
     ordersState,
     popupState,
+    authState,
   },
 });
 

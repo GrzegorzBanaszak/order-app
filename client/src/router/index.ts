@@ -1,4 +1,11 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { store } from "./../store/index";
+import {
+  createRouter,
+  createWebHistory,
+  NavigationGuardNext,
+  RouteLocationNormalized,
+  RouteRecordRaw,
+} from "vue-router";
 import LoginView from "../views/LoginView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import DashboardMainView from "@/views/DashboardMainView.vue";
@@ -22,6 +29,25 @@ import CompanyEditFormVue from "@/views/CompanyEditForm.vue";
 import SupplierEditFormVue from "@/views/SupplierEditForm.vue";
 import CommodityEditFormVue from "@/views/CommodityEditForm.vue";
 import OrderEditFormVue from "@/views/OrderEditForm.vue";
+import { AuthMutations } from "@/store/authState";
+
+const isAuth = (
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalized,
+  next: NavigationGuardNext
+) => {
+  if (!store.state.authState.token) {
+    let token = localStorage.getItem("token");
+    if (token) {
+      store.commit(AuthMutations.SET_TOKEN, token);
+      next();
+    } else {
+      next({ name: "login" });
+    }
+  } else {
+    next({ name: "login" });
+  }
+};
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -33,6 +59,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/d",
     name: "dashboard",
     component: DashboardView,
+    beforeEnter: isAuth,
     children: [
       { path: "", component: DashboardMainView, name: "DashboardMain" },
       {

@@ -19,7 +19,7 @@ import { MapInterceptor } from '@automapper/nestjs';
 import { AuthGuard } from '@nestjs/passport';
 import { OrderDetailDto, OrderDto, OrderInfoDto } from './dto';
 
-// @UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'))
 @Controller('order')
 export class OrderController {
     constructor(private orderService: OrderService) {}
