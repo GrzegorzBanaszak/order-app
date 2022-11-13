@@ -46,14 +46,16 @@ export const companiesState: Module<ICompaniesState, State> = {
   actions: {
     async getCompanies(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/company`
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/company`,
+        context.getters.getAuthHeader
       );
       context.commit("setCompanies", res.data);
     },
     async getCompanyDetail(context, payload: string) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/${payload}`
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/${payload}`,
+          context.getters.getAuthHeader
         );
         context.commit("setCompanyDetail", res.data);
       } catch (error: any) {
@@ -64,7 +66,8 @@ export const companiesState: Module<ICompaniesState, State> = {
       try {
         const res = await axios.post(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/add`,
-          payload
+          payload,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie dodać firmę ${res.data.name}`,
@@ -79,7 +82,8 @@ export const companiesState: Module<ICompaniesState, State> = {
       try {
         const res = await axios.put(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/update/${payload.id}`,
-          payload.data
+          payload.data,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie zaktualizować firmę ${res.data.name}`,
@@ -93,7 +97,8 @@ export const companiesState: Module<ICompaniesState, State> = {
     async removeCompany(context, payload: string) {
       try {
         const res = await axios.delete(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/delete/${payload}`
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/delete/${payload}`,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie usunąc firmę ${res.data.name}`,

@@ -46,14 +46,16 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
   actions: {
     async setCommodities(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity`
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity`,
+        context.getters.getAuthHeader
       );
       context.commit("setCommodities", res.data);
     },
     async getCommodityDetail(context, payload: string) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/${payload}`
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/${payload}`,
+          context.getters.getAuthHeader
         );
         context.commit("setCommodityDetail", res.data);
       } catch (error) {
@@ -65,7 +67,8 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
       try {
         const res = await axios.post(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/add`,
-          payload
+          payload,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie dodać towar ${res.data.name}`,
@@ -80,7 +83,8 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
       try {
         const res = await axios.put(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/update/${payload.id}`,
-          payload.data
+          payload.data,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie edytować towar ${res.data.name}`,
@@ -95,7 +99,8 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
     async removeCommodity(context, payload: string) {
       try {
         const res = await axios.delete(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/delete/${payload}`
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/delete/${payload}`,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie usunąc towar ${res.data.name}`,

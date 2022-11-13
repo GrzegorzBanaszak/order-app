@@ -86,14 +86,16 @@ export const ordersState: Module<IOrdersState, State> = {
   actions: {
     async getOrdersHistory(context, payload: OrdersHistoryPayload) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload.type}/${payload.id}`
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload.type}/${payload.id}`,
+        context.getters.getAuthHeader
       );
       context.commit("setOrdersHistory", res.data);
     },
     async getOrdersInfo(context) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/`
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/`,
+          context.getters.getAuthHeader
         );
         context.commit("setOrdersInfo", res.data);
       } catch (error) {
@@ -104,7 +106,8 @@ export const ordersState: Module<IOrdersState, State> = {
     async getOrderDetail(context, payload: string) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload}`
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload}`,
+          context.getters.getAuthHeader
         );
         context.commit("setOrderDetail", res.data);
       } catch (error) {
@@ -116,7 +119,8 @@ export const ordersState: Module<IOrdersState, State> = {
       try {
         const res = await axios.post(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/add`,
-          payload
+          payload,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie dodać zamówienie ${res.data.orderNumber}`,
@@ -131,7 +135,8 @@ export const ordersState: Module<IOrdersState, State> = {
       try {
         const res = await axios.put(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/update/${payload.id}`,
-          payload.data
+          payload.data,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie zaktualizować zamówienie ${res.data.orderNumber}`,
@@ -145,7 +150,8 @@ export const ordersState: Module<IOrdersState, State> = {
     async updateStatus(context, payload: IStatusUpdate) {
       try {
         const res = await axios.patch(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload.id}/${payload.status}`
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload.id}/${payload.status}`,
+          context.getters.getAuthHeader
         );
         context.commit("setOrderDetail", res.data);
       } catch (error) {

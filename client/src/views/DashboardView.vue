@@ -33,6 +33,7 @@ export default defineComponent({
   },
   mounted() {
     document.title = "Zamówienia";
+    this.$store.commit("setLocation", this.$route.fullPath.split("/"));
   },
   watch: {
     $route(to, from) {
@@ -41,7 +42,7 @@ export default defineComponent({
   },
   methods: {
     displayLocation(location: string) {
-      switch (this.$route.path.split("/")[2]) {
+      switch (location) {
         case "customers":
           return "Klienci";
         case "companies":

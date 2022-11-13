@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import axios from "axios";
+import { AuthActions, AuthMutations } from "@/store/authState";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -38,19 +38,22 @@ export default defineComponent({
     };
   },
   methods: {
-    async formSubmit() {
-      try {
-        const res = await axios.post("http://localhost:5000/auth/login", {
+    async formSubmit(e: Event) {
+      e.preventDefault();
+
+      this.$store
+        .dispatch(AuthActions.LOGIN_USER, {
           email: this.email,
           password: this.password,
+        })
+        .then(() => {
+          if (!this.$store.state.authState.isError) {
+            this.$router.push("/d");
+            localStorage.setItem("token", this.$store.state.authState.token);
+          } else {
+            this.$store.commit(AuthMutations.TOGGLE_AUTH_ERROR);
+          }
         });
-
-        if (res.data.user && res.data.accese_token) {
-          this.$router.push("/dashboard");
-        }
-      } catch (err: any) {
-        this.error = err.response.data.message[0];
-      }
     },
   },
 });

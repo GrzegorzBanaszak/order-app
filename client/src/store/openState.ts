@@ -33,23 +33,26 @@ export const openState: Module<IOpenState, State> = {
     },
   },
   actions: {
-    async getOrders({ commit }) {
+    async getOrders(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/last/5`
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/last/5`,
+        context.getters.getAuthHeader
       );
-      commit("setFilteredOrders", res.data);
+      context.commit("setFilteredOrders", res.data);
     },
-    async getBestCustomers({ commit }) {
+    async getBestCustomers(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/best/customers`
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/best/customers`,
+        context.getters.getAuthHeader
       );
-      commit("setBestCustomers", res.data);
+      context.commit("setBestCustomers", res.data);
     },
-    async getBestCommodities({ commit }) {
+    async getBestCommodities(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/best/commodities`
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/best/commodities`,
+        context.getters.getAuthHeader
       );
-      commit("setBestCommodities", res.data);
+      context.commit("setBestCommodities", res.data);
     },
   },
 };

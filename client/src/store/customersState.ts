@@ -46,7 +46,8 @@ export const customersState: Module<ICustomersState, State> = {
   actions: {
     async getCustomers(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer`
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer`,
+        context.getters.getAuthHeader
       );
       context.commit("setCustomers", res.data);
     },
@@ -54,7 +55,8 @@ export const customersState: Module<ICustomersState, State> = {
     async getCustomerDetail(context, payload: string) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/${payload}`
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/${payload}`,
+          context.getters.getAuthHeader
         );
         context.commit("setCustomerDetail", res.data);
       } catch (error: any) {
@@ -65,7 +67,8 @@ export const customersState: Module<ICustomersState, State> = {
       try {
         const res = await axios.post(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/add`,
-          payload
+          payload,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie dodać klienta ${res.data.name}`,
@@ -80,7 +83,8 @@ export const customersState: Module<ICustomersState, State> = {
       try {
         const res = await axios.put(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/update/${payload.id}`,
-          payload.data
+          payload.data,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie zaktualizować klienta ${res.data.name}`,
@@ -94,7 +98,8 @@ export const customersState: Module<ICustomersState, State> = {
     async removeCustomer(context, payload: string) {
       try {
         const res = await axios.delete(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/delete/${payload}`
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/delete/${payload}`,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie usunąc klienta ${res.data.name}`,

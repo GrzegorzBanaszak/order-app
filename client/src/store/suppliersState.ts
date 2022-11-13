@@ -46,14 +46,16 @@ export const suppliersState: Module<ISuppliersState, State> = {
   actions: {
     async getSuppliers(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier`
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier`,
+        context.getters.getAuthHeader
       );
       context.commit("setSuppliers", res.data);
     },
     async getSupplierDetail(context, payload: string) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/${payload}`
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/${payload}`,
+          context.getters.getAuthHeader
         );
         context.commit("setSupplierDetail", res.data);
       } catch (error: any) {
@@ -64,7 +66,8 @@ export const suppliersState: Module<ISuppliersState, State> = {
       try {
         const res = await axios.post(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/add`,
-          payload
+          payload,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie dodać dostawcę ${res.data.name}`,
@@ -79,7 +82,8 @@ export const suppliersState: Module<ISuppliersState, State> = {
       try {
         const res = await axios.put(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/update/${payload.id}`,
-          payload.data
+          payload.data,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie edytować dostawcę ${res.data.name}`,
@@ -93,7 +97,8 @@ export const suppliersState: Module<ISuppliersState, State> = {
     async removeSupplier(context, payload: string) {
       try {
         const res = await axios.delete(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/delete/${payload}`
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/delete/${payload}`,
+          context.getters.getAuthHeader
         );
         context.commit("displaySuccessPopup", [
           `Udało sie usunąc klienta ${res.data.name}`,

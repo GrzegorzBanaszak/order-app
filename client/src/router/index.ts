@@ -1,3 +1,4 @@
+import { AuthGetters } from "./../store/authState";
 import { store } from "./../store/index";
 import {
   createRouter,
@@ -9,7 +10,10 @@ import {
 import LoginView from "../views/LoginView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import DashboardMainView from "@/views/DashboardMainView.vue";
-import DashboardCustomersView from "@/views/DashboardCustomersView.vue";
+
+const DashboardCustomersView = () =>
+  import("@/views/DashboardCustomersView.vue");
+
 import DashboardCompaniesViewVue from "@/views/DashboardCompaniesView.vue";
 import DashboardCommoditisView from "@/views/DashboardCommoditiesView.vue";
 import DashboardSuppliersView from "@/views/DashboardSuppliersView.vue";
@@ -31,21 +35,21 @@ import CommodityEditFormVue from "@/views/CommodityEditForm.vue";
 import OrderEditFormVue from "@/views/OrderEditForm.vue";
 import { AuthMutations } from "@/store/authState";
 
-const isAuth = (
+const isAuth = async (
   to: RouteLocationNormalized,
   from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) => {
   if (!store.state.authState.token) {
     let token = localStorage.getItem("token");
-    if (token) {
+    if (token && !store.getters.isAuth) {
       store.commit(AuthMutations.SET_TOKEN, token);
       next();
     } else {
       next({ name: "login" });
     }
   } else {
-    next({ name: "login" });
+    next();
   }
 };
 
