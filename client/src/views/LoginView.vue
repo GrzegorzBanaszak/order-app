@@ -1,5 +1,8 @@
 <template>
-  <div class="form-container">
+  <div
+    class="form-container"
+    :style="{ backgroundImage: `url(${require('@/assets/' + bgImage)})` }"
+  >
     <form class="form" autocomplete="off" @submit.prevent="formSubmit">
       <h1 class="form__title">Zaloguj</h1>
       <div class="form__group">
@@ -35,7 +38,11 @@ export default defineComponent({
       email: "",
       password: "",
       error: "",
+      bgImage: "homebgcompres.jpg",
     };
+  },
+  mounted() {
+    this.bgImage = "homebg.jpg";
   },
   methods: {
     async formSubmit(e: Event) {
@@ -63,7 +70,6 @@ export default defineComponent({
 .form-container {
   width: 100%;
   height: 100vh;
-  background-image: url("@/assets/homebg.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

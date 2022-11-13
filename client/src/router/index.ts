@@ -14,25 +14,28 @@ import DashboardMainView from "@/views/DashboardMainView.vue";
 const DashboardCustomersView = () =>
   import("@/views/DashboardCustomersView.vue");
 
-import DashboardCompaniesViewVue from "@/views/DashboardCompaniesView.vue";
-import DashboardCommoditisView from "@/views/DashboardCommoditiesView.vue";
-import DashboardSuppliersView from "@/views/DashboardSuppliersView.vue";
-import CustomerDetailViewVue from "@/views/CustomerDetailView.vue";
-import CompanyDetailViewVue from "@/views/CompanyDetailView.vue";
-import SupplierDetailViewVue from "@/views/SupplierDetailView.vue";
-import CommodityDetailViewVue from "@/views/CommodityDetailView.vue";
-import DashboardOrdersViewVue from "@/views/DashboardOrdersView.vue";
-import OrderDetailViewVue from "@/views/OrderDetailView.vue";
-import CustomerAddFormVue from "@/views/CustomerAddForm.vue";
-import CompanyAddFormVue from "@/views/CompanyAddForm.vue";
-import SupplierAddFormVue from "@/views/SupplierAddForm.vue";
-import CommodityAddFormVue from "@/views/CommodityAddForm.vue";
-import OrderAddFormVue from "@/views/OrderAddForm.vue";
-import CustomerEditFormVue from "@/views/CustomerEditForm.vue";
-import CompanyEditFormVue from "@/views/CompanyEditForm.vue";
-import SupplierEditFormVue from "@/views/SupplierEditForm.vue";
-import CommodityEditFormVue from "@/views/CommodityEditForm.vue";
-import OrderEditFormVue from "@/views/OrderEditForm.vue";
+const DashboardCompaniesViewVue = () =>
+  import("@/views/DashboardCompaniesView.vue");
+const DashboardCommoditisView = () =>
+  import("@/views/DashboardCommoditiesView.vue");
+const DashboardSuppliersView = () =>
+  import("@/views/DashboardSuppliersView.vue");
+const CustomerDetailViewVue = () => import("@/views/CustomerDetailView.vue");
+const CompanyDetailViewVue = () => import("@/views/CompanyDetailView.vue");
+const SupplierDetailViewVue = () => import("@/views/SupplierDetailView.vue");
+const CommodityDetailViewVue = () => import("@/views/CommodityDetailView.vue");
+const DashboardOrdersViewVue = () => import("@/views/DashboardOrdersView.vue");
+const OrderDetailViewVue = () => import("@/views/OrderDetailView.vue");
+const CustomerAddFormVue = () => import("@/views/CustomerAddForm.vue");
+const CompanyAddFormVue = () => import("@/views/CompanyAddForm.vue");
+const SupplierAddFormVue = () => import("@/views/SupplierAddForm.vue");
+const CommodityAddFormVue = () => import("@/views/CommodityAddForm.vue");
+const OrderAddFormVue = () => import("@/views/OrderAddForm.vue");
+const CustomerEditFormVue = () => import("@/views/CustomerEditForm.vue");
+const CompanyEditFormVue = () => import("@/views/CompanyEditForm.vue");
+const SupplierEditFormVue = () => import("@/views/SupplierEditForm.vue");
+const CommodityEditFormVue = () => import("@/views/CommodityEditForm.vue");
+const OrderEditFormVue = () => import("@/views/OrderEditForm.vue");
 import { AuthMutations } from "@/store/authState";
 
 const isAuth = async (
