@@ -39,12 +39,12 @@
           $store.state.ordersState.orderDetail?.commodities.reduce(
           (prev, curr) => (prev += curr.price * curr.quantity),
           0
-          )
+          ).toFixed(2)
           }}
           zł
         </p>
         <p>Zaliczka: {{ $store.state.ordersState.orderDetail?.advance }} zł</p>
-        <p>Pozostało do zapłaty: {{ toPay() }} zł</p>
+        <p>Pozostało do zapłaty: {{ toPay().toFixed(2) }} zł</p>
       </div>
     </div>
   </div>
