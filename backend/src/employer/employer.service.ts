@@ -18,4 +18,13 @@ export class EmployerService {
 
         return employers;
     }
+
+    async add(name: string, id: ObjectId) {
+        const employer = new this.employerModel({
+            name,
+            user: id,
+        });
+
+        return await employer.save();
+    }
 }

@@ -7,7 +7,6 @@ export type EmployerDocument = Employer & Document;
 
 @Schema()
 export class Employer {
-    @AutoMap()
     @Prop({ auto: true })
     _id: SchemaType.Types.ObjectId;
 

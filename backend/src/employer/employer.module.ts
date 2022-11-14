@@ -1,3 +1,4 @@
+import { EmployerProfile } from './employer.profile';
 import { Module } from '@nestjs/common';
 import { EmployerController } from './employer.controller';
 import { EmployerService } from './employer.service';
@@ -10,7 +11,7 @@ import { Employer, EmployerSchema } from './employer.schema';
             { name: Employer.name, schema: EmployerSchema },
         ]),
     ],
-    providers: [EmployerService],
+    providers: [EmployerService, EmployerProfile],
     controllers: [EmployerController],
     exports: [MongooseModule],
 })
