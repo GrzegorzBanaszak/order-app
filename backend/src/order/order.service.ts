@@ -176,10 +176,10 @@ export class OrderService {
                     .find({
                         'commodities.commodity': id.toString(),
                     })
-                    .sort('createdAt');
+                    .sort('-createdAt');
                 break;
             case 'company':
-                const items = await this.orderModel.find().sort('createdAt');
+                const items = await this.orderModel.find().sort('-createdAt');
                 items.forEach((item) => {
                     if (
                         item.customer.company &&
@@ -195,14 +195,14 @@ export class OrderService {
                     .find({
                         'commodities.supplier': id.toString(),
                     })
-                    .sort('createdAt');
+                    .sort('-createdAt');
                 break;
             case 'customer':
                 orders = await this.orderModel
                     .find({
                         customer: id,
                     })
-                    .sort('createdAt');
+                    .sort('-createdAt');
                 break;
             default:
                 throw new BadRequestException('Bad type');
