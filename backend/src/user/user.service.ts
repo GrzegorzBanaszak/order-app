@@ -9,15 +9,10 @@ export class UserService {
         @InjectModel(User.name) private userModel: Model<UserDocument>,
     ) {}
 
-    async createUser(
-        email: string,
-        username: string,
-        hash: string,
-    ): Promise<User> {
+    async createUser(email: string, hash: string): Promise<User> {
         try {
             const user = await new this.userModel({
                 email,
-                username,
                 hash,
             });
             return await user.save();

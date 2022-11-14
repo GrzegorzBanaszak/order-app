@@ -30,7 +30,6 @@ export class AuthService {
         const payload = {
             email: user.email,
             id: user._id,
-            username: user.username,
         };
         const token = await this.generetToken(user._id, user.email);
 
@@ -42,11 +41,7 @@ export class AuthService {
 
     async register(data: RegisterPostDto) {
         const argonHash = await argon.hash(data.password);
-        const user = await this.userService.createUser(
-            data.email,
-            data.username,
-            argonHash,
-        );
+        const user = await this.userService.createUser(data.email, argonHash);
 
         if (!user) {
             throw new ForbiddenException('Credentials incorrect');
@@ -54,7 +49,6 @@ export class AuthService {
         const payload = {
             email: user.email,
             id: user._id,
-            username: user.username,
         };
         const token = await this.generetToken(user._id, user.email);
 

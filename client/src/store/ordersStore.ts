@@ -151,6 +151,7 @@ export const ordersState: Module<IOrdersState, State> = {
       try {
         const res = await axios.patch(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload.id}/${payload.status}`,
+          {},
           context.getters.getAuthHeader
         );
         context.commit("setOrderDetail", res.data);

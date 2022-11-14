@@ -13,10 +13,6 @@ export class User {
     @Prop({ required: true, unique: true })
     email: string;
 
-    @AutoMap()
-    @Prop({ required: true, unique: true })
-    username: string;
-
     @Prop({ required: true })
     hash: string;
 }
