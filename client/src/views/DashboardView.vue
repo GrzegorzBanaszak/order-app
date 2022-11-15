@@ -9,11 +9,7 @@
     <main class="dashboard__main">
       <router-view></router-view>
     </main>
-    <pop-up
-      v-if="$store.state.popupState.popups.size > 0"
-      v-for="item in $store.state.popupState.popups"
-      :popup-data="item[1]"
-    ></pop-up>
+    <pop-up v-if="$store.state.popupState.popups.size > 0"></pop-up>
   </div>
 </template>
 
@@ -23,6 +19,7 @@ import DashboardNav from "@/components/DashboardNav.vue";
 import { defineComponent } from "vue";
 import AddNewButton from "@/components/AddNewButton.vue";
 import PopUp from "@/components/PopUp.vue";
+import { PopUpMutations } from "@/store/popupState";
 
 export default defineComponent({
   components: {

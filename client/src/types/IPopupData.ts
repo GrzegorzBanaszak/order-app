@@ -1,8 +1,10 @@
+export enum PopupTypeEnum {
+  DISPLAY_MESSAGES = "display-messages",
+  CONFIRM_REMOVE = "confirm-remove",
+}
+
 export interface IPopupData {
   id: string;
-  styleType: string;
-  layoutType: string;
-  title: string;
-  message: Array<string>;
-  remove?: () => Promise<void>;
+  type: PopupTypeEnum;
+  data: any;
 }

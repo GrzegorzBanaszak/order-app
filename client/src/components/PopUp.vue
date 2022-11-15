@@ -1,127 +1,90 @@
 <template>
-  <div
-    v-if="popupData.layoutType === 'info'"
-    :class="'popup ' + popupData.styleType"
-  >
-    <h3 class="popup__header">
-      {{ popupData.title }}
-    </h3>
-    <div class="popup__body">
-      <p v-for="item in popupData.message">{{ item }}</p>
-      <button @click="$store.commit('popupRemove', popupData.id)">Ok</button>
-    </div>
-  </div>
-  <div v-else class="popup">
-    <h3 class="popup__header">
-      {{ popupData.title }}
-    </h3>
-    <div class="popup__body">
-      <p v-for="item in popupData.message">{{ item }}</p>
-      <div class="popup__btns">
-        <button
-          class="popup__btn--yes"
-          @click="$store.dispatch('removeConfirm', popupData.id)"
-        >
-          Tak
-        </button>
-        <button
-          class="popup__btn--no"
-          @click="$store.commit('popupRemove', popupData.id)"
-        >
-          Nie
-        </button>
-      </div>
+  <div class="popup">
+    <div
+      class="popup__container"
+      v-for="item in $store.state.popupState.popups"
+      :key="item[0]"
+    >
+      <pop-up-show-messages
+        v-if="item[1].type === 'display-messages'"
+        :item-data="item[1].data"
+        :popup-id="item[0]"
+      ></pop-up-show-messages>
+
+      <pop-up-confirm
+        v-else-if="item[1].type === 'confirm-remove'"
+        :item-data="item[1].data"
+        :popup-id="item[0]"
+      >
+      </pop-up-confirm>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { IPopupData } from "@/types";
-import { defineComponent, PropType } from "vue";
+import { PopupTypeEnum } from "@/types";
+import { defineComponent } from "vue";
+import PopUpShowMessages from "@/components/PopUpShowMessages.vue";
+import PopUpConfirm from "./PopUpConfirm.vue";
 
 export default defineComponent({
-  props: {
-    popupData: {
-      type: Object as PropType<IPopupData>,
-      required: true,
-    },
+  components: {
+    PopUpShowMessages,
+    PopUpConfirm,
   },
+  methods: {},
 });
 </script>
 
 <style lang="scss">
 .popup {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  padding: 2rem;
-  &__btn {
-    &--yes {
-      background-color: #1b5e20;
-      color: white;
-    }
-    &--no {
-      background-color: #b71c1c;
-      color: white;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__container {
+    position: absolute;
+    padding: 2rem 5rem;
+    background-color: white;
   }
-  &__header {
+  &__title {
     text-align: center;
+    font-size: 2rem;
     margin-bottom: 1rem;
-    text-transform: uppercase;
-    font-size: 1.5rem;
-  }
-
-  &__body {
-    p {
-      margin: 0.5rem 0;
-      text-align: center;
+    &--success {
+      color: #1b5e20;
     }
-
-    button {
-      display: block;
-      width: 100%;
-      margin-top: 1.4rem;
-      padding: 0.7rem;
-      border: none;
-      border-radius: 15px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-    }
-  }
-
-  &__btns {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-}
-
-.type {
-  &-error {
-    h3 {
+    &--error {
       color: #b71c1c;
     }
-
-    button {
-      background-color: #b71c1c;
-      color: white;
-    }
   }
-
-  &-success {
-    h3 {
-      color: #33691e;
-    }
-
-    button {
-      background-color: #33691e;
+  p {
+    margin: 0.5rem 0;
+  }
+  &__button {
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    &--success {
       color: white;
+      background-color: #1b5e20;
+    }
+    &--error {
+      color: white;
+      background-color: #b71c1c;
     }
   }
 }

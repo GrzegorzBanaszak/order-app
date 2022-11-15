@@ -43,10 +43,10 @@ export default defineComponent({
       const remove = async () => {
         await this.$store.dispatch("removeCommodity", this.commodityInfo.id);
       };
-      const messages = ["Czy napewno chcesz usunąć", this.commodityInfo.name];
+  
       const data: IPopupConfirmData = {
         remove,
-        messages,
+       message:`Czy napewno chcesz usunąć ${this.commodityInfo.name}`,
       };
       this.$store.commit("displayRemovePopup", data);
     },

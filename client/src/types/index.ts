@@ -27,3 +27,5 @@ export * from "./ICompanyEditData";
 export * from "./ISupplierEditData";
 export * from "./ICommodityEditData";
 export * from "./IOrderEditData";
+export * from "./IPopupShowMessages";
+export * from "./IPopUpShowPayload";

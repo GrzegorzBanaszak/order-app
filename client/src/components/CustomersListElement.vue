@@ -17,12 +17,18 @@
 </template>
 
 <script lang="ts">
-import { ICustomerInfo, IPopupConfirmData } from "@/types";
+import {
+  ICustomerInfo,
+  IPopupConfirmData,
+  IPopUpShowPayload,
+  PopupTypeEnum,
+} from "@/types";
 import moment from "moment";
 import { defineComponent, PropType } from "vue";
 import TrashBlackIcon from "@/icons/TrashBlackIcon.vue";
 import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
 import PenBlackIcon from "../icons/PenBlackIcon.vue";
+import { PopUpMutations } from "@/store/popupState";
 
 export default defineComponent({
   components: { InfoBlackIcon, TrashBlackIcon, PenBlackIcon },
@@ -45,14 +51,17 @@ export default defineComponent({
         await this.$store.dispatch("removeCustomer", this.customerInfo.id);
       };
 
-      const messages = ["Czy napewno chcesz usunąć", this.customerInfo.name];
-
       const data: IPopupConfirmData = {
         remove,
-        messages,
+        message: `Czy napewno chcesz usunąć ${this.customerInfo.name}`,
       };
 
-      this.$store.commit("displayRemovePopup", data);
+      const payloadData: IPopUpShowPayload = {
+        type: PopupTypeEnum.CONFIRM_REMOVE,
+        data,
+      };
+
+      this.$store.commit(PopUpMutations.POPUP_SHOW, payloadData);
     },
   },
 });
