@@ -6,8 +6,11 @@ import {
   ICompanyEditData,
   ICompanyInfo,
   ICustomerPost,
+  IPopUpShowPayload,
+  PopupTypeEnum,
 } from "@/types";
 import { Module } from "vuex";
+import { PopUpMutations } from "./popupState";
 
 export interface ICompaniesState {
   companies: ICompanyInfo[];
@@ -69,13 +72,29 @@ export const companiesState: Module<ICompaniesState, State> = {
           payload,
           context.getters.getAuthHeader
         );
-        context.commit("displaySuccessPopup", [
-          `Udało sie dodać firmę ${res.data.name}`,
-        ]);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Pomyślnie",
+            messages: [`Udało się dodać firmę ${res.data.name}`],
+            type: "success",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleCompanyError");
-        context.commit("displayErrorPopup", err.response?.data.message);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
     async editCompany(context, payload: ICompanyEditData) {
@@ -85,13 +104,30 @@ export const companiesState: Module<ICompaniesState, State> = {
           payload.data,
           context.getters.getAuthHeader
         );
-        context.commit("displaySuccessPopup", [
-          `Udało sie zaktualizować firmę ${res.data.name}`,
-        ]);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Pomyślnie",
+            messages: [`Udało się zaktualizować firmę ${res.data.name}`],
+            type: "success",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleCompanyError");
-        context.commit("displayErrorPopup", err.response?.data.message);
+
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
     async removeCompany(context, payload: string) {
@@ -100,14 +136,29 @@ export const companiesState: Module<ICompaniesState, State> = {
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/delete/${payload}`,
           context.getters.getAuthHeader
         );
-        context.commit("displaySuccessPopup", [
-          `Udało sie usunąc firmę ${res.data.name}`,
-        ]);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Pomyślnie",
+            messages: [`Udało się usunąć firme ${res.data.name}`],
+            type: "success",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
         context.dispatch("getCompanies");
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
-        const messages = [err.response?.data.message];
-        context.commit("displayErrorPopup", messages);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
   },

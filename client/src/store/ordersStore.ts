@@ -9,9 +9,12 @@ import {
   IOrderFormListElement,
   IOrderHistoryInfo,
   IOrderPost,
+  IPopUpShowPayload,
   IStatusUpdate,
+  PopupTypeEnum,
 } from "@/types";
 import { Module } from "vuex";
+import { PopUpMutations } from "./popupState";
 
 export interface IOrdersState {
   ordersHistory: IOrderHistoryInfo[];
@@ -99,8 +102,17 @@ export const ordersState: Module<IOrdersState, State> = {
         );
         context.commit("setOrdersInfo", res.data);
       } catch (error) {
-        const err = error as AxiosError;
-        console.log(err.request.status);
+        const err = error as AxiosError<AxiosErrorDataType>;
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
     async getOrderDetail(context, payload: string) {
@@ -111,8 +123,17 @@ export const ordersState: Module<IOrdersState, State> = {
         );
         context.commit("setOrderDetail", res.data);
       } catch (error) {
-        const err = error as AxiosError;
-        console.log(err.request.status);
+        const err = error as AxiosError<AxiosErrorDataType>;
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
     async addOrder(context, payload: IOrderPost) {
@@ -122,13 +143,29 @@ export const ordersState: Module<IOrdersState, State> = {
           payload,
           context.getters.getAuthHeader
         );
-        context.commit("displaySuccessPopup", [
-          `Udało sie dodać zamówienie ${res.data.orderNumber}`,
-        ]);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Pomyślnie",
+            messages: [`Udało się dodać zamówienie ${res.data.name}`],
+            type: "success",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleOrderError");
-        context.commit("displayErrorPopup", err.response?.data.message);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
     async editOrder(context, payload: IOrderEditData) {
@@ -138,13 +175,29 @@ export const ordersState: Module<IOrdersState, State> = {
           payload.data,
           context.getters.getAuthHeader
         );
-        context.commit("displaySuccessPopup", [
-          `Udało sie zaktualizować zamówienie ${res.data.orderNumber}`,
-        ]);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Pomyślnie",
+            messages: [`Udało się zaktualizować zamówienie ${res.data.name}`],
+            type: "success",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleOrderError");
-        context.commit("displayErrorPopup", err.response?.data.message);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
     async updateStatus(context, payload: IStatusUpdate) {
@@ -157,7 +210,16 @@ export const ordersState: Module<IOrdersState, State> = {
         context.commit("setOrderDetail", res.data);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
-        context.commit("displayErrorPopup", err.response?.data.message);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
   },

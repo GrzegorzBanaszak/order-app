@@ -6,8 +6,11 @@ import {
   ICommodityEditData,
   ICommodityInfo,
   ICommodityPost,
+  IPopUpShowPayload,
+  PopupTypeEnum,
 } from "@/types";
 import { Module } from "vuex";
+import { PopUpMutations } from "./popupState";
 
 export interface ICommoditiesState {
   commodities: ICommodityInfo[];
@@ -70,13 +73,29 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
           payload,
           context.getters.getAuthHeader
         );
-        context.commit("displaySuccessPopup", [
-          `Udało sie dodać towar ${res.data.name}`,
-        ]);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Pomyślnie",
+            messages: [`Udało się dodać towar ${res.data.name}`],
+            type: "success",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleCommodityError");
-        context.commit("displayErrorPopup", err.response?.data.message);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
     async editCommodity(context, payload: ICommodityEditData) {
@@ -86,13 +105,29 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
           payload.data,
           context.getters.getAuthHeader
         );
-        context.commit("displaySuccessPopup", [
-          `Udało sie edytować towar ${res.data.name}`,
-        ]);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Pomyślnie",
+            messages: [`Udało się zaktualizować towar ${res.data.name}`],
+            type: "success",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleCommodityError");
-        context.commit("displayErrorPopup", err.response?.data.message);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
 
@@ -102,14 +137,29 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/delete/${payload}`,
           context.getters.getAuthHeader
         );
-        context.commit("displaySuccessPopup", [
-          `Udało sie usunąc towar ${res.data.name}`,
-        ]);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Pomyślnie",
+            messages: [`Udało się usunąć towar ${res.data.name}`],
+            type: "success",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
         context.dispatch("setCommodities");
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
-        const messages = [err.response?.data.message];
-        context.commit("displayErrorPopup", messages);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
   },

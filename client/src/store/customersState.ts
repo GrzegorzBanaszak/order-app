@@ -78,7 +78,7 @@ export const customersState: Module<ICustomersState, State> = {
           type: PopupTypeEnum.DISPLAY_MESSAGES,
           data: {
             title: "Pomyślnie",
-            messages: [`Udało sie dodać klienta ${res.data.name}`],
+            messages: [`Udało się dodać klienta ${res.data.name}`],
             type: "success",
           },
         };
@@ -112,7 +112,7 @@ export const customersState: Module<ICustomersState, State> = {
           type: PopupTypeEnum.DISPLAY_MESSAGES,
           data: {
             title: "Pomyślnie",
-            messages: [`Udało sie zaktualizować klienta ${res.data.name}`],
+            messages: [`Udało się zaktualizować klienta ${res.data.name}`],
             type: "success",
           },
         };
@@ -145,7 +145,7 @@ export const customersState: Module<ICustomersState, State> = {
           type: PopupTypeEnum.DISPLAY_MESSAGES,
           data: {
             title: "Pomyślnie",
-            messages: [`Udało sie usunąć klienta ${res.data.name}`],
+            messages: [`Udało się usunąć klienta ${res.data.name}`],
             type: "success",
           },
         };

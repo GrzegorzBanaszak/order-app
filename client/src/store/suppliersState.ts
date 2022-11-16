@@ -2,12 +2,15 @@ import axios, { AxiosError } from "axios";
 import { State } from "./index";
 import {
   AxiosErrorDataType,
+  IPopUpShowPayload,
   ISupplierDetail,
   ISupplierEditData,
   ISupplierInfo,
   ISupplierPost,
+  PopupTypeEnum,
 } from "@/types";
 import { Module } from "vuex";
+import { PopUpMutations } from "./popupState";
 
 export interface ISuppliersState {
   suppliers: ISupplierInfo[];
@@ -69,13 +72,31 @@ export const suppliersState: Module<ISuppliersState, State> = {
           payload,
           context.getters.getAuthHeader
         );
-        context.commit("displaySuccessPopup", [
-          `Udało sie dodać dostawcę ${res.data.name}`,
-        ]);
+
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Pomyślnie",
+            messages: [`Udało się dodać dostawcę ${res.data.name}`],
+            type: "success",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleSupplierError");
-        context.commit("displayErrorPopup", err.response?.data.message);
+
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
     async editSupplier(context, payload: ISupplierEditData) {
@@ -85,13 +106,29 @@ export const suppliersState: Module<ISuppliersState, State> = {
           payload.data,
           context.getters.getAuthHeader
         );
-        context.commit("displaySuccessPopup", [
-          `Udało sie edytować dostawcę ${res.data.name}`,
-        ]);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Pomyślnie",
+            messages: [`Udało się edytować dostawcę ${res.data.name}`],
+            type: "success",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
         context.commit("toggleSupplierError");
-        context.commit("displayErrorPopup", err.response?.data.message);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
     async removeSupplier(context, payload: string) {
@@ -100,14 +137,29 @@ export const suppliersState: Module<ISuppliersState, State> = {
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/delete/${payload}`,
           context.getters.getAuthHeader
         );
-        context.commit("displaySuccessPopup", [
-          `Udało sie usunąc klienta ${res.data.name}`,
-        ]);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Pomyślnie",
+            messages: [`Udało się usunąć dostawcę ${res.data.name}`],
+            type: "success",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
         context.dispatch("setSuppliers");
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
-        const messages = [err.response?.data.message];
-        context.commit("displayErrorPopup", messages);
+        const payloadData: IPopUpShowPayload = {
+          type: PopupTypeEnum.DISPLAY_MESSAGES,
+          data: {
+            title: "Błąd",
+            messages: err.response?.data.message,
+            type: "error",
+          },
+        };
+
+        context.commit(PopUpMutations.POPUP_SHOW, payloadData);
       }
     },
   },
