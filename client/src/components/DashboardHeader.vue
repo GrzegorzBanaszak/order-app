@@ -2,7 +2,7 @@
   <header :class="classType">
     <h2>Agrohandel</h2>
     <div class="avatar">
-      <p class="avatar__username">Email</p>
+      <p class="avatar__username">{{ $store.getters.getUsername }}</p>
       <div class="avatar__image">GB</div>
     </div>
   </header>

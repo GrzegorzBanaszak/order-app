@@ -20,9 +20,15 @@
 import TrashBlackIcon from "@/icons/TrashBlackIcon.vue";
 import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
 import PenBlackIcon from "../icons/PenBlackIcon.vue";
-import { ICompanyInfo, IPopupConfirmData } from "@/types";
+import {
+  ICompanyInfo,
+  IPopupConfirmData,
+  IPopUpShowPayload,
+  PopupTypeEnum,
+} from "@/types";
 import moment from "moment";
 import { defineComponent, PropType } from "vue";
+import { PopUpMutations } from "@/store/popupState";
 
 export default defineComponent({
   components: { InfoBlackIcon, TrashBlackIcon, PenBlackIcon },
@@ -48,10 +54,14 @@ export default defineComponent({
         remove,
         message: `Czy napewno chcesz usunąć ${this.companyInfo.name}`,
       };
-      this.$store.commit("displayRemovePopup", data);
+
+      const payloadData: IPopUpShowPayload = {
+        type: PopupTypeEnum.CONFIRM_REMOVE,
+        data,
+      };
+
+      this.$store.commit(PopUpMutations.POPUP_SHOW, payloadData);
     },
   },
 });
 </script>
-
-<style></style>

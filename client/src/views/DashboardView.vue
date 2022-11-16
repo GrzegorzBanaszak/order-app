@@ -19,6 +19,7 @@ import DashboardNav from "@/components/DashboardNav.vue";
 import { defineComponent } from "vue";
 import AddNewButton from "@/components/AddNewButton.vue";
 import PopUp from "@/components/PopUp.vue";
+import { IPopUpShowPayload, PopupTypeEnum } from "@/types";
 import { PopUpMutations } from "@/store/popupState";
 
 export default defineComponent({
@@ -31,6 +32,14 @@ export default defineComponent({
   mounted() {
     document.title = "Zamówienia";
     this.$store.commit("setLocation", this.$route.fullPath.split("/"));
+
+    const payloadData: IPopUpShowPayload = {
+      type: PopupTypeEnum.SELECT_USER,
+      data: null,
+    };
+    if (!this.$store.state.authState.user) {
+      this.$store.commit(PopUpMutations.POPUP_SHOW, payloadData);
+    }
   },
   watch: {
     $route(to, from) {

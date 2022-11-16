@@ -17,20 +17,26 @@
         :popup-id="item[0]"
       >
       </pop-up-confirm>
+
+      <Suspense v-else-if="item[1].type === 'select-user'">
+        <pop-up-select-user :popup-id="item[0]"> </pop-up-select-user>
+        <template #fallback>Loading.. </template>
+      </Suspense>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { PopupTypeEnum } from "@/types";
 import { defineComponent } from "vue";
 import PopUpShowMessages from "@/components/PopUpShowMessages.vue";
 import PopUpConfirm from "./PopUpConfirm.vue";
+import PopUpSelectUser from "./PopUpSelectUser.vue";
 
 export default defineComponent({
   components: {
     PopUpShowMessages,
     PopUpConfirm,
+    PopUpSelectUser,
   },
   methods: {},
 });
@@ -86,6 +92,13 @@ export default defineComponent({
       color: white;
       background-color: #b71c1c;
     }
+  }
+  &__select {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+    text-align: center;
+    font-size: 1rem;
   }
 }
 </style>

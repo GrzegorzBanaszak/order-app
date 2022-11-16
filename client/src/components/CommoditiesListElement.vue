@@ -19,9 +19,15 @@
 import TrashBlackIcon from "@/icons/TrashBlackIcon.vue";
 import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
 import PenBlackIcon from "../icons/PenBlackIcon.vue";
-import { ICommodityInfo, IPopupConfirmData } from "@/types";
+import {
+  ICommodityInfo,
+  IPopupConfirmData,
+  IPopUpShowPayload,
+  PopupTypeEnum,
+} from "@/types";
 import moment from "moment";
 import { defineComponent, PropType } from "vue";
+import { PopUpMutations } from "@/store/popupState";
 
 export default defineComponent({
   components: { InfoBlackIcon, TrashBlackIcon, PenBlackIcon },
@@ -43,12 +49,18 @@ export default defineComponent({
       const remove = async () => {
         await this.$store.dispatch("removeCommodity", this.commodityInfo.id);
       };
-  
+
       const data: IPopupConfirmData = {
         remove,
-       message:`Czy napewno chcesz usunąć ${this.commodityInfo.name}`,
+        message: `Czy napewno chcesz usunąć ${this.commodityInfo.name}`,
       };
-      this.$store.commit("displayRemovePopup", data);
+
+      const payloadData: IPopUpShowPayload = {
+        type: PopupTypeEnum.CONFIRM_REMOVE,
+        data,
+      };
+
+      this.$store.commit(PopUpMutations.POPUP_SHOW, payloadData);
     },
   },
 });
