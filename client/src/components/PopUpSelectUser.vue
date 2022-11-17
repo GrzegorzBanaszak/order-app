@@ -1,13 +1,45 @@
 <template>
-  <h2 class="popup__title">Wybierz użytkownika</h2>
-  <select @change="onChange" class="popup__select">
-    <option v-for="(user, index) in usersData" :key="index" :value="user.id">
-      {{ user.name }}
-    </option>
-  </select>
-  <button class="popup__button popup__button--success" @click="confirmSelect">
-    Potwierdz
-  </button>
+  <div v-if="isEdit">
+    <h2 class="popup__title">Dodaj nowego pracownika</h2>
+    <input v-model="inputValue" class="popup__select" />
+
+    <div class="popup__buttons">
+      <button
+        class="popup__button popup__button--success"
+        @click="addNewEmployer"
+      >
+        Potwierdź
+      </button>
+      <button
+        class="popup__button popup__button--error"
+        @click="isEdit = false"
+      >
+        Zamknij
+      </button>
+    </div>
+  </div>
+  <div v-else>
+    <h2 class="popup__title">Wybierz użytkownika</h2>
+    <select @change="onChange" class="popup__select">
+      <option v-for="(user, index) in usersData" :key="index" :value="user.id">
+        {{ user.name }}
+      </option>
+    </select>
+    <div class="popup__buttons">
+      <button
+        class="popup__button popup__button--success"
+        @click="confirmSelect"
+      >
+        Potwierdź
+      </button>
+      <button
+        class="popup__button popup__button--success"
+        @click="isEdit = true"
+      >
+        Nowy pracownik
+      </button>
+    </div>
+  </div>
 </template>
 >
 
@@ -25,11 +57,21 @@ export default defineComponent({
 
     const usersData = ref<Array<any>>(users);
 
-    const selectedUser = ref(users[0].id);
+    const isEdit = ref<boolean>(!(usersData.value.length > 0));
+
+    const selectedUser = ref("");
+
+    const inputValue = ref("");
+
+    if (usersData.value.length > 0) {
+      selectedUser.value = usersData.value[0].id;
+    }
 
     return {
       usersData,
       selectedUser,
+      isEdit,
+      inputValue,
     };
   },
   props: {
@@ -48,6 +90,16 @@ export default defineComponent({
       if (selected) {
         this.$store.commit(AuthMutations.SET_USER_DATA, selected);
         this.$store.commit(PopUpMutations.REMOVE_POPUP, this.popupId);
+      }
+    },
+    async addNewEmployer() {
+      if (this.inputValue) {
+        await this.$store.dispatch(AuthActions.ADD_EMPLOYER, this.inputValue);
+        const data = await this.$store.dispatch(AuthActions.GET_USERS);
+
+        this.usersData = data;
+        this.isEdit = false;
+        this.inputValue = "";
       }
     },
   },

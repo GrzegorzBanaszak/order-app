@@ -73,13 +73,17 @@ export default defineComponent({
   p {
     margin: 0.5rem 0;
   }
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+  }
   &__button {
     margin-top: 1rem;
     display: block;
     width: 100%;
     border: none;
-    padding: 1rem 0.5rem;
-    font-size: 1rem;
+    padding: 0.7rem 0.5rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     border-radius: 10px;
     font-weight: 700;

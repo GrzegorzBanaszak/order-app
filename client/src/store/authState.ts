@@ -25,6 +25,7 @@ export enum AuthGetters {
 export enum AuthActions {
   LOGIN_USER = "loginUser",
   GET_USERS = "getUsers",
+  ADD_EMPLOYER = "addEmployer",
 }
 
 export const authState: Module<IAuthState, State> = {
@@ -88,6 +89,21 @@ export const authState: Module<IAuthState, State> = {
       try {
         const res = await axios.get(
           `http://${process.env.VUE_APP_BACKEND_IP}:5000/employer`,
+          context.getters.getAuthHeader
+        );
+
+        return res.data;
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+      }
+    },
+    async [AuthActions.ADD_EMPLOYER](context, payload: string) {
+      try {
+        const res = await axios.post(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/employer/add`,
+          {
+            name: payload,
+          },
           context.getters.getAuthHeader
         );
 
