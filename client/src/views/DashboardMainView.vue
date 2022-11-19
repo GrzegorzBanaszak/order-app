@@ -22,7 +22,7 @@
 <script lang="ts">
 import OpenList from "@/components/OpenList.vue";
 import OpenOrdersList from "@/components/OpenOrdersList.vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { useStore } from "@/store";
 
 export default defineComponent({
@@ -42,33 +42,54 @@ export default defineComponent({
 <style lang="scss">
 .main {
   &__chart {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 3;
     background-color: white;
   }
   &__orders {
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 3;
-    grid-row-end: 5;
     background-color: white;
     overflow: hidden;
     @include scrollbars(5px, #ccc, white);
   }
   &__best {
     &--customers {
-      grid-row-start: 1;
-      grid-row-end: 3;
       background-color: white;
       overflow: hidden;
     }
     &--commadity {
+      background-color: white;
+      overflow: hidden;
+    }
+  }
+
+  @include lg {
+    &__chart {
+      grid-column-start: 1;
+      grid-column-end: 3;
       grid-row-start: 1;
       grid-row-end: 3;
       background-color: white;
+    }
+    &__orders {
+      grid-column-start: 1;
+      grid-column-end: 5;
+      grid-row-start: 3;
+      grid-row-end: 5;
+      background-color: white;
       overflow: hidden;
+      @include scrollbars(5px, #ccc, white);
+    }
+    &__best {
+      &--customers {
+        grid-row-start: 1;
+        grid-row-end: 3;
+        background-color: white;
+        overflow: hidden;
+      }
+      &--commadity {
+        grid-row-start: 1;
+        grid-row-end: 3;
+        background-color: white;
+        overflow: hidden;
+      }
     }
   }
 }

@@ -22,7 +22,7 @@
         />
       </div>
       <span v-if="error" class="form__error">{{ error }}</span>
-      <router-link class="form__link" to="/register">Zarejestruj</router-link>
+
       <button class="form__button" type="submit">Zaloguj</button>
     </form>
   </div>
@@ -58,7 +58,8 @@ export default defineComponent({
             this.$router.push("/d");
             localStorage.setItem("token", this.$store.state.authState.token);
           } else {
-            this.$store.commit(AuthMutations.TOGGLE_AUTH_ERROR);
+            this.error = this.$store.state.authState.errorMessaage;
+            this.$store.commit(AuthMutations.TOGGLE_AUTH_ERROR, "");
           }
         });
     },
@@ -79,7 +80,6 @@ export default defineComponent({
 }
 
 .form {
-  width: 40%;
   background-color: white;
   border-radius: 44px;
   padding: 2rem;
@@ -99,7 +99,6 @@ export default defineComponent({
     input {
       border: none;
       border-bottom: 1px solid #ccc;
-      width: 50%;
       outline: none;
       font-size: 1.2rem;
     }
@@ -120,7 +119,7 @@ export default defineComponent({
     font-size: 2rem;
     font-weight: 500;
     color: white;
-    width: 50%;
+    width: 100%;
     background-color: #3f51b5;
     border-radius: 10px;
     cursor: pointer;
@@ -132,6 +131,41 @@ export default defineComponent({
     font-weight: 700;
     text-transform: uppercase;
     color: red;
+  }
+}
+
+@include lg {
+  .form {
+    width: 40%;
+
+    &__link {
+      color: #5c5c5c;
+      margin: 1rem auto;
+      width: 50%;
+      display: block;
+      text-decoration: none;
+    }
+    &__button {
+      display: block;
+      border: none;
+      margin: 2rem auto;
+      padding: 0.6rem;
+      font-size: 2rem;
+      font-weight: 500;
+      color: white;
+      width: 50%;
+      background-color: #3f51b5;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    &__error {
+      margin: 1rem auto;
+      width: 50%;
+      display: block;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: red;
+    }
   }
 }
 </style>

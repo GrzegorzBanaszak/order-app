@@ -28,7 +28,6 @@ export const popupState: Module<IPopupState, State> = {
         data: payload.data,
       };
 
-      console.log(popupData);
       state.popups.set(id, popupData);
     },
     [PopUpMutations.REMOVE_POPUP](state, payload: string) {

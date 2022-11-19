@@ -6,6 +6,7 @@ import { AxiosErrorDataType } from "@/types";
 export interface IAuthState {
   user: any;
   token: string;
+  errorMessaage: string;
   isError: boolean;
 }
 
@@ -33,6 +34,7 @@ export const authState: Module<IAuthState, State> = {
     user: null,
     token: "",
     isError: false,
+    errorMessaage: "",
   },
   getters: {
     [AuthGetters.IS_AUTH](state) {
@@ -59,8 +61,9 @@ export const authState: Module<IAuthState, State> = {
     [AuthMutations.SET_TOKEN](state, payload: string) {
       state.token = payload;
     },
-    [AuthMutations.TOGGLE_AUTH_ERROR](state, payload: boolean) {
-      state.isError = payload;
+    [AuthMutations.TOGGLE_AUTH_ERROR](state, payload: string) {
+      state.isError = !state.isError;
+      state.errorMessaage = payload;
     },
     [AuthMutations.SET_LOGIN_DATA](state, payload: any) {
       state.token = payload.token;
@@ -82,6 +85,7 @@ export const authState: Module<IAuthState, State> = {
         });
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
+        context.commit(AuthMutations.TOGGLE_AUTH_ERROR, err.message);
       }
     },
 

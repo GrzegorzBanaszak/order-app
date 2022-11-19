@@ -1,7 +1,17 @@
 <template>
   <div class="dashboard__grid">
-    <dashboard-nav :class-type="'dashboard__nav'"></dashboard-nav>
-    <dashboard-header :class-type="'dashboard__header'"></dashboard-header>
+    <transition name="navbar"
+      ><dashboard-nav
+        v-if="isNavShow"
+        :class-type="'dashboard__nav'"
+      ></dashboard-nav>
+    </transition>
+
+    <dashboard-header
+      @toggleNav="isNavShow = !isNavShow"
+      :class-type="'dashboard__header'"
+      :is-open.sync="isNavShow"
+    ></dashboard-header>
     <div class="dashboard__location">
       <h2>{{ displayLocation($store.state.openState.location[2]) }}</h2>
       <add-new-button :key="$route.fullPath"></add-new-button>
@@ -29,10 +39,18 @@ export default defineComponent({
     AddNewButton,
     PopUp,
   },
+  data() {
+    return {
+      isNavShow: false,
+    };
+  },
   mounted() {
     document.title = "Zamówienia";
     this.$store.commit("setLocation", this.$route.fullPath.split("/"));
 
+    if (window.innerWidth > 768) {
+      this.isNavShow = true;
+    }
     const payloadData: IPopUpShowPayload = {
       type: PopupTypeEnum.SELECT_USER,
       data: null,
@@ -63,6 +81,9 @@ export default defineComponent({
           return "Strona główna";
       }
     },
+    toggle() {
+      console.log("toggle");
+    },
   },
 });
 </script>
@@ -70,21 +91,14 @@ export default defineComponent({
 <style lang="scss">
 .dashboard {
   &__grid {
-    width: 100%;
-    height: 100vh;
+    position: relative;
+    width: 100vw;
     background-color: #eeeeee;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(8, 1fr);
     grid-template-areas:
-      "nav header header header header"
-      "nav location location location location"
-      "nav main main main main"
-      "nav main main main main"
-      "nav main main main main"
-      "nav main main main main"
-      "nav main main main main"
-      "nav main main main main";
+      "header"
+      "location"
+      "main";
   }
 
   &__header {
@@ -105,7 +119,8 @@ export default defineComponent({
   }
 
   &__nav {
-    grid-area: nav;
+    position: fixed;
+    height: 100vh;
     background-color: #37474f;
     color: #b0bec5;
     padding: 2rem 1rem;
@@ -113,11 +128,10 @@ export default defineComponent({
 
   &__main {
     grid-area: main;
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: repeat(4, 1fr);
     padding: 0.3rem 1rem;
-    gap: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   &__location {
@@ -128,6 +142,85 @@ export default defineComponent({
     padding: 1rem;
     font-size: 1.75rem;
     font-weight: 500;
+  }
+}
+
+.navbar {
+  &-enter {
+    &-from {
+      transform: translateX(-10px);
+      opacity: 0;
+    }
+    &-to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    &-active {
+      transition: all 0.3s ease-in;
+    }
+  }
+  &-leave {
+    &-from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    &-to {
+      transform: translateX(-10px);
+      opacity: 0;
+    }
+    &-active {
+      transition: all 0.3s ease-in;
+    }
+  }
+}
+@include lg {
+  .dashboard {
+    &__grid {
+      width: 100%;
+      height: 100vh;
+      background-color: #eeeeee;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(8, 1fr);
+      grid-template-areas:
+        "nav header header header header"
+        "nav location location location location"
+        "nav main main main main"
+        "nav main main main main"
+        "nav main main main main"
+        "nav main main main main"
+        "nav main main main main"
+        "nav main main main main";
+    }
+
+    &__header {
+      grid-area: header;
+      justify-content: flex-end;
+    }
+
+    &__nav {
+      position: relative;
+      grid-area: nav;
+    }
+
+    &__main {
+      grid-area: main;
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+      padding: 0.3rem 1rem;
+      gap: 0.7rem;
+    }
+
+    &__location {
+      grid-area: location;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      font-size: 1.75rem;
+      font-weight: 500;
+    }
   }
 }
 </style>

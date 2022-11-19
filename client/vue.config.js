@@ -4,7 +4,7 @@ module.exports = defineConfig({
   css: {
     loaderOptions: {
       sass: {
-        additionalData: `@import "@/styles/mixins.scss";`,
+        additionalData: `@import "@/styles/mixins.scss"; @import "@/styles/breakpoints.scss";`,
       },
     },
   },

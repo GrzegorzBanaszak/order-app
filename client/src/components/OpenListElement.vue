@@ -12,7 +12,6 @@
 import InfoBlackIcon from "@/icons/InfoBlackIcon.vue";
 import { defineComponent } from "vue";
 
-
 export default defineComponent({
   components: { InfoBlackIcon },
   props: {
@@ -24,14 +23,14 @@ export default defineComponent({
       type: Number,
       default: 0,
     },
-    id:{
-      type:String,
-      required:true
+    id: {
+      type: String,
+      required: true,
     },
-    type:{
-      type:String,
-      required:true
-    }
+    type: {
+      type: String,
+      required: true,
+    },
   },
 });
 </script>
@@ -39,7 +38,7 @@ export default defineComponent({
 <style lang="scss">
 .open-list {
   &__element {
-    margin: 0.7rem  0.5rem;
+    margin: 0.7rem 0.5rem;
     display: flex;
     align-items: center;
     &--name {

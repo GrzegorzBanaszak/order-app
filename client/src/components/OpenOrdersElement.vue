@@ -1,14 +1,31 @@
 <template>
   <div class="open-orders__element">
-    <div>{{ order?.customer }}</div>
-    <div>{{ getDate() }}</div>
-    <div>{{ order?.quantity }}</div>
-    <div>{{ order?.totalPrice }} zł</div>
-    <div>{{ order?.status }}</div>
-    <div><router-link :to="`/d/orders/${order?.id}`">
-      <info-black-icon />
-    </router-link></div>
-    
+    <div class="open-orders__element--item">
+      <p class="open-orders__description">Osoba zamawiająca</p>
+      {{ order?.customer }}
+    </div>
+    <div class="open-orders__element--item">
+      <p class="open-orders__description">Data zamówienia</p>
+      {{ getDate() }}
+    </div>
+    <div class="open-orders__element--item">
+      <p class="open-orders__description">Ilość</p>
+      {{ order?.quantity }}
+    </div>
+    <div class="open-orders__element--item">
+      <p class="open-orders__description">Kwota całkowita</p>
+      {{ order?.totalPrice }} zł
+    </div>
+    <div class="open-orders__element--item">
+      <p class="open-orders__description">Data zamówienia</p>
+      {{ order?.status }}
+    </div>
+    <div>
+      <router-link class="open-orders__detail" :to="`/d/orders/${order?.id}`">
+        <info-black-icon />
+        <p>Więcej informacji</p>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -36,12 +53,50 @@ export default defineComponent({
 <style lang="scss">
 .open-orders {
   &__element {
-    @include orderGrid;
-    div {
-      text-align: center;
+    margin: 0.7rem 0.3rem;
+
+    &--item {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.5rem 0;
     }
-    margin: 0.7rem;
   }
-  
+  &__description {
+    font-weight: 700;
+  }
+  &__detail {
+    margin: 1rem 0;
+    padding: 0.5rem 0;
+    border-radius: 10px;
+    background-color: #673ab7;
+    display: flex;
+    justify-content: center;
+    color: white;
+    gap: 0.5rem;
+    font-weight: 700;
+    svg {
+      display: block;
+      fill: white;
+    }
+  }
+}
+
+@include lg {
+  .open-orders {
+    margin: 0.7rem 0.3rem;
+    &__element {
+      @include orderGrid;
+      &--item {
+        display: flex;
+        justify-content: center;
+      }
+    }
+    &__description {
+      display: none;
+    }
+    &__detail {
+      margin: 0;
+    }
+  }
 }
 </style>
