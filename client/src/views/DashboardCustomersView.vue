@@ -1,7 +1,7 @@
 <template>
   <div class="customers-list">
     <header class="customers-list__header">
-      Lista Klientów <search-filter-input v-model="filterValue"/>
+      Lista Klientów <search-filter-input v-model="filterValue" />
     </header>
     <div class="customers-list__info">
       <div>Imie i nazwisko</div>
@@ -35,32 +35,20 @@ export default defineComponent({
     const store = useStore();
     store.dispatch("getCustomers");
   },
-  data(){
-    return{
-      filterValue:'' as string
-    }
-  }
+  data() {
+    return {
+      filterValue: "" as string,
+    };
+  },
 });
 </script>
 
 <style lang="scss">
 .customers-list {
   @include display-info-list;
-
   &__header {
     @include display-info-header;
   }
-
   @include dashboard-list(2fr 2fr 2fr 1fr 1fr);
-}
-
-.list-element__controller {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-
-  svg {
-    cursor: pointer;
-  }
 }
 </style>

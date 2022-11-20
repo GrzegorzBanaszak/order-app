@@ -4,11 +4,12 @@
       ><dashboard-nav
         v-if="isNavShow"
         :class-type="'dashboard__nav'"
+        @click-link="isNavShow = !isNavShow"
       ></dashboard-nav>
     </transition>
 
     <dashboard-header
-      @toggleNav="isNavShow = !isNavShow"
+      @toggleNav="toggle"
       :class-type="'dashboard__header'"
       :is-open.sync="isNavShow"
     ></dashboard-header>
@@ -82,7 +83,7 @@ export default defineComponent({
       }
     },
     toggle() {
-      console.log("toggle");
+      this.isNavShow = !this.isNavShow;
     },
   },
 });
@@ -92,13 +93,11 @@ export default defineComponent({
 .dashboard {
   &__grid {
     position: relative;
-    width: 100vw;
+    width: 100%;
+    min-height: 100vh;
     background-color: #eeeeee;
-    display: grid;
-    grid-template-areas:
-      "header"
-      "location"
-      "main";
+    display: flex;
+    flex-direction: column;
   }
 
   &__header {
@@ -120,6 +119,7 @@ export default defineComponent({
 
   &__nav {
     position: fixed;
+    z-index: 5;
     height: 100vh;
     background-color: #37474f;
     color: #b0bec5;
@@ -173,12 +173,45 @@ export default defineComponent({
     }
   }
 }
+
+.list-element {
+  &__controller {
+    margin-top: 0.7rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  &__link {
+    flex-grow: 1;
+    padding: 0.5rem 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      fill: white;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__info {
+    background-color: #5e35b1;
+  }
+
+  &__edit {
+    background-color: #43a047;
+  }
+  &__delete {
+    background-color: #b71c1c;
+  }
+}
 @include lg {
   .dashboard {
     &__grid {
       width: 100%;
       height: 100vh;
-      background-color: #eeeeee;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       grid-template-rows: repeat(8, 1fr);
@@ -208,18 +241,37 @@ export default defineComponent({
       display: grid;
       grid-template-rows: repeat(4, 1fr);
       grid-template-columns: repeat(4, 1fr);
-      padding: 0.3rem 1rem;
       gap: 0.7rem;
     }
+  }
 
-    &__location {
-      grid-area: location;
+  .list-element {
+    &__controller {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem;
-      font-size: 1.75rem;
-      font-weight: 500;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 0;
+    }
+
+    &__link {
+      flex-grow: 1;
+      padding: 0.3rem 0;
+      svg {
+        fill: white;
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &__info {
+      background-color: #5e35b1;
+    }
+
+    &__edit {
+      background-color: #43a047;
+    }
+    &__delete {
+      background-color: #b71c1c;
     }
   }
 }

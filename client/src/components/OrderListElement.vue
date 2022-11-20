@@ -6,13 +6,18 @@
   <div>{{ orderInfo.advance }} zł</div>
   <div>{{ orderInfo.status }}</div>
   <div class="list-element__controller">
-    <router-link :to="'/d/orders/' + orderInfo.id">
+    <router-link
+      class="list-element__link list-element__info"
+      :to="'/d/orders/' + orderInfo.id"
+    >
       <info-black-icon />
     </router-link>
-    <router-link :to="'/d/orders/edit/' + orderInfo.id">
+    <router-link
+      class="list-element__link list-element__edit"
+      :to="'/d/orders/edit/' + orderInfo.id"
+    >
       <pen-black-icon></pen-black-icon>
     </router-link>
-    
   </div>
 </template>
 
@@ -24,7 +29,7 @@ import moment from "moment";
 import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
-  components: { InfoBlackIcon ,PenBlackIcon},
+  components: { InfoBlackIcon, PenBlackIcon },
   props: {
     orderInfo: {
       type: Object as PropType<IOrder>,

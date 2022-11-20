@@ -1,18 +1,36 @@
 <template>
-  <div>{{ customerInfo.name }}</div>
-  <div>{{ customerInfo.companyName }}</div>
-  <div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Imie i nazwisko</p>
+    {{ customerInfo.name }}
+  </div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Firma</p>
+    {{ customerInfo.companyName }}
+  </div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Ostatnie zamówienie</p>
     {{ getDate() }}
   </div>
-  <div>{{ customerInfo.phoneNumber }}</div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Telefon</p>
+    {{ customerInfo.phoneNumber }}
+  </div>
   <div class="list-element__controller">
-    <router-link :to="'/d/customers/' + customerInfo.id">
+    <router-link
+      class="list-element__link list-element__info"
+      :to="'/d/customers/' + customerInfo.id"
+    >
       <info-black-icon />
     </router-link>
-    <router-link :to="'/d/customers/edit/' + customerInfo.id">
+    <router-link
+      class="list-element__link list-element__edit"
+      :to="'/d/customers/edit/' + customerInfo.id"
+    >
       <pen-black-icon></pen-black-icon>
     </router-link>
-    <trash-black-icon @click="removeElement"></trash-black-icon>
+    <div class="list-element__link list-element__delete" @click="removeElement">
+      <trash-black-icon></trash-black-icon>
+    </div>
   </div>
 </template>
 

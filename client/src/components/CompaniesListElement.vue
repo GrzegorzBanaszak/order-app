@@ -6,13 +6,21 @@
   </div>
   <div>{{ companyInfo.employers }}</div>
   <div class="list-element__controller">
-    <router-link :to="'/d/companies/' + companyInfo.id">
+    <router-link
+      class="list-element__link list-element__info"
+      :to="'/d/companies/' + companyInfo.id"
+    >
       <info-black-icon />
     </router-link>
-    <router-link :to="'/d/companies/edit/' + companyInfo.id">
+    <router-link
+      class="list-element__link list-element__edit"
+      :to="'/d/companies/edit/' + companyInfo.id"
+    >
       <pen-black-icon></pen-black-icon>
     </router-link>
-    <trash-black-icon @click="removeElement"></trash-black-icon>
+    <div class="list-element__link list-element__delete" @click="removeElement">
+      <trash-black-icon></trash-black-icon>
+    </div>
   </div>
 </template>
 

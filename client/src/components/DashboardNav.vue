@@ -2,12 +2,12 @@
   <nav :class="classType">
     <h1 class="sidebar__title"><shop-icon></shop-icon> Orders Manager</h1>
     <ul class="sidebar__menu">
-      <li>
+      <li @click="linkClick">
         <router-link :class="{ activeNavLink: isLinkActive('') }" to="/d"
           ><dashboard-icon></dashboard-icon> Strona główna</router-link
         >
       </li>
-      <li>
+      <li @click="linkClick">
         <router-link
           :class="{ activeNavLink: isLinkActive('customers') }"
           to="/d/customers"
@@ -15,28 +15,28 @@
           <users-icon />Klienci</router-link
         >
       </li>
-      <li>
+      <li @click="linkClick">
         <router-link
           :class="{ activeNavLink: isLinkActive('companies') }"
           to="/d/companies"
           ><suitcase-icon /> Firmy</router-link
         >
       </li>
-      <li>
+      <li @click="linkClick">
         <router-link
           :class="{ activeNavLink: isLinkActive('suppliers') }"
           to="/d/suppliers"
           ><truck-icon /> Dostawcy</router-link
         >
       </li>
-      <li>
+      <li @click="linkClick">
         <router-link
           :class="{ activeNavLink: isLinkActive('commodities') }"
           to="/d/commodities"
           ><stock-icon /> Towary</router-link
         >
       </li>
-      <li>
+      <li @click="linkClick">
         <router-link
           :class="{ activeNavLink: isLinkActive('orders') }"
           to="/d/orders"
@@ -76,6 +76,11 @@ export default defineComponent({
         return true;
 
       return this.$store.state.openState.location[2] === value;
+    },
+    linkClick() {
+      if (window.innerWidth < 768) {
+        this.$emit("clickLink");
+      }
     },
   },
 });

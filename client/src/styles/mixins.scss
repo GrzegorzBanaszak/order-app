@@ -3,16 +3,23 @@
   grid-template-columns: repeat(6, 1fr);
 }
 
+//Styles for dashboard list
 @mixin display-info-list {
   background-color: white;
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 5;
-  overflow-y: hidden;
+  height: 80vh;
   width: 100%;
+  overflow-y: hidden;
+  @include lg {
+    min-height: auto;
+    height: auto;
+  }
 }
 
+//Header for dashboard list
 @mixin display-info-header {
   padding: 0.7rem 1rem;
   display: flex;
@@ -20,6 +27,70 @@
   align-items: center;
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+//List for dashboard elements
+@mixin dashboard-list($grid) {
+  &__info {
+    display: none;
+  }
+
+  &__element {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.9rem;
+    div {
+      text-align: center;
+    }
+    &--item {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.7rem 0;
+    }
+    &--description {
+      font-weight: 700;
+    }
+  }
+  &__container {
+    @include scrollbars(5px, #ccc, white);
+    overflow-y: auto;
+    height: 100%;
+    padding-bottom: 6rem;
+  }
+  @include lg {
+    &__info {
+      padding: 0.6rem 1rem;
+      display: grid;
+      grid-template-columns: $grid;
+      border-bottom: 1px solid #ccc;
+      font-weight: 500;
+      font-size: 0.8rem;
+      div {
+        text-align: center;
+      }
+    }
+    &__element {
+      display: grid;
+      grid-template-columns: $grid;
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid #ccc;
+      font-size: 0.9rem;
+      &--item {
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      }
+      &--description {
+        display: none;
+      }
+    }
+    &__container {
+      @include scrollbars(5px, #ccc, white);
+      overflow-y: auto;
+      height: 90%;
+      padding-bottom: 4rem;
+    }
+  }
 }
 
 @mixin item-detail-header {
@@ -37,38 +108,6 @@
   margin-bottom: 0.5rem;
   font-weight: 500;
   font-size: 0.9rem;
-}
-
-@mixin dashboard-list($grid) {
-  &__info {
-    // margin: 1.4rem 0 0 0;
-    padding: 0.6rem 1rem;
-    display: grid;
-    grid-template-columns: $grid;
-    border-bottom: 1px solid #ccc;
-    font-weight: 500;
-    font-size: 0.8rem;
-    div {
-      text-align: center;
-    }
-  }
-  
-  &__element {
-    display: grid;
-    grid-template-columns: $grid;
-    padding: 0.6rem 1rem;
-    border-bottom: 1px solid #ccc;
-    font-size: 0.9rem;
-    div {
-      text-align: center;
-    }
-  }
-  &__container{
-    @include scrollbars(5px, #ccc, white);
-    overflow-y: auto;
-    height: 80%;
-    padding-bottom: 0.5rem;
-  }
 }
 
 @mixin order-detail-element($start-col, $end-col, $start-row, $end-row) {
@@ -98,6 +137,7 @@
     }
   }
 }
+
 @mixin scrollbars(
   $size,
   $foreground-color,

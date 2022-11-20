@@ -5,13 +5,21 @@
     {{ getDate() }}
   </div>
   <div class="list-element__controller">
-    <router-link :to="'/d/commodities/' + commodityInfo.id">
+    <router-link
+      class="list-element__link list-element__info"
+      :to="'/d/commodities/' + commodityInfo.id"
+    >
       <info-black-icon />
     </router-link>
-    <router-link :to="'/d/commodities/edit/' + commodityInfo.id">
+    <router-link
+      class="list-element__link list-element__edit"
+      :to="'/d/commodities/edit/' + commodityInfo.id"
+    >
       <pen-black-icon></pen-black-icon>
     </router-link>
-    <trash-black-icon @click="removeElement"></trash-black-icon>
+    <div class="list-element__link list-element__delete" @click="removeElement">
+      <trash-black-icon></trash-black-icon>
+    </div>
   </div>
 </template>
 
