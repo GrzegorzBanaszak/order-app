@@ -4,7 +4,7 @@
     <open-list
       :title="'Najlepsi klienci'"
       :icon="'CustomersBlueIcon'"
-      :list="$store.state.openState.bestCustomers"
+      :list="$store.getters.getBestCustomers"
       :list-type="'customers'"
     ></open-list>
   </div>
@@ -12,7 +12,7 @@
     <open-list
       :title="'Najczęściej zamawiane'"
       :icon="'PackageBlueIcon'"
-      :list="$store.state.openState.bestCommodities"
+      :list="$store.getters.getBestCommodities"
       :list-type="'commodities'"
     ></open-list>
   </div>

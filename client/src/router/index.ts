@@ -43,11 +43,11 @@ const isAuth = async (
   from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) => {
-  if (!store.state.authState.token) {
+  if (!store.getters.isAuth) {
     let token = localStorage.getItem("token");
-    if (token && !store.getters.isAuth) {
+    if (token) {
       store.commit(AuthMutations.SET_TOKEN, token);
-      next();
+      next("/d");
     } else {
       next({ name: "login" });
     }
@@ -61,6 +61,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "login",
     component: LoginView,
+    beforeEnter: isAuth,
   },
   {
     path: "/d",

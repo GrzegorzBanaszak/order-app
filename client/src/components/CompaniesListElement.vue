@@ -1,10 +1,20 @@
 <template>
-  <div>{{ companyInfo.name }}</div>
-  <div>{{ companyInfo.nip }}</div>
-  <div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Nazwa</p>
+    {{ companyInfo.name }}
+  </div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Nip</p>
+    {{ companyInfo.nip }}
+  </div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Ostatnie zamówienie</p>
     {{ getDate() }}
   </div>
-  <div>{{ companyInfo.employers }}</div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Ilość pracowników</p>
+    {{ companyInfo.employers }}
+  </div>
   <div class="list-element__controller">
     <router-link
       class="list-element__link list-element__info"

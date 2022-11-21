@@ -17,7 +17,14 @@ export const openState: Module<IOpenState, State> = {
     filteredOrders: [],
     location: new Array<string>(0),
   },
-  getters: {},
+  getters: {
+    getBestCustomers(state) {
+      return state.bestCustomers.slice(0, 9);
+    },
+    getBestCommodities(state) {
+      return state.bestCommodities.slice(0, 9);
+    },
+  },
   mutations: {
     setFilteredOrders(state, payload: IOrder[]) {
       state.filteredOrders = payload;

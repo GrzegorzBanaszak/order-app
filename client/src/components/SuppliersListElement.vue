@@ -1,10 +1,20 @@
 <template>
-  <div>{{ supplierInfo.name }}</div>
-  <div>{{ supplierInfo.price }}</div>
-  <div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Nazwa</p>
+    {{ supplierInfo.name }}
+  </div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Cena dostawy</p>
+    {{ supplierInfo.price }}
+  </div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Ostatnie zamówienie</p>
     {{ getDate() }}
   </div>
-  <div>{{ supplierInfo.numberOfOrders }}</div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Liczba zamówień</p>
+    {{ supplierInfo.numberOfOrders }}
+  </div>
   <div class="list-element__controller">
     <router-link
       class="list-element__link list-element__info"

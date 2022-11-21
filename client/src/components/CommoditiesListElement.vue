@@ -1,7 +1,14 @@
 <template>
-  <div>{{ commodityInfo.name }}</div>
-  <div>{{ commodityInfo.lastPrice }} zł</div>
-  <div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Nazwa</p>
+    {{ commodityInfo.name }}
+  </div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Ostatnia cena</p>
+    {{ commodityInfo.lastPrice }} zł
+  </div>
+  <div class="customers-list__element--item">
+    <p class="customers-list__element--description">Ostatnie zamówienie</p>
     {{ getDate() }}
   </div>
   <div class="list-element__controller">

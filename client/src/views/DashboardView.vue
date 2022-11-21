@@ -190,24 +190,24 @@ export default defineComponent({
 
   &__link {
     flex-grow: 1;
-    padding: 0.5rem 0;
+    padding: 0.3rem 0;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     svg {
       fill: white;
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
     }
   }
 
   &__info {
-    background-color: #5e35b1;
+    background-color: #2196f3;
   }
 
   &__edit {
-    background-color: #43a047;
+    background-color: #689f38;
   }
   &__delete {
     background-color: #b71c1c;
@@ -268,17 +268,6 @@ export default defineComponent({
         width: 16px;
         height: 16px;
       }
-    }
-
-    &__info {
-      background-color: #5e35b1;
-    }
-
-    &__edit {
-      background-color: #43a047;
-    }
-    &__delete {
-      background-color: #b71c1c;
     }
   }
 }

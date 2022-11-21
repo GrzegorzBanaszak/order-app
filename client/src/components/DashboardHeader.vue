@@ -2,7 +2,7 @@
   <header :class="classType">
     <div class="avatar">
       <p class="avatar__username">{{ $store.getters.getUsername }}</p>
-      <div class="avatar__icon"><users-icon /></div>
+      <div class="avatar__icon" @click="openSelectEmployer"><users-icon /></div>
     </div>
     <div class="avatar__toggle" @click="$emit('toggleNav')">
       <no-icon v-if="isOpen" />
@@ -16,6 +16,8 @@ import { defineComponent } from "vue";
 import UsersIcon from "@/icons/UsersIcon.vue";
 import MenuIcon from "@/icons/MenuIcon.vue";
 import NoIcon from "@/icons/NoIcon.vue";
+import { IPopUpShowPayload, PopupTypeEnum } from "@/types";
+import { PopUpMutations } from "@/store/popupState";
 export default defineComponent({
   components: {
     UsersIcon,
@@ -30,6 +32,15 @@ export default defineComponent({
     isOpen: {
       type: Boolean,
       required: true,
+    },
+  },
+  methods: {
+    openSelectEmployer() {
+      const payloadData: IPopUpShowPayload = {
+        type: PopupTypeEnum.SELECT_USER,
+        data: null,
+      };
+      this.$store.commit(PopUpMutations.POPUP_SHOW, payloadData);
     },
   },
 });
