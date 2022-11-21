@@ -32,6 +32,7 @@ import AddNewButton from "@/components/AddNewButton.vue";
 import PopUp from "@/components/PopUp.vue";
 import { IPopUpShowPayload, PopupTypeEnum } from "@/types";
 import { PopUpMutations } from "@/store/popupState";
+import { AuthMutations } from "@/store/authState";
 
 export default defineComponent({
   components: {
@@ -56,8 +57,13 @@ export default defineComponent({
       type: PopupTypeEnum.SELECT_USER,
       data: null,
     };
-    if (!this.$store.state.authState.user) {
+
+    const employerData = localStorage.getItem("employerData");
+
+    if (!employerData && !this.$store.state.authState.user) {
       this.$store.commit(PopUpMutations.POPUP_SHOW, payloadData);
+    } else if (employerData && !this.$store.state.authState.user) {
+      this.$store.commit(AuthMutations.SET_USER_DATA, JSON.parse(employerData));
     }
   },
   watch: {
@@ -210,6 +216,7 @@ export default defineComponent({
 @include lg {
   .dashboard {
     &__grid {
+      overflow-y: hidden;
       width: 100%;
       height: 100vh;
       display: grid;

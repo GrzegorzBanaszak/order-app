@@ -70,6 +70,7 @@ export const authState: Module<IAuthState, State> = {
     },
     [AuthMutations.SET_USER_DATA](state, payload: any) {
       state.user = payload;
+      localStorage.setItem("employerData", JSON.stringify(payload));
     },
   },
   actions: {

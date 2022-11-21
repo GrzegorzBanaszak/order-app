@@ -15,7 +15,7 @@
   overflow-y: hidden;
   @include lg {
     min-height: auto;
-    height: auto;
+    height: 75vh;
   }
 }
 
@@ -88,7 +88,6 @@
       @include scrollbars(5px, #ccc, white);
       overflow-y: auto;
       height: 90%;
-      padding-bottom: 4rem;
     }
   }
 }
