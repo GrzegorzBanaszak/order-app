@@ -1,6 +1,7 @@
 <template>
   <order-detail-info></order-detail-info>
   <order-detail-customer></order-detail-customer>
+  <order-detail-status></order-detail-status>
   <order-detail-commodities></order-detail-commodities>
 </template>
 
@@ -10,12 +11,15 @@ import OrderDetailInfo from "@/components/OrderDetailInfo.vue";
 import OrderDetailSupplier from "@/components/OrderDetailSupplier.vue";
 import OrderDetailCustomer from "@/components/OrderDetailCustomer.vue";
 import OrderDetailCommodities from "@/components/OrderDetailCommodities.vue";
+import OrderDetailStatus from "@/components/OrderDetailStatus.vue";
+
 export default defineComponent({
   components: {
     OrderDetailInfo,
     OrderDetailSupplier,
     OrderDetailCustomer,
     OrderDetailCommodities,
+    OrderDetailStatus,
   },
   mounted() {
     this.$store.dispatch("getOrderDetail", this.$route.params.id);
@@ -43,6 +47,25 @@ export default defineComponent({
       @include item-detail-element;
     }
   }
+
+  &__status {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    background-color: white;
+    padding: 0.5rem;
+    position: relative;
+    h1 {
+      @include item-detail-header;
+    }
+    p {
+      padding-top: 1rem;
+      font-size: 1.3rem;
+      display: flex;
+      justify-content: center;
+    }
+  }
   &__edit {
     position: absolute;
     right: 0.5rem;
@@ -52,10 +75,11 @@ export default defineComponent({
       cursor: pointer;
     }
   }
-  &__status {
+
+  &__select {
     border-bottom: 2px solid #ccc;
     margin-left: 0.4rem;
-    width: 120px;
+    width: 180px;
     text-align: center;
     cursor: pointer;
     position: relative;
@@ -67,7 +91,7 @@ export default defineComponent({
       flex-direction: column;
       gap: 0.4rem;
       background-color: white;
-      top: 20px;
+      top: 25px;
       border: 1px solid #ccc;
     }
     span {
