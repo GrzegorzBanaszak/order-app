@@ -27,6 +27,7 @@ export enum AuthActions {
   LOGIN_USER = "loginUser",
   GET_USERS = "getUsers",
   ADD_EMPLOYER = "addEmployer",
+  GET_USER = "getUser",
 }
 
 export const authState: Module<IAuthState, State> = {
@@ -115,6 +116,24 @@ export const authState: Module<IAuthState, State> = {
         return res.data;
       } catch (error) {
         const err = error as AxiosError<AxiosErrorDataType>;
+      }
+    },
+    async [AuthActions.GET_USER](context, payload: string) {
+      try {
+        const res = await axios.get(
+          `http://${process.env.VUE_APP_BACKEND_IP}:5000/auth/me`,
+          {
+            headers: {
+              Authorization: `Bearer ${payload}`,
+            },
+          }
+        );
+
+        return res.data;
+      } catch (error) {
+        const err = error as AxiosError<AxiosErrorDataType>;
+        localStorage.removeItem("token");
+        localStorage.removeItem("employerData");
       }
     },
   },

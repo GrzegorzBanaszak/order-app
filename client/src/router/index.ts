@@ -1,4 +1,3 @@
-import { AuthGetters } from "./../store/authState";
 import { store } from "./../store/index";
 import {
   createRouter,
@@ -10,6 +9,9 @@ import {
 import LoginView from "../views/LoginView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import DashboardMainView from "@/views/DashboardMainView.vue";
+import axios, { AxiosError } from "axios";
+import { AxiosErrorDataType } from "@/types";
+import { AuthMutations } from "@/store/authState";
 
 const DashboardCustomersView = () =>
   import("@/views/DashboardCustomersView.vue");
@@ -36,21 +38,38 @@ const CompanyEditFormVue = () => import("@/views/CompanyEditForm.vue");
 const SupplierEditFormVue = () => import("@/views/SupplierEditForm.vue");
 const CommodityEditFormVue = () => import("@/views/CommodityEditForm.vue");
 const OrderEditFormVue = () => import("@/views/OrderEditForm.vue");
-import { AuthMutations } from "@/store/authState";
 
 const isAuth = async (
   to: RouteLocationNormalized,
   from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) => {
-  if (!store.getters.isAuth) {
-    let token = localStorage.getItem("token");
-    if (token) {
-      store.commit(AuthMutations.SET_TOKEN, token);
-      next("/d");
-    } else {
-      next({ name: "login" });
+  let token = localStorage.getItem("token");
+  if (!store.getters.isAuth && token) {
+    try {
+      const res = await axios.get(
+        `http://${process.env.VUE_APP_BACKEND_IP}:5000/auth/me`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (res.data.email) {
+        store.commit(AuthMutations.SET_TOKEN, token);
+        next("d");
+      } else {
+        next("/");
+      }
+    } catch (error) {
+      const err = error as AxiosError<AxiosErrorDataType>;
+      console.log(err);
+      localStorage.removeItem("token");
+      localStorage.removeItem("employerData");
+      next("/");
     }
+  } else if (!store.getters.isAuth && to.fullPath !== "/") {
+    next({ name: "login" });
   } else {
     next();
   }

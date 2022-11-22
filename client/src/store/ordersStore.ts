@@ -147,7 +147,7 @@ export const ordersState: Module<IOrdersState, State> = {
           type: PopupTypeEnum.DISPLAY_MESSAGES,
           data: {
             title: "Pomyślnie",
-            messages: [`Udało się dodać zamówienie ${res.data.name}`],
+            messages: [`Udało się dodać zamówienie ${res.data.orderNumber}`],
             type: "success",
           },
         };
@@ -179,7 +179,9 @@ export const ordersState: Module<IOrdersState, State> = {
           type: PopupTypeEnum.DISPLAY_MESSAGES,
           data: {
             title: "Pomyślnie",
-            messages: [`Udało się zaktualizować zamówienie ${res.data.name}`],
+            messages: [
+              `Udało się zaktualizować zamówienie ${res.data.orderNumber}`,
+            ],
             type: "success",
           },
         };
