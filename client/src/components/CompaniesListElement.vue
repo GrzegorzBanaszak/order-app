@@ -1,18 +1,18 @@
 <template>
-  <div class="customers-list__element--item">
-    <p class="customers-list__element--description">Nazwa</p>
+  <div class="companies-list__element--item">
+    <p class="companies-list__element--description">Nazwa</p>
     {{ companyInfo.name }}
   </div>
-  <div class="customers-list__element--item">
-    <p class="customers-list__element--description">Nip</p>
+  <div class="companies-list__element--item">
+    <p class="companies-list__element--description">Nip</p>
     {{ companyInfo.nip }}
   </div>
-  <div class="customers-list__element--item">
-    <p class="customers-list__element--description">Ostatnie zamówienie</p>
+  <div class="companies-list__element--item">
+    <p class="companies-list__element--description">Ostatnie zamówienie</p>
     {{ getDate() }}
   </div>
-  <div class="customers-list__element--item">
-    <p class="customers-list__element--description">Ilość pracowników</p>
+  <div class="companies-list__element--item">
+    <p class="companies-list__element--description">Ilość pracowników</p>
     {{ companyInfo.employers }}
   </div>
   <div class="list-element__controller">

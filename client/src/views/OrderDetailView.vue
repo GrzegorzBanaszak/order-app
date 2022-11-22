@@ -32,7 +32,7 @@ export default defineComponent({
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 1;
-    grid-row-end: 2;
+    grid-row-end: 3;
     background-color: white;
     padding: 0.5rem;
     position: relative;
@@ -92,7 +92,7 @@ export default defineComponent({
   &__commodities {
     grid-column-start: 1;
     grid-column-end: 5;
-    grid-row-start: 2;
+    grid-row-start: 3;
     grid-row-end: 5;
     background-color: white;
     padding: 1rem;

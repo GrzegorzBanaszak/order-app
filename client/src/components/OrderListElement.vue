@@ -1,10 +1,28 @@
 <template>
-  <div>{{ orderInfo.orderNumber }}</div>
-  <div>{{ orderInfo.customer }}</div>
-  <div>{{ getDate() }}</div>
-  <div>{{ orderInfo.totalPrice }} zł</div>
-  <div>{{ orderInfo.advance }} zł</div>
-  <div>{{ orderInfo.status }}</div>
+  <div class="orders-list__element--item">
+    <p class="orders-list__element--description">Numer zamówienia</p>
+    {{ orderInfo.orderNumber }}
+  </div>
+  <div class="orders-list__element--item">
+    <p class="orders-list__element--description">Klient</p>
+    {{ orderInfo.customer }}
+  </div>
+  <div class="orders-list__element--item">
+    <p class="orders-list__element--description">Data zamówienia</p>
+    {{ getDate() }}
+  </div>
+  <div class="orders-list__element--item">
+    <p class="orders-list__element--description">Koszt brutto</p>
+    {{ orderInfo.totalPrice }} zł
+  </div>
+  <div class="orders-list__element--item">
+    <p class="orders-list__element--description">Zaliczka</p>
+    {{ orderInfo.advance }} zł
+  </div>
+  <div class="orders-list__element--item">
+    <p class="orders-list__element--description">Status</p>
+    {{ orderInfo.status }}
+  </div>
   <div class="list-element__controller">
     <router-link
       class="list-element__link list-element__info"

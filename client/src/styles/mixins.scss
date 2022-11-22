@@ -22,11 +22,15 @@
 //Header for dashboard list
 @mixin display-info-header {
   padding: 0.7rem 1rem;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 700;
+  @include lg {
+    font-size: 1.5rem;
+  }
 }
 
 //List for dashboard elements
