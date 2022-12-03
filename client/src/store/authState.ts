@@ -78,7 +78,7 @@ export const authState: Module<IAuthState, State> = {
     async [AuthActions.LOGIN_USER](context, payload) {
       try {
         const res = await axios.post(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/auth/login`,
+          `${process.env.VUE_APP_BACKEND_IP}/auth/login`,
           payload
         );
 
@@ -94,7 +94,7 @@ export const authState: Module<IAuthState, State> = {
     async [AuthActions.GET_USERS](context) {
       try {
         const res = await axios.get(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/employer`,
+          `${process.env.VUE_APP_BACKEND_IP}/employer`,
           context.getters.getAuthHeader
         );
 
@@ -106,7 +106,7 @@ export const authState: Module<IAuthState, State> = {
     async [AuthActions.ADD_EMPLOYER](context, payload: string) {
       try {
         const res = await axios.post(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/employer/add`,
+          `${process.env.VUE_APP_BACKEND_IP}/employer/add`,
           {
             name: payload,
           },
@@ -121,7 +121,7 @@ export const authState: Module<IAuthState, State> = {
     async [AuthActions.GET_USER](context, payload: string) {
       try {
         const res = await axios.get(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/auth/me`,
+          `${process.env.VUE_APP_BACKEND_IP}/auth/me`,
           {
             headers: {
               Authorization: `Bearer ${payload}`,

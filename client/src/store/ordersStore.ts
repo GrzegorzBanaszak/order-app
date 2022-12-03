@@ -89,7 +89,7 @@ export const ordersState: Module<IOrdersState, State> = {
   actions: {
     async getOrdersHistory(context, payload: OrdersHistoryPayload) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload.type}/${payload.id}`,
+        `${process.env.VUE_APP_BACKEND_IP}/order/${payload.type}/${payload.id}`,
         context.getters.getAuthHeader
       );
       context.commit("setOrdersHistory", res.data);
@@ -97,7 +97,7 @@ export const ordersState: Module<IOrdersState, State> = {
     async getOrdersInfo(context) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/`,
+          `${process.env.VUE_APP_BACKEND_IP}/order/`,
           context.getters.getAuthHeader
         );
         context.commit("setOrdersInfo", res.data);
@@ -118,7 +118,7 @@ export const ordersState: Module<IOrdersState, State> = {
     async getOrderDetail(context, payload: string) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload}`,
+          `${process.env.VUE_APP_BACKEND_IP}/order/${payload}`,
           context.getters.getAuthHeader
         );
         context.commit("setOrderDetail", res.data);
@@ -139,7 +139,7 @@ export const ordersState: Module<IOrdersState, State> = {
     async addOrder(context, payload: IOrderPost) {
       try {
         const res = await axios.post(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/add`,
+          `${process.env.VUE_APP_BACKEND_IP}/order/add`,
           payload,
           context.getters.getAuthHeader
         );
@@ -171,7 +171,7 @@ export const ordersState: Module<IOrdersState, State> = {
     async editOrder(context, payload: IOrderEditData) {
       try {
         const res = await axios.put(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/update/${payload.id}`,
+          `${process.env.VUE_APP_BACKEND_IP}/order/update/${payload.id}`,
           payload.data,
           context.getters.getAuthHeader
         );
@@ -205,7 +205,7 @@ export const ordersState: Module<IOrdersState, State> = {
     async updateStatus(context, payload: IStatusUpdate) {
       try {
         const res = await axios.patch(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/${payload.id}/${payload.status}`,
+          `${process.env.VUE_APP_BACKEND_IP}/order/${payload.id}/${payload.status}`,
           {},
           context.getters.getAuthHeader
         );

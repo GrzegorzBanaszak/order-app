@@ -47,14 +47,11 @@ const isAuth = async (
   let token = localStorage.getItem("token");
   if (!store.getters.isAuth && token) {
     try {
-      const res = await axios.get(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/auth/me`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await axios.get(`${process.env.VUE_APP_BACKEND_IP}/auth/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (res.data.email) {
         store.commit(AuthMutations.SET_TOKEN, token);
         next("d");

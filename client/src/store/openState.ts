@@ -42,21 +42,21 @@ export const openState: Module<IOpenState, State> = {
   actions: {
     async getOrders(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/last/5`,
+        `${process.env.VUE_APP_BACKEND_IP}/order/last/5`,
         context.getters.getAuthHeader
       );
       context.commit("setFilteredOrders", res.data);
     },
     async getBestCustomers(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/best/customers`,
+        `${process.env.VUE_APP_BACKEND_IP}/order/best/customers`,
         context.getters.getAuthHeader
       );
       context.commit("setBestCustomers", res.data);
     },
     async getBestCommodities(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/order/best/commodities`,
+        `${process.env.VUE_APP_BACKEND_IP}/order/best/commodities`,
         context.getters.getAuthHeader
       );
       context.commit("setBestCommodities", res.data);

@@ -49,7 +49,7 @@ export const customersState: Module<ICustomersState, State> = {
   actions: {
     async getCustomers(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer`,
+        `${process.env.VUE_APP_BACKEND_IP}/customer`,
         context.getters.getAuthHeader
       );
       context.commit("setCustomers", res.data);
@@ -58,7 +58,7 @@ export const customersState: Module<ICustomersState, State> = {
     async getCustomerDetail(context, payload: string) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/${payload}`,
+          `${process.env.VUE_APP_BACKEND_IP}/customer/${payload}`,
           context.getters.getAuthHeader
         );
         context.commit("setCustomerDetail", res.data);
@@ -69,7 +69,7 @@ export const customersState: Module<ICustomersState, State> = {
     async addCustomer(context, payload: ICustomerPost) {
       try {
         const res = await axios.post(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/add`,
+          `${process.env.VUE_APP_BACKEND_IP}/customer/add`,
           payload,
           context.getters.getAuthHeader
         );
@@ -103,7 +103,7 @@ export const customersState: Module<ICustomersState, State> = {
     async editCustomer(context, payload: ICustomerEditData) {
       try {
         const res = await axios.put(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/update/${payload.id}`,
+          `${process.env.VUE_APP_BACKEND_IP}/customer/update/${payload.id}`,
           payload.data,
           context.getters.getAuthHeader
         );
@@ -137,7 +137,7 @@ export const customersState: Module<ICustomersState, State> = {
     async removeCustomer(context, payload: string) {
       try {
         const res = await axios.delete(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/customer/delete/${payload}`,
+          `${process.env.VUE_APP_BACKEND_IP}/customer/delete/${payload}`,
           context.getters.getAuthHeader
         );
 

@@ -49,7 +49,7 @@ export const suppliersState: Module<ISuppliersState, State> = {
   actions: {
     async getSuppliers(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier`,
+        `${process.env.VUE_APP_BACKEND_IP}/supplier`,
         context.getters.getAuthHeader
       );
       context.commit("setSuppliers", res.data);
@@ -57,7 +57,7 @@ export const suppliersState: Module<ISuppliersState, State> = {
     async getSupplierDetail(context, payload: string) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/${payload}`,
+          `${process.env.VUE_APP_BACKEND_IP}/supplier/${payload}`,
           context.getters.getAuthHeader
         );
         context.commit("setSupplierDetail", res.data);
@@ -68,7 +68,7 @@ export const suppliersState: Module<ISuppliersState, State> = {
     async addSupplier(context, payload: ISupplierPost) {
       try {
         const res = await axios.post(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/add`,
+          `${process.env.VUE_APP_BACKEND_IP}/supplier/add`,
           payload,
           context.getters.getAuthHeader
         );
@@ -102,7 +102,7 @@ export const suppliersState: Module<ISuppliersState, State> = {
     async editSupplier(context, payload: ISupplierEditData) {
       try {
         const res = await axios.put(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/update/${payload.id}`,
+          `${process.env.VUE_APP_BACKEND_IP}/supplier/update/${payload.id}`,
           payload.data,
           context.getters.getAuthHeader
         );
@@ -134,7 +134,7 @@ export const suppliersState: Module<ISuppliersState, State> = {
     async removeSupplier(context, payload: string) {
       try {
         const res = await axios.delete(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/supplier/delete/${payload}`,
+          `${process.env.VUE_APP_BACKEND_IP}/supplier/delete/${payload}`,
           context.getters.getAuthHeader
         );
         const payloadData: IPopUpShowPayload = {

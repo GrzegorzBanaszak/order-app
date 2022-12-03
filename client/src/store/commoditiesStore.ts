@@ -49,7 +49,7 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
   actions: {
     async setCommodities(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity`,
+        `${process.env.VUE_APP_BACKEND_IP}/commodity`,
         context.getters.getAuthHeader
       );
       context.commit("setCommodities", res.data);
@@ -57,7 +57,7 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
     async getCommodityDetail(context, payload: string) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/${payload}`,
+          `${process.env.VUE_APP_BACKEND_IP}/commodity/${payload}`,
           context.getters.getAuthHeader
         );
         context.commit("setCommodityDetail", res.data);
@@ -69,7 +69,7 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
     async addCommodity(context, payload: ICommodityPost) {
       try {
         const res = await axios.post(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/add`,
+          `${process.env.VUE_APP_BACKEND_IP}/commodity/add`,
           payload,
           context.getters.getAuthHeader
         );
@@ -101,7 +101,7 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
     async editCommodity(context, payload: ICommodityEditData) {
       try {
         const res = await axios.put(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/update/${payload.id}`,
+          `${process.env.VUE_APP_BACKEND_IP}/commodity/update/${payload.id}`,
           payload.data,
           context.getters.getAuthHeader
         );
@@ -134,7 +134,7 @@ export const commoditiesState: Module<ICommoditiesState, State> = {
     async removeCommodity(context, payload: string) {
       try {
         const res = await axios.delete(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/commodity/delete/${payload}`,
+          `${process.env.VUE_APP_BACKEND_IP}/commodity/delete/${payload}`,
           context.getters.getAuthHeader
         );
         const payloadData: IPopUpShowPayload = {

@@ -49,7 +49,7 @@ export const companiesState: Module<ICompaniesState, State> = {
   actions: {
     async getCompanies(context) {
       const res = await axios(
-        `http://${process.env.VUE_APP_BACKEND_IP}:5000/company`,
+        `${process.env.VUE_APP_BACKEND_IP}/company`,
         context.getters.getAuthHeader
       );
       context.commit("setCompanies", res.data);
@@ -57,7 +57,7 @@ export const companiesState: Module<ICompaniesState, State> = {
     async getCompanyDetail(context, payload: string) {
       try {
         const res = await axios(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/${payload}`,
+          `${process.env.VUE_APP_BACKEND_IP}/company/${payload}`,
           context.getters.getAuthHeader
         );
         context.commit("setCompanyDetail", res.data);
@@ -68,7 +68,7 @@ export const companiesState: Module<ICompaniesState, State> = {
     async addCompany(context, payload: ICustomerPost) {
       try {
         const res = await axios.post(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/add`,
+          `${process.env.VUE_APP_BACKEND_IP}/company/add`,
           payload,
           context.getters.getAuthHeader
         );
@@ -100,7 +100,7 @@ export const companiesState: Module<ICompaniesState, State> = {
     async editCompany(context, payload: ICompanyEditData) {
       try {
         const res = await axios.put(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/update/${payload.id}`,
+          `${process.env.VUE_APP_BACKEND_IP}/company/update/${payload.id}`,
           payload.data,
           context.getters.getAuthHeader
         );
@@ -133,7 +133,7 @@ export const companiesState: Module<ICompaniesState, State> = {
     async removeCompany(context, payload: string) {
       try {
         const res = await axios.delete(
-          `http://${process.env.VUE_APP_BACKEND_IP}:5000/company/delete/${payload}`,
+          `${process.env.VUE_APP_BACKEND_IP}/company/delete/${payload}`,
           context.getters.getAuthHeader
         );
         const payloadData: IPopUpShowPayload = {

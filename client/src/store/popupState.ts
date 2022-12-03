@@ -33,26 +33,5 @@ export const popupState: Module<IPopupState, State> = {
     [PopUpMutations.REMOVE_POPUP](state, payload: string) {
       state.popups.delete(payload);
     },
-    displayRemovePopup(state, payload: IPopupConfirmData) {
-      // const id = uuidv4();
-      // const popupData: IPopupData = {
-      //   id,
-      //   styleType: "type-error",
-      //   layoutType: "confirm",
-      //   title: "Uwaga",
-      //   message: payload.messages,
-      //   remove: payload.remove,
-      // };
-      // state.popups.set(id, popupData);
-    },
-  },
-  actions: {
-    // async removeConfirm(context, payload: string) {
-    //   const popup = context.state.popups.get(payload);
-    //   if (popup && popup.remove) {
-    //     await popup.remove();
-    //     context.commit("popupRemove", payload);
-    //   }
-    // },
   },
 };
